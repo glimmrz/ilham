@@ -22,14 +22,20 @@ export function User() {
         <DropdownMenuLabel>My account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <Link href="/login">login</Link>
+          <Link href="/login" className="w-full">
+            login
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <Link href="/register">sign up</Link>
+          <Link href="/register" className="w-full">
+            sign up
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <Link href="/register">become a partner</Link>
+          <Link href="/become-a-partner" className="w-full">
+            become a partner
+          </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
