@@ -53,7 +53,7 @@ export const Product = () => {
           <span>by </span>
           <Link
             href={{
-              href: "/shop",
+              pathname: "/shop",
               query: { brand: "ilham" },
             }}
             className="text-primary"
