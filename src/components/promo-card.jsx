@@ -7,7 +7,7 @@ export function PromoCard({ card }) {
   return (
     <div
       className={
-        "select-none relative lg:h-[25vw] 2xl:min-h-[18vw] 2xl:h-[20vw] bg-white light:text-accent dark:text-accent rounded-md overflow-hidden group"
+        "select-none relative lg:h-[25vw] 2xl:min-h-[18vw] 2xl:h-[20vw] dark:bg-accent-foreground light:text-accent dark:text-accent rounded-md overflow-hidden group"
       }
     >
       {/*  Before Card */}

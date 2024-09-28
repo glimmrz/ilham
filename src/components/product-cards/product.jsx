@@ -11,6 +11,9 @@ import {
 } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { useProductModal } from "@/hooks/controllers";
+import { RatingStars } from "../rating-stars";
+import Link from "next/link";
+import { CalculatePrice } from "./calculate-price";
 
 export const Product = () => {
   const { onOpen } = useProductModal();
@@ -34,13 +37,32 @@ export const Product = () => {
           />
         </figure>
       </CardContent>
-      <CardHeader className="py-2">
+      <CardHeader>
         <CardTitle className="text-base capitalize h-12 line-clamp-2">
           orange jam with hot spices and cool spices
         </CardTitle>
       </CardHeader>
+      <div className="px-2 py-2 md:px-3">
+        <RatingStars />
+        <span className="text-sm">
+          <span>by </span>
+          <Link
+            href={{
+              href: "/shop",
+              query: { brand: "ilham" },
+            }}
+            className="text-primary"
+          >
+            ilham
+          </Link>
+        </span>
+      </div>
       <CardFooter className="flex items-center justify-between">
-        <span>$21.00</span>
+        <CalculatePrice
+          discountedPrice={20}
+          price={22}
+          className="text-primary flex-col md:flex-row items-start md:items-center"
+        />
         <Button variant="outline">
           <span>add</span>
           <Icon icon="check" />
