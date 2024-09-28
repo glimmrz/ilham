@@ -44,7 +44,7 @@ export const Product = () => {
       </CardHeader>
       <div className="px-2 py-2 md:px-3">
         <RatingStars />
-        <span className="text-sm">
+        <span className="text-sm capitalize">
           <span>by </span>
           <Link
             href={{
@@ -57,7 +57,7 @@ export const Product = () => {
           </Link>
         </span>
       </div>
-      <CardFooter className="flex items-center justify-between">
+      <CardFooter className="flex items-center justify-between md:pt-0">
         <CalculatePrice
           discountedPrice={20}
           price={22}

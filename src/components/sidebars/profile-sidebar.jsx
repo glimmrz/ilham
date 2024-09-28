@@ -55,7 +55,7 @@ export function ProfileSidebar({ data }) {
           </div>
         </figure>
 
-        <div className="mt-10 text-center border-b-[1px] border-muted-foreground pt-2 pb-2">
+        <div className="mt-10 text-center border-b-[1px] border-muted pt-2 pb-2">
           <CardTitle>John Doe</CardTitle>
           <p className="text-base opacity-70">admin@email.com</p>
         </div>
@@ -87,13 +87,12 @@ function SidebarItem({ item, pathname }) {
     <Link href={item?.link ? item?.link : "#"} passHref>
       <Button
         variant="outline"
-        iconSize={22}
-        className={`border-0 shadow-regular w-full justify-start text-inherit hover:bg-accent transition-all duration-300 ${
+        className={`border-0 shadow-regular w-full justify-start text-base text-inherit hover:bg-accent transition-all duration-300 ${
           pathname === item?.link &&
           "bg-accent shadow-active border-l-[5px] border-primary text-primary"
         }`}
       >
-        <Icon icon={item.icon} />
+        <Icon icon={item.icon} size={24} />
         <span>{item.label}</span>
       </Button>
     </Link>
