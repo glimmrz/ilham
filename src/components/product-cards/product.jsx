@@ -19,10 +19,7 @@ export const Product = () => {
   const { onOpen } = useProductModal();
 
   return (
-    <Card
-      onClick={onOpen}
-      className="shadow-regular hover:shadow-active transition-shadow group border-transparent cursor-pointer"
-    >
+    <Card onClick={onOpen} className="group border-transparent cursor-pointer">
       <CardContent className="relative pb-2">
         <div className="absolute top-2 left-0 flex items-center justify-between w-full px-2 z-[1]">
           <Badge>sale</Badge>

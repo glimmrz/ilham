@@ -1,8 +1,15 @@
 import Link from "next/link";
 import { CardTitle } from "./ui/card";
 import { Section } from "./section";
+import { cn } from "@/lib/utils";
 
-export function ProductView({ children, title, hasMore = false, href = "#" }) {
+export function ProductView({
+  children,
+  title,
+  hasMore = false,
+  href = "#",
+  className,
+}) {
   return (
     <Section>
       {/* Heading */}
@@ -18,7 +25,12 @@ export function ProductView({ children, title, hasMore = false, href = "#" }) {
           </Link>
         )}
       </div>
-      <div className="grid gap-3 mt-3 grid-cols-2 md:grid-cols-[repeat(auto-fit,_minmax(245px,_.5fr))]">
+      <div
+        className={cn(
+          "grid gap-3 mt-3 grid-cols-2 md:grid-cols-[repeat(auto-fit,_minmax(245px,_.5fr))]",
+          className
+        )}
+      >
         {children}
       </div>
     </Section>

@@ -4,12 +4,10 @@ import { ProfileSidebar } from "@/components/sidebars/profile-sidebar";
 export default function Layout({ children }) {
   return (
     <Container>
-      <div className="lg:flex">
+      <div className="lg:flex gap-4">
         <ProfileSidebar />
 
-        <div className="w-full rounded-md">
-          <div className="p-0 md:p-2">{children}</div>
-        </div>
+        <div className="w-full">{children}</div>
       </div>
     </Container>
   );
