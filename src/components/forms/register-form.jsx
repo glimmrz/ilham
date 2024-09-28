@@ -49,7 +49,6 @@ export function RegisterForm() {
         <Button
           aria-label="create your account."
           type="submit"
-          loading={isLoading}
           disabled={isLoading}
         >
           register

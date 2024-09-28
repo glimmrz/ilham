@@ -6,6 +6,7 @@ import { Logo } from "../logo";
 import { ThemeToggle } from "../theme-toggle";
 import { Button } from "../ui/button";
 import { User } from "../user";
+import Link from "next/link";
 
 export const Navbar = () => {
   const { onOpen } = useSearchDrawer();
@@ -27,10 +28,12 @@ export const Navbar = () => {
               <Icon icon="search" />
               <span className="sr-only">search</span>
             </Button>
-            <Button variant="outline">
-              <Icon icon="heart" />
-              <span>0</span>
-            </Button>
+            <Link href="/wishlist" passHref>
+              <Button variant="outline">
+                <Icon icon="heart" />
+                <span>0</span>
+              </Button>
+            </Link>
 
             <User />
             <ThemeToggle />

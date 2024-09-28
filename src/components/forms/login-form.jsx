@@ -1,13 +1,10 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
 import { CardTitle } from "../ui/card";
 import { Button } from "../ui/button";
 import { InputGroup } from "../input-group";
 
 export function LoginForm() {
-  const [isLoading, setIsLoading] = useState(false);
-
   return (
     <>
       <CardTitle className="text-center">Welcome back!</CardTitle>
