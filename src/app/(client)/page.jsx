@@ -6,7 +6,13 @@ import { PromoSlider } from "@/components/promo-slider";
 export default function Home() {
   return (
     <Container>
-      <ProductView title="popular picks">
+      <ProductView
+        title="popular picks"
+        href={{
+          pathname: "/shop",
+          query: { category: "popular" },
+        }}
+      >
         <Product />
         <Product />
         <Product />

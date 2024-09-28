@@ -1,25 +1,19 @@
 import Link from "next/link";
-import { CardTitle } from "./ui/card";
 import { Section } from "./section";
 import { cn } from "@/lib/utils";
+import { Heading } from "./heading";
 
-export function ProductView({
-  children,
-  title,
-  hasMore = false,
-  href = "#",
-  className,
-}) {
+export function ProductView({ children, title, href, className }) {
   return (
     <Section>
       {/* Heading */}
       <div className="flex items-center justify-between mb-2">
-        {title && <CardTitle>{title}</CardTitle>}
+        {title && <Heading>{title}</Heading>}
 
-        {hasMore && (
+        {href && (
           <Link
             href={href}
-            className="capitalize text-theme font-bold hover:underline"
+            className="capitalize text-primary font-bold underline decoration-wavy"
           >
             see all
           </Link>
