@@ -1,12 +1,11 @@
-import { Container } from "@/components/container";
-import { Sidebar } from "@/components/sidebars/sidebar";
+import { Container } from "@/components/wrappers/container";
+import { ProfileSidebar } from "@/components/sidebars/profile-sidebar";
 
 export default function Layout({ children }) {
   return (
     <Container>
       <div className="lg:flex">
-        {/* <ProfileSidebar data={userData} /> */}
-        <Sidebar />
+        <ProfileSidebar />
 
         <div className="w-full rounded-md">
           <div className="p-0 md:p-2">{children}</div>

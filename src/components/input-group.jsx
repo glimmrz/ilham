@@ -7,7 +7,14 @@ export function InputGroup({ className, ...props }) {
 
   return (
     <div className={cn("grid w-full items-center gap-1.5", className)}>
-      <Label htmlFor={props.name} className="capitalize">
+      <Label
+        htmlFor={props.name}
+        className={`capitalize ${
+          props.required
+            ? "after:content-['*'] after:text-destructive after:pl-1 after:text-lg"
+            : ""
+        }`}
+      >
         {props.label}
       </Label>
       <Input {...others} />

@@ -1,6 +1,6 @@
 "use client";
 import { useSearchDrawer } from "@/hooks/controllers";
-import { Container } from "../container";
+import { Container } from "../wrappers/container";
 import { Icon } from "../icon";
 import { Logo } from "../logo";
 import { ThemeToggle } from "../theme-toggle";

@@ -11,7 +11,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { forwardRef } from "react";
-import { Container } from "../container";
+import { Container } from "../wrappers/container";
 
 export function Navigation() {
   return (
