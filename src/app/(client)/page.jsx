@@ -21,6 +21,34 @@ export default function Home() {
       </ProductView>
 
       <PromoSlider />
+
+      <ProductView
+        title="best sellers"
+        href={{
+          pathname: "/shop",
+          query: { category: "most-sold" },
+        }}
+      >
+        <Product />
+        <Product />
+        <Product />
+        <Product />
+        <Product />
+      </ProductView>
+
+      <ProductView
+        title="featured items"
+        href={{
+          pathname: "/shop",
+          query: { category: "featured" },
+        }}
+      >
+        <Product />
+        <Product />
+        <Product />
+        <Product />
+        <Product />
+      </ProductView>
     </Container>
   );
 }
