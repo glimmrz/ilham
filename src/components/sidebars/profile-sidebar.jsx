@@ -6,6 +6,7 @@ import { CardTitle } from "../ui/card";
 import { Button } from "../ui/button";
 import { Container } from "../wrappers/container";
 import { Icon } from "../icon";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 const sidebarItems = [
   {
@@ -42,20 +43,15 @@ export function ProfileSidebar({ data }) {
             sizes="(max-width: 768px) 100vw, 350px"
           />
 
-          <div className="absolute w-fit bottom-[-45px] left-0 right-0 m-auto">
-            <figure className="relative h-[90px] w-[90px] rounded-full overflow-hidden border-[5px] border-background">
-              <Image
-                src="https://zeris.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2F1.53c51237.jpg&w=96&q=75"
-                alt=""
-                fill
-                className="object-contain"
-                sizes="80px"
-              />
-            </figure>
+          <div className="absolute w-fit -bottom-5 left-0 right-0 m-auto">
+            <Avatar className="h-12 w-12">
+              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
           </div>
         </figure>
 
-        <div className="mt-10 text-center border-b-[1px] border-muted pt-2 pb-2">
+        <div className="mt-6 text-center border-b-[1px] border-muted pt-2 pb-2">
           <CardTitle>John Doe</CardTitle>
           <p className="text-base opacity-70">admin@email.com</p>
         </div>

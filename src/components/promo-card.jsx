@@ -43,7 +43,7 @@ export function PromoCard({ card }) {
           </p>
 
           <Link href={`/shop`}>
-            <Button>shop now</Button>
+            <Button icon="arrowRight">shop now</Button>
           </Link>
         </div>
       </div>

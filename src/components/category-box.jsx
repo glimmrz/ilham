@@ -3,7 +3,7 @@ import { Card, CardContent } from "./ui/card";
 
 export const CategoryBox = () => {
   return (
-    <Card>
+    <Card className="shadow-none hover:shadow-none">
       <CardContent className="md:p-2">
         <figure className="relative h-20">
           <Image

@@ -1,16 +1,16 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { CardTitle } from "@/components/ui/card";
 import { Icon } from "@/components/icon";
 import { DataCell } from "@/components/data-cell";
 import { TotalCard } from "@/components/total-card";
+import { Heading } from "@/components/heading";
 
 export default function Profile({ data }) {
   return (
     <>
       <div className="flex justify-between items-center mb-4 md:mb-1">
-        <CardTitle>John Doe</CardTitle>
-        <Button>edit profile</Button>
+        <Heading>John Doe</Heading>
+        <Button icon="edit">edit profile</Button>
       </div>
       <div className="flex flex-wrap gap-x-4 gap-y-2 md:gap-6">
         <div className="flex items-center gap-2">

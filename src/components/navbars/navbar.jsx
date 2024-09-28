@@ -22,15 +22,14 @@ export const Navbar = () => {
             <Button
               variant="outline"
               size="icon"
+              icon="search"
               className="rounded-full"
               onClick={onOpen}
             >
-              <Icon icon="search" />
               <span className="sr-only">search</span>
             </Button>
             <Link href="/wishlist" passHref>
-              <Button variant="outline">
-                <Icon icon="heart" />
+              <Button icon="heart" variant="outline">
                 <span>0</span>
               </Button>
             </Link>
