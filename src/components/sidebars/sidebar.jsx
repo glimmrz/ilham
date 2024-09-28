@@ -19,8 +19,10 @@ export function Sidebar({
     <Sheet open={isOpen} onOpenChange={onClose}>
       <SheetContent className="h-full flex flex-col justify-between">
         <SheetHeader>
-          <SheetTitle>{title}</SheetTitle>
-          <SheetDescription>{subtitle}</SheetDescription>
+          <SheetTitle className="first-letter:capitalize">{title}</SheetTitle>
+          <SheetDescription className="first-letter:capitalize">
+            {subtitle}
+          </SheetDescription>
         </SheetHeader>
         <div className="h-full overflow-y-auto">{children}</div>
         <SheetFooter>{footer}</SheetFooter>
