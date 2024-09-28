@@ -19,7 +19,10 @@ export const Product = () => {
   const { onOpen } = useProductModal();
 
   return (
-    <Card onClick={onOpen}>
+    <Card
+      onClick={onOpen}
+      className="shadow-regular hover:shadow-active transition-shadow group border-transparent cursor-pointer"
+    >
       <CardContent className="relative pb-2">
         <div className="absolute top-2 left-0 flex items-center justify-between w-full px-2 z-[1]">
           <Badge>sale</Badge>
@@ -28,7 +31,7 @@ export const Product = () => {
           </Button>
         </div>
 
-        <figure className="relative h-[120px] md:h-[140px] w-full">
+        <figure className="relative h-[120px] md:h-[140px] w-full group-hover:scale-105 transition-transform">
           <Image
             src="https://zeris.vercel.app/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdjtjatcqw%2Fimage%2Fupload%2Fv1726252688%2Fcgvstypfhmxtauhddp3e.webp&w=1920&q=75"
             alt=""
