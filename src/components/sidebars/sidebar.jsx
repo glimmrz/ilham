@@ -24,7 +24,7 @@ export function Sidebar({
             {subtitle}
           </SheetDescription>
         </SheetHeader>
-        <div className="h-full overflow-y-auto">{children}</div>
+        <div className="h-full overflow-y-auto mb-1">{children}</div>
         <SheetFooter>{footer}</SheetFooter>
       </SheetContent>
     </Sheet>

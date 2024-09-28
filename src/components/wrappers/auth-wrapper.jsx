@@ -12,16 +12,22 @@ export function AuthWrapper({ children }) {
             <div className="w-full">{children}</div>
 
             {/* Social Login */}
-            <div className="w-full">
+            {/* <div className="w-full">
               <p className="flex items-center justify-center gap-2 mt-2 mb-2 text-muted-foreground text-center after:content-[''] after:h-[1px] after:w-full after:bg-accent before:content-[''] before:h-[1px] before:w-full before:bg-accent">
                 or
               </p>
               <div className="flex flex-col gap-2">
-                <Button variant="outline">continue with google</Button>
-                <Button variant="outline">continue with facebook</Button>
-                <Button variant="outline">continue with twitter</Button>
+                <Button variant="outline" icon="google">
+                  continue with google
+                </Button>
+                <Button variant="outline" icon="facebook">
+                  continue with facebook
+                </Button>
+                <Button variant="outline" icon="twitter">
+                  continue with twitter
+                </Button>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

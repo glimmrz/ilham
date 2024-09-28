@@ -3,6 +3,7 @@ import { useCartSidebar } from "@/hooks/controllers";
 import { Sidebar } from "./sidebar";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { CartItem } from "../cart/cart-item";
 
 export function CartSidebar() {
   const { isOpen, onClose } = useCartSidebar();
@@ -29,7 +30,18 @@ export function CartSidebar() {
       subtitle="Review your selected items before checkout."
       footer={footer}
     >
-      CartSidebar
+      <div className="grid gap-2">
+        <CartItem />
+        <CartItem />
+        <CartItem />
+        <CartItem />
+        <CartItem />
+        <CartItem />
+        <CartItem />
+        <CartItem />
+        <CartItem />
+        <CartItem />
+      </div>
     </Sidebar>
   );
 }
