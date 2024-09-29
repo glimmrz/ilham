@@ -37,7 +37,7 @@ export function LoginForm() {
         setLocalData("ilm-user", res.response.payload),
       ]);
 
-      router.refresh();
+      router.push("/");
 
       notify(res.response.msg);
     } catch (err) {

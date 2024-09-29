@@ -9,10 +9,27 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { useLocalData } from "@/utils/local-storage";
+import { getLocalData, setLocalData } from "@/utils/local-storage";
+import { logout } from "@/utils/auth";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export function User() {
-  const user = useLocalData("ilm-user");
+  const [user, setUser] = useState(null);
+
+  // Set userdata
+  useEffect(() => {
+    const userData = getLocalData("ilm-user");
+    setUser(userData);
+  }, []);
+  const router = useRouter();
+
+  // Logout user
+  const handleLogout = async () => {
+    await Promise.all([setLocalData("ilm-user", ""), logout()]);
+    setUser(null);
+    router.refresh();
+  };
 
   return (
     <DropdownMenu>
@@ -50,10 +67,12 @@ export function User() {
             </Link>
           </>
         )}
-        <DropdownMenuSeparator />
-        <Link href="/become-a-partner" className="w-full">
-          <DropdownMenuItem>become a partner</DropdownMenuItem>
-        </Link>
+        {user && (
+          <>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={handleLogout}>logout</DropdownMenuItem>
+          </>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );

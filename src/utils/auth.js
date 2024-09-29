@@ -1,6 +1,6 @@
 "use server";
 import { jwtVerify } from "jose";
-import { getCookie } from "./cookie";
+import { getCookie, setCookie } from "./cookie";
 
 export async function getSession() {
   const session = await getCookie("ilm-session");
@@ -30,4 +30,11 @@ export async function getSession() {
       payload: null,
     };
   }
+}
+
+export async function logout() {
+  await Promise.all([
+    setCookie("ilm-session", "", 0),
+    setCookie("ilm-partner", "", 0),
+  ]);
 }
