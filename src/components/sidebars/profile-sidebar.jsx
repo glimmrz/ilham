@@ -1,10 +1,8 @@
 "use client";
-import { usePathname } from "next/navigation";
 import Image from "next/image";
-import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { CardTitle } from "../ui/card";
 import { Button } from "../ui/button";
-import { Container } from "../wrappers/container";
 import { Icon } from "../icon";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
@@ -26,9 +24,7 @@ const sidebarItems = [
   },
 ];
 
-export function ProfileSidebar({ data }) {
-  const pathname = usePathname();
-
+export function ProfileSidebar() {
   return (
     <aside
       className={`w-[300px] h-fit bg-accent rounded-md shadow-regular overflow-hidden transition-all duration-300 md:min-w-[300px] lg:sticky lg:top-0`}
@@ -67,30 +63,28 @@ export function ProfileSidebar({ data }) {
 
       <div className="flex flex-col gap-2 p-2">
         {sidebarItems.map((item, index) => (
-          <SidebarItem
-            key={index}
-            item={item}
-            pathname={pathname?.split("/")[2] ? pathname?.split("/")[2] : ""}
-          />
+          <SidebarItem key={index} item={item} />
         ))}
       </div>
     </aside>
   );
 }
 
-function SidebarItem({ item, pathname }) {
+function SidebarItem({ item }) {
+  const router = useRouter();
+  const pathname = usePathname();
+
   return (
-    <Link href={item?.link ? item?.link : "#"} passHref>
-      <Button
-        variant="outline"
-        className={`border-0 shadow-regular w-full justify-start text-base text-inherit hover:bg-accent transition-all duration-300 ${
-          pathname === item?.link &&
-          "bg-accent shadow-active border-l-[5px] border-primary text-primary"
-        }`}
-      >
-        <Icon icon={item.icon} size={24} />
-        <span>{item.label}</span>
-      </Button>
-    </Link>
+    <Button
+      variant="outline"
+      className={`border-0 shadow-regular w-full justify-start text-base text-inherit hover:bg-accent transition-all duration-300 ${
+        pathname?.split("/")[2] === item?.link &&
+        "bg-accent shadow-active border-l-[5px] border-primary text-primary"
+      }`}
+      onClick={() => router.push(`/user/${item?.link}`)}
+    >
+      <Icon icon={item.icon} size={24} />
+      <span>{item.label}</span>
+    </Button>
   );
 }
