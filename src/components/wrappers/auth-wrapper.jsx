@@ -1,10 +1,9 @@
-import { Button } from "../ui/button";
 import { Container } from "./container";
 
 export function AuthWrapper({ children }) {
   return (
     <Container>
-      <div className="flex items-center justify-center min-h-[calc(theme(height.screen)-120px)]">
+      <div className="flex items-center justify-center min-h-[calc(theme(height.screen)-140px)]">
         <div className="max-w-[500px] w-full">
           {/* Main Form */}
           <div className="md:p-8">

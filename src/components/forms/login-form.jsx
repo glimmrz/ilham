@@ -1,13 +1,13 @@
 "use client";
 import Link from "next/link";
-import { CardTitle } from "../ui/card";
 import { Button } from "../ui/button";
 import { InputGroup } from "../input-group";
+import { Heading } from "../heading";
 
 export function LoginForm() {
   return (
     <>
-      <CardTitle className="text-center">Welcome back!</CardTitle>
+      <Heading className="text-center">Welcome back!</Heading>
       <form className="mt-8 flex flex-col gap-4">
         <InputGroup
           placeholder="example@email.com"
