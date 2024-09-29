@@ -18,25 +18,42 @@ export function User() {
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarImage src="https://github.com/shadcn.png" alt="user" />
+          <AvatarFallback>IL</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuLabel>My account</DropdownMenuLabel>
+        <DropdownMenuLabel className="capitalize">
+          {user?.name ? user?.name : "My account"}
+        </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <Link passHref href="/login" className="w-full">
-          <DropdownMenuItem>login</DropdownMenuItem>
-        </Link>
-        <Link passHref href="/register" className="w-full">
-          <DropdownMenuItem>sign up</DropdownMenuItem>
-        </Link>
+        {!user && (
+          <>
+            <Link passHref href="/login" className="w-full">
+              <DropdownMenuItem>login</DropdownMenuItem>
+            </Link>
+            <Link passHref href="/register" className="w-full">
+              <DropdownMenuItem>sign up</DropdownMenuItem>
+            </Link>
+          </>
+        )}
+        {user && (
+          <>
+            <Link passHref href="/user/profile" className="w-full">
+              <DropdownMenuItem>profile</DropdownMenuItem>
+            </Link>
+            <Link passHref href="/user/orders" className="w-full">
+              <DropdownMenuItem>orders</DropdownMenuItem>
+            </Link>
+            <Link passHref href="/user/address" className="w-full">
+              <DropdownMenuItem>addresses</DropdownMenuItem>
+            </Link>
+          </>
+        )}
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <Link href="/become-a-partner" className="w-full">
-            become a partner
-          </Link>
-        </DropdownMenuItem>
+        <Link href="/become-a-partner" className="w-full">
+          <DropdownMenuItem>become a partner</DropdownMenuItem>
+        </Link>
       </DropdownMenuContent>
     </DropdownMenu>
   );
