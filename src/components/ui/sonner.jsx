@@ -8,7 +8,7 @@ const Toaster = ({ ...props }) => {
   return (
     <Sonner
       theme={theme}
-      className="toaster group capitalize"
+      className="toaster group capitalize z-50"
       toastOptions={{
         classNames: {
           toast:
