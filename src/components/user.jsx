@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import {
@@ -8,8 +9,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { useLocalData } from "@/utils/local-storage";
 
 export function User() {
+  const user = useLocalData("ilm-user");
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>

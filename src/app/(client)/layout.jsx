@@ -7,16 +7,14 @@ import { CartSidebar } from "@/components/sidebars/cart-sidebar";
 
 export default function Layout({ children }) {
   return (
-    <html>
-      <body>
-        <Navbar />
-        <Navigation />
-        <main>{children}</main>
-        <ProductModal />
-        <SearchDrawer />
-        <CartIndicator />
-        <CartSidebar />
-      </body>
-    </html>
+    <>
+      <Navbar />
+      <Navigation />
+      <main>{children}</main>
+      <ProductModal />
+      <SearchDrawer />
+      <CartIndicator />
+      <CartSidebar />
+    </>
   );
 }

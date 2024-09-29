@@ -8,7 +8,7 @@ import { useState } from "react";
 import { notify } from "@/utils/toast";
 import { setCookie } from "@/utils/cookie";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
+import { setLocalData } from "@/utils/local-storage";
 
 export function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -26,7 +26,7 @@ export function LoginForm() {
       if (res.error) {
         return notify(res.response.msg);
       }
-
+      console.log(res.response);
       await Promise.all([
         setCookie(
           "ilm-session",
@@ -34,6 +34,7 @@ export function LoginForm() {
           res.response.expiryTime
         ),
         setCookie("ilm-partner", res.response.partner, res.response.expiryTime),
+        setLocalData("ilm-user", res.response.payload),
       ]);
 
       router.refresh();
