@@ -1,15 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { CardTitle } from "./ui/card";
+import { Card, CardContent, CardTitle } from "./ui/card";
 
 export function PromoCard({ card }) {
   return (
-    <div
-      className={
-        "select-none relative lg:h-[25vw] 2xl:min-h-[18vw] 2xl:h-[20vw] dark:bg-accent-foreground light:text-accent dark:text-accent rounded-md overflow-hidden group"
-      }
-    >
+    <Card className="shadow-transparent hover:shadow-transparent select-none relative lg:h-[25vw] 2xl:min-h-[18vw] 2xl:h-[20vw] dark:bg-accent-foreground light:text-accent dark:text-card rounded-md overflow-hidden group">
       {/*  Before Card */}
       <div
         className="w-[400px] h-[900px] absolute right-[-350px] xl:right-[-250px] 2xl:right-[-200px] 3xl:right-[-150px] bottom-[-300px] rotate-[40deg] transition-all duration-300 group-hover:right-[-450px] md:group-hover:right-[-400px] xl:group-hover:right-[-320px] 2xl:group-hover:right-[-250px] 3xl:group-hover:right-[-200px]"
@@ -21,7 +17,7 @@ export function PromoCard({ card }) {
         style={{ backgroundColor: "#E1FCF2" }}
       />
 
-      <div className="h-full grid grid-cols-1 lg:grid-cols-2 gap-3 p-4">
+      <CardContent className="h-full grid grid-cols-1 lg:grid-cols-2 gap-3">
         <div className="flex flex-col justify-center items-center gap-4 z-[1]">
           <figure className="relative h-[200px] w-full lg:h-full">
             <Image
@@ -42,11 +38,13 @@ export function PromoCard({ card }) {
             the best electronic products in the market.
           </p>
 
-          <Link href={`/shop`}>
-            <Button icon="arrowRight">shop now</Button>
+          <Link href={`/shop`} passHref>
+            <Button icon="arrowRight" variant="outline">
+              shop now
+            </Button>
           </Link>
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }

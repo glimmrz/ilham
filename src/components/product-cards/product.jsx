@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { Icon } from "../icon";
 import { Button } from "../ui/button";
 import {
   Card,
@@ -11,18 +10,15 @@ import {
   CardTitle,
 } from "../ui/card";
 import { Badge } from "../ui/badge";
-import { useProductModal } from "@/hooks/controllers";
 import { RatingStars } from "../rating-stars";
 import { CalculatePrice } from "./calculate-price";
 
-export const Product = () => {
-  const { onOpen } = useProductModal();
-
+export const Product = ({ product }) => {
   return (
-    <Card onClick={onOpen} className="group border-transparent cursor-pointer">
+    <Card className="group border-transparent cursor-pointer">
       <CardContent className="relative pb-2">
         <div className="absolute top-2 left-0 flex items-center justify-between w-full px-2 z-[1]">
-          <Badge>sale</Badge>
+          {product?.status && <Badge>{product.status}</Badge>}
           <Button
             size="icon"
             icon="heart"
@@ -43,8 +39,8 @@ export const Product = () => {
         </figure>
       </CardContent>
       <CardHeader>
-        <CardTitle className="text-base h-12 line-clamp-2">
-          orange jam with hot spices and cool spices
+        <CardTitle className="text-base line-clamp-2">
+          {product?.title}
         </CardTitle>
       </CardHeader>
       <div className="px-2 py-2 md:px-3">
@@ -54,21 +50,21 @@ export const Product = () => {
           <Link
             href={{
               pathname: "/shop",
-              query: { brand: "ilham" },
+              query: { brand: product?.brand },
             }}
             className="text-primary"
           >
-            ilham
+            {product?.brand}
           </Link>
         </span>
       </div>
       <CardFooter className="flex items-center justify-between md:pt-0">
         <CalculatePrice
-          discountedPrice={20}
-          price={22}
+          discountedPrice={product?.discountedPrice}
+          price={product?.price}
           className="text-primary flex-col md:flex-row items-start md:items-center"
         />
-        <Button icon="check" variant="outline">
+        <Button icon="cart" variant="outline">
           <span>add</span>
         </Button>
       </CardFooter>

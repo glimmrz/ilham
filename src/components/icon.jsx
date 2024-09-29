@@ -7,6 +7,7 @@ import {
   Minus,
   Plus,
   Search,
+  ShoppingCart,
   Trash,
   UserPlus,
 } from "lucide-react";
@@ -22,6 +23,7 @@ const Icons = {
   plus: Plus,
   minus: Minus,
   arrowRight: ArrowRight,
+  cart: ShoppingCart,
   shoppingbasket: (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" {...props}>
       <path
