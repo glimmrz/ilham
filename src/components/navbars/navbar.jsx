@@ -1,14 +1,16 @@
 "use client";
+import Link from "next/link";
 import { useSearchDrawer } from "@/hooks/controllers";
 import { Container } from "../wrappers/container";
 import { Logo } from "../logo";
 import { ThemeToggle } from "../theme-toggle";
 import { Button } from "../ui/button";
 import { User } from "../user";
-import Link from "next/link";
+import { useWishlist } from "@/hooks/use-wishlist";
 
 export const Navbar = () => {
   const { onOpen } = useSearchDrawer();
+  const wishlist = useWishlist();
 
   return (
     <nav>
@@ -29,7 +31,7 @@ export const Navbar = () => {
             </Button>
             <Link href="/wishlist" passHref>
               <Button icon="heart" variant="outline">
-                <span>0</span>
+                <span>{wishlist.wishlistItems.length}</span>
               </Button>
             </Link>
 

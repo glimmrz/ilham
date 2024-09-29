@@ -3,6 +3,7 @@ import {
   CheckCheck,
   Edit,
   Heart,
+  HeartOff,
   LogIn,
   Minus,
   Plus,
@@ -15,6 +16,7 @@ import {
 const Icons = {
   search: Search,
   heart: Heart,
+  heartCross: HeartOff,
   login: LogIn,
   register: UserPlus,
   check: CheckCheck,

@@ -114,7 +114,7 @@ export const useCart = create(
 
             if (state.cartItems[index].quantity === 0) {
               state.cartItems.splice(index, 1);
-              errorToast(`${title} removed from cart!`);
+              notify(`${title} removed from cart!`);
             }
 
             return {

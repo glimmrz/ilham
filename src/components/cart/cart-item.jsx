@@ -5,8 +5,11 @@ import { Button } from "../ui/button";
 import { QuantityControl } from "../quantity-control";
 import { Card, CardContent } from "../ui/card";
 import { notify } from "@/utils/toast";
+import { useCart } from "@/hooks/use-cart";
 
 export function CartItem({ item }) {
+  const cart = useCart();
+
   const handleRemoveFromCart = () => {
     notify("removed from cart", "organic juice removed from cart.");
   };
@@ -25,15 +28,19 @@ export function CartItem({ item }) {
         </div>
         <div className="relative flex flex-col gap-2">
           <h3 className="capitalize text-base font-bold line-clamp-1">
-            organic juice
+            {item.title}
           </h3>
           <p className="capitalize text-base font-bold line-clamp-1">
-            ৳{(0 / 100).toFixed(2)} x 5
+            ৳{(item.price / 100).toFixed(2)} x {item.quantity}
           </p>
-          <QuantityControl id={item?._id} title={item?.title} quantity={5} />
+          <QuantityControl
+            id={item?._id}
+            title={item?.title}
+            quantity={item.quantity}
+          />
 
           <Button
-            onClick={handleRemoveFromCart}
+            onClick={() => cart.onRemove(item._id, item.title)}
             className="rounded-full absolute top-0 bottom-0 right-0 m-auto"
             icon="delete"
             variant="destructive"

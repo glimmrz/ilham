@@ -12,8 +12,21 @@ import {
 import { Badge } from "../ui/badge";
 import { RatingStars } from "../rating-stars";
 import { CalculatePrice } from "./calculate-price";
+import { useCart } from "@/hooks/use-cart";
+import { useWishlist } from "@/hooks/use-wishlist";
+import {
+  factorCartPrice,
+  useCheckCart,
+  useCheckWishlist,
+} from "@/utils/helpers";
 
 export const Product = ({ product }) => {
+  const cart = useCart();
+  const wishlist = useWishlist();
+
+  const isInCart = useCheckCart(product);
+  const isInWishlist = useCheckWishlist(product);
+
   return (
     <Card className="group border-transparent cursor-pointer">
       <CardContent className="relative pb-2">
@@ -21,9 +34,14 @@ export const Product = ({ product }) => {
           {product?.status && <Badge>{product.status}</Badge>}
           <Button
             size="icon"
-            icon="heart"
+            icon={isInWishlist ? "heartCross" : "heart"}
             variant="outline"
             className="rounded-full"
+            onClick={
+              isInWishlist
+                ? () => wishlist.onRemove(product._id, product.title)
+                : () => wishlist.onAdd(product)
+            }
           >
             <span className="sr-only">add to wishlist</span>
           </Button>
@@ -64,7 +82,16 @@ export const Product = ({ product }) => {
           price={product?.price}
           className="text-primary flex-col md:flex-row items-start md:items-center"
         />
-        <Button icon="cart" variant="outline">
+        <Button
+          icon={isInCart ? "check" : "cart"}
+          variant="outline"
+          onClick={() =>
+            cart.onAdd({
+              ...product,
+              price: factorCartPrice(product?.discountedPrice, product?.price),
+            })
+          }
+        >
           <span>add</span>
         </Button>
       </CardFooter>
