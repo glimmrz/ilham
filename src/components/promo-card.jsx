@@ -5,7 +5,7 @@ import { Card, CardContent, CardTitle } from "./ui/card";
 
 export function PromoCard({ card }) {
   return (
-    <Card className="shadow-transparent hover:shadow-transparent select-none relative lg:h-[25vw] 2xl:min-h-[18vw] 2xl:h-[20vw] dark:bg-accent-foreground light:text-accent dark:text-card rounded-md overflow-hidden group">
+    <Card className="shadow-transparent hover:shadow-transparent border-0 relative lg:h-[25vw] 2xl:min-h-[18vw] 2xl:h-[20vw] dark:bg-accent-foreground light:text-accent dark:text-card rounded-md overflow-hidden group">
       {/*  Before Card */}
       <div
         className="w-[400px] h-[900px] absolute right-[-350px] xl:right-[-250px] 2xl:right-[-200px] 3xl:right-[-150px] bottom-[-300px] rotate-[40deg] transition-all duration-300 group-hover:right-[-450px] md:group-hover:right-[-400px] xl:group-hover:right-[-320px] 2xl:group-hover:right-[-250px] 3xl:group-hover:right-[-200px]"
