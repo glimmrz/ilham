@@ -26,12 +26,12 @@ const sidebarItems = [
 
 export function ProfileSidebar({ userData }) {
   return (
-    <aside className="hidden lg:block w-[300px] h-fit bg-accent rounded-md shadow-regular overflow-hidden transition-all duration-300 md:min-w-[300px] lg:sticky lg:top-0">
+    <aside className="hidden lg:block w-[300px] h-fit bg-accent rounded-md shadow-regular overflow-hidden transition-all duration-300 min-w-[300px] lg:sticky lg:top-[calc(theme(height.16)+theme(height.14)+theme(gap.2))]">
       <header className="relative">
         <figure className="relative h-[100px]">
           <Image
             src="https://zeris.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcover.7c22d4c7.png&w=640&q=75"
-            alt=""
+            alt={`${userData?.name}'s cover photo`}
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 350px"
@@ -40,10 +40,10 @@ export function ProfileSidebar({ userData }) {
           <div className="absolute w-fit -bottom-5 left-0 right-0 m-auto">
             <Avatar className="h-12 w-12">
               <AvatarImage
-                src="https://github.com/shadcn.png"
+                src="https://avatars.githubusercontent.com/u/93987679?s=48&v=4"
                 alt={userData?.name}
               />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarFallback>IL</AvatarFallback>
             </Avatar>
           </div>
         </figure>

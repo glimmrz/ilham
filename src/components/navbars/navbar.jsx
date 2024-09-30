@@ -14,7 +14,7 @@ export const Navbar = ({ userData }) => {
   const wishlist = useWishlist();
 
   return (
-    <nav className="shadow-regular md:shadow-none">
+    <nav className="shadow-regular md:shadow-none md:border-b border-muted sticky top-0 z-20 bg-background h-16">
       <Container>
         <div className="flex items-center justify-between">
           <Logo />

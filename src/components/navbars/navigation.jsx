@@ -15,7 +15,7 @@ import { Container } from "../wrappers/container";
 
 export function Navigation() {
   return (
-    <div className="hidden md:block bg-secondary shadow-regular">
+    <div className="hidden md:block bg-accent dark:bg-secondary shadow-regular z-10 sticky top-16">
       <Container>
         <NavigationMenu>
           <NavigationMenuList>

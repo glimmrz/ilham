@@ -8,8 +8,8 @@ export function OrderCard({ orderItem }) {
       <CardContent className="grid grid-cols-1 gap-2 items-center md:grid-cols-2">
         <figure className="relative h-[170px]">
           <Image
-            src="https://zeris.vercel.app/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdjtjatcqw%2Fimage%2Fupload%2Fv1726251147%2Fuskqyhddlnfz0e6jz9rd.webp&w=256&q=75"
-            alt=""
+            src={orderItem.images[0] ? orderItem.images[0] : ""}
+            alt={orderItem.title}
             fill
             className="object-contain"
             sizes="(max-width: 768px) 350px, 250px"
