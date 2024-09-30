@@ -5,7 +5,7 @@ export function CalculatePrice({ discountedPrice, price, className }) {
     <div className={cn("flex items-center gap-x-2", className)}>
       {discountedPrice < price && (
         <span className="font-bold text-base text-inherit">
-          ৳{(discountedPrice / 100).toFixed(2)}
+          ৳{(parseInt(discountedPrice) / 100).toFixed(2)}
         </span>
       )}
       <span
