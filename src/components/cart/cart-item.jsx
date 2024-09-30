@@ -4,19 +4,14 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import { QuantityControl } from "../quantity-control";
 import { Card, CardContent } from "../ui/card";
-import { notify } from "@/utils/toast";
 import { useCart } from "@/hooks/use-cart";
 
 export function CartItem({ item }) {
   const cart = useCart();
 
-  const handleRemoveFromCart = () => {
-    notify("removed from cart", "organic juice removed from cart.");
-  };
-
   return (
     <Card className="shadow-transparent hover:shadow-transparent">
-      <CardContent className="p-0 md:p-1 grid grid-cols-[1.5fr_3fr] gap-2">
+      <CardContent className="p-1 grid grid-cols-[1.5fr_3fr] gap-2">
         <div className="relative">
           <Image
             src="https://zeris.vercel.app/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdjtjatcqw%2Fimage%2Fupload%2Fv1726252688%2Fcgvstypfhmxtauhddp3e.webp&w=750&q=75"

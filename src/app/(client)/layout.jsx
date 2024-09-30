@@ -4,6 +4,7 @@ import { ProductModal } from "@/components/modals/product-modal";
 import { Navbar } from "@/components/navbars/navbar";
 import { Navigation } from "@/components/navbars/navigation";
 import { CartSidebar } from "@/components/sidebars/cart-sidebar";
+import { MenuSidebar } from "@/components/sidebars/menu-sidebar/menu-sidebar";
 import { getSession } from "@/utils/auth";
 
 export default async function Layout({ children }) {
@@ -18,6 +19,7 @@ export default async function Layout({ children }) {
       <SearchDrawer />
       <CartIndicator />
       <CartSidebar />
+      <MenuSidebar />
     </>
   );
 }
