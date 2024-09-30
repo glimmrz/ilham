@@ -29,7 +29,12 @@ export const Navbar = ({ userData }) => {
             >
               <span className="sr-only">search</span>
             </Button>
-            <Button icon="menu" onClick={menuSidebar.onOpen}>
+
+            <Button
+              icon="menu"
+              className="md:hidden"
+              onClick={menuSidebar.onOpen}
+            >
               menu
             </Button>
             <div className="hidden md:flex gap-4 items-center">
