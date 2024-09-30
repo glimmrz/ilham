@@ -17,12 +17,15 @@ export function OrderCard({ orderItem }) {
         </figure>
         <section>
           <CardTitle className="text-base line-clamp-2">
-            Organic juice
+            {orderItem.title}
           </CardTitle>
 
           <div className="mt-2 grid gap-2 md:gap-4">
-            <DataCell dataName="price" dataValue="৳20" />
-            <DataCell dataName="quantity" dataValue="56" />
+            <DataCell
+              dataName="price"
+              dataValue={`৳${orderItem.price / 100}`}
+            />
+            <DataCell dataName="quantity" dataValue={orderItem.quantity} />
           </div>
         </section>
       </CardContent>

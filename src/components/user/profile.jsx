@@ -8,7 +8,7 @@ export function Profile({ data }) {
   return (
     <>
       <div className="flex justify-between items-center mb-4 md:mb-1">
-        <Heading>John Doe</Heading>
+        <Heading>{data.name}</Heading>
         <Button icon="edit">edit profile</Button>
       </div>
       <div className="flex flex-wrap gap-x-4 gap-y-2 md:gap-6">
@@ -18,11 +18,11 @@ export function Profile({ data }) {
         </div>
         <div className="flex items-center gap-2">
           <Icon icon="email" size={20} />
-          <p>admin@ilham.com</p>
+          <p>{data.email}</p>
         </div>
         <div className="flex items-center gap-2">
           <Icon icon="verified" size={20} />
-          <p>Member since July 17, 1024</p>
+          <p>Member since {new Date(data.createdAt).toDateString()}</p>
         </div>
       </div>
 
