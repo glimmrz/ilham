@@ -50,8 +50,8 @@ export const Product = ({ product }) => {
 
         <figure className="relative h-[120px] md:h-[140px] w-full group-hover:scale-105 transition-transform">
           <Image
-            src="https://zeris.vercel.app/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdjtjatcqw%2Fimage%2Fupload%2Fv1726252688%2Fcgvstypfhmxtauhddp3e.webp&w=1920&q=75"
-            alt=""
+            src={product?.images[0] ? product.images[0] : ""}
+            alt={product?.title}
             fill
             className="object-contain"
           />

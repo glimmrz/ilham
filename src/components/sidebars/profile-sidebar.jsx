@@ -24,11 +24,9 @@ const sidebarItems = [
   },
 ];
 
-export function ProfileSidebar() {
+export function ProfileSidebar({ userData }) {
   return (
-    <aside
-      className={`w-[300px] h-fit bg-accent rounded-md shadow-regular overflow-hidden transition-all duration-300 md:min-w-[300px] lg:sticky lg:top-0`}
-    >
+    <aside className="hidden lg:block w-[300px] h-fit bg-accent rounded-md shadow-regular overflow-hidden transition-all duration-300 md:min-w-[300px] lg:sticky lg:top-0">
       <header className="relative">
         <figure className="relative h-[100px]">
           <Image
@@ -41,24 +39,19 @@ export function ProfileSidebar() {
 
           <div className="absolute w-fit -bottom-5 left-0 right-0 m-auto">
             <Avatar className="h-12 w-12">
-              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+              <AvatarImage
+                src="https://github.com/shadcn.png"
+                alt={userData?.name}
+              />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
           </div>
         </figure>
 
         <div className="mt-6 text-center border-b-[1px] border-muted pt-2 pb-2">
-          <CardTitle>John Doe</CardTitle>
-          <p className="text-base opacity-70">admin@email.com</p>
+          <CardTitle>{userData.name}</CardTitle>
+          <p className="text-base opacity-70">{userData.email}</p>
         </div>
-
-        <Button
-          icon="close"
-          variant="close"
-          className="p-3 rounded-full absolute top-2 right-2 lg:hidden"
-        >
-          close
-        </Button>
       </header>
 
       <div className="flex flex-col gap-2 p-2">

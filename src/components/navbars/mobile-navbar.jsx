@@ -41,7 +41,7 @@ export function MobileNavbar() {
             onClick={cartSidebar.onOpen}
             className="flex flex-col items-center gap-1 justify-center relative"
           >
-            <Icon icon="cartColored" size={24} />
+            <Icon icon="shoppingbasket" size={24} />
             <span className="capitalize text-xs font-bold">cart</span>
             <span className="absolute -top-1.5 -right-2 h-4 w-4 rounded-full text-center text-[10px] bg-primary text-background">
               {cartItems?.length}

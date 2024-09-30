@@ -11,8 +11,8 @@ export function ProductSmall({ product }) {
       <CardContent className="flex items-center p-1 md:p-1">
         <figure className="relative h-[100px] w-[120px]">
           <Image
-            src="https://zeris.vercel.app/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdjtjatcqw%2Fimage%2Fupload%2Fv1726296582%2Fimqp431mivzubnuxyqku.png&w=384&q=75"
-            alt=""
+            src={product?.images[0] ? product.images[0] : ""}
+            alt={product?.title}
             fill
             sizes="100px"
             className="object-contain"

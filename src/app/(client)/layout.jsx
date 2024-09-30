@@ -16,7 +16,7 @@ export default async function Layout({ children }) {
     <>
       <Navbar userData={session} />
       <Navigation />
-      <main>{children}</main>
+      <main className="min-h-screen">{children}</main>
       <ProductModal />
       <SearchDrawer />
       <CartIndicator />

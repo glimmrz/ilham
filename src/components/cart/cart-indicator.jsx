@@ -11,7 +11,7 @@ export function CartIndicator() {
     <div
       onClick={onOpen}
       role="button"
-      className="fixed top-0 bottom-0 right-0 m-auto h-fit z-10 bg-card border border-muted rounded-md cursor-pointer overflow-hidden shadow-active"
+      className="hidden md:block fixed top-0 bottom-0 right-0 m-auto h-fit z-10 bg-card border border-muted rounded-md cursor-pointer overflow-hidden shadow-active"
     >
       <div className="px-2 py-1 flex flex-col items-center justify-center gap-1">
         <Icon icon="shoppingbasket" size={32} />
