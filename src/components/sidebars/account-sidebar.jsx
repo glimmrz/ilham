@@ -4,6 +4,7 @@ import { Button } from "../ui/button";
 import { MenuItem } from "./menu-sidebar/menu-item";
 import { Sidebar } from "./sidebar";
 import { useAccountSidebar } from "@/hooks/controllers";
+import { logout } from "@/utils/auth";
 
 const loggedInUser = [
   {
@@ -78,7 +79,13 @@ export function AccountSidebar({ userData }) {
         )}
 
         {!userData.error && (
-          <Button icon="logout" onClick={() => logout()}>
+          <Button
+            icon="logout"
+            onClick={() => {
+              logout();
+              accountSidebar.onClose();
+            }}
+          >
             logout
           </Button>
         )}
