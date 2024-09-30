@@ -31,7 +31,7 @@ async function Products({ category }) {
 const Page = ({ params }) => {
   return (
     <Container>
-      <PromoSlider />
+      {/* <PromoSlider /> */}
       <Suspense fallback={<CategoryviewSkeleton />}>
         <Categories category={params.category} />
       </Suspense>

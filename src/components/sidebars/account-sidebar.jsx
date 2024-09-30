@@ -15,7 +15,7 @@ const loggedInUser = [
   {
     label: "my orders",
     icon: "box",
-    slug: "/user/profile",
+    slug: "/user/orders",
   },
   {
     label: "my addresses",

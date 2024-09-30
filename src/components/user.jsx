@@ -16,7 +16,10 @@ export function User({ userData }) {
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" alt="user" />
+          <AvatarImage
+            src=""
+            alt={userData.payload?.name ? userData.payload?.name : "ilham"}
+          />
           <AvatarFallback>IL</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
