@@ -1,3 +1,14 @@
+import { ProductSkeleton } from "./product-skeleton";
+
 export function ProductviewSkeleton() {
-  return;
+  return (
+    <>
+      <ProductSkeleton />
+      <ProductSkeleton />
+      <ProductSkeleton />
+      <ProductSkeleton />
+      <ProductSkeleton />
+      <ProductSkeleton />
+    </>
+  );
 }

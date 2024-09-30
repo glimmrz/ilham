@@ -4,9 +4,10 @@ import { ProductView } from "@/components/product-view";
 import { PromoSlider } from "@/components/promo-slider";
 import { getData } from "@/utils/api-calls";
 import { Suspense } from "react";
+import { ProductviewSkeleton } from "@/components/skeletons/productview-skeleton";
 
 const PopularProducts = async () => {
-  // await new Promise((resolve) => setTimeout(resolve, 3000));
+  await new Promise((resolve) => setTimeout(resolve, 5000));
   const res = await getData("products");
 
   return (
@@ -19,6 +20,8 @@ const PopularProducts = async () => {
 };
 
 const BestSellers = async () => {
+  await new Promise((resolve) => setTimeout(resolve, 5000));
+
   const res = await getData("products");
 
   return (
@@ -31,6 +34,8 @@ const BestSellers = async () => {
 };
 
 const FeaturedItems = async () => {
+  await new Promise((resolve) => setTimeout(resolve, 5000));
+
   const res = await getData("products");
 
   return (
@@ -52,7 +57,7 @@ export default function Home() {
           query: { category: "popular" },
         }}
       >
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<ProductviewSkeleton />}>
           <PopularProducts />
         </Suspense>
       </ProductView>
@@ -66,7 +71,7 @@ export default function Home() {
           query: { category: "popular" },
         }}
       >
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<ProductviewSkeleton />}>
           <BestSellers />
         </Suspense>
       </ProductView>
@@ -78,7 +83,7 @@ export default function Home() {
           query: { category: "featured" },
         }}
       >
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<ProductviewSkeleton />}>
           <FeaturedItems />
         </Suspense>
       </ProductView>

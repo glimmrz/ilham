@@ -21,7 +21,7 @@ export function ProductView({ children, title, href, className }) {
       </div>
       <div
         className={cn(
-          "grid gap-3 mt-3 grid-cols-2 md:grid-cols-[repeat(auto-fit,_minmax(245px,_.5fr))]",
+          "w-full grid gap-3 mt-3 grid-cols-2 md:grid-cols-[repeat(auto-fit,_minmax(245px,_.5fr))]",
           className
         )}
       >

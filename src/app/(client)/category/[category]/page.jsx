@@ -5,6 +5,7 @@ import { ProductView } from "@/components/product-view";
 import { PromoSlider } from "@/components/promo-slider";
 import { getData } from "@/utils/api-calls";
 import { Suspense } from "react";
+import { ProductviewSkeleton } from "@/components/skeletons/productview-skeleton";
 
 async function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -40,7 +41,7 @@ const Page = ({ params }) => {
       </Suspense>
 
       <ProductView title={params.category}>
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<ProductviewSkeleton />}>
           <Products category={params.category} />
         </Suspense>
       </ProductView>
