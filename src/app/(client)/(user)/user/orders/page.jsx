@@ -3,13 +3,7 @@ import { OrdercontainerSkeleton } from "@/components/skeletons/ordercontainer-sk
 import { OrderContainer } from "@/components/user/order/order-container";
 import { Suspense } from "react";
 
-async function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 async function OrderData() {
-  await delay(5000);
-
   return (
     <div className="grid gap-4">
       <OrderContainer />

@@ -1,5 +1,5 @@
-import { Button } from "../ui/button";
 import { Card, CardContent } from "../ui/card";
+import { ButtonSkeleton } from "./button-skeleton";
 import { DatacellSkeleton } from "./datacell-skeleton";
 import { HeadingSkeleton } from "./heading-skeleton";
 
@@ -21,10 +21,8 @@ export function AddresscardSkeleton() {
         </div>
 
         <div className="grid grid-cols-2 gap-2">
-          <Button icon="edit">edit</Button>
-          <Button variant="destructive" icon="delete">
-            delete
-          </Button>
+          <ButtonSkeleton className="w-full" />
+          <ButtonSkeleton className="w-full" />
         </div>
       </CardContent>
     </Card>

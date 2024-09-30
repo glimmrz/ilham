@@ -7,7 +7,6 @@ import { Suspense } from "react";
 import { ProductviewSkeleton } from "@/components/skeletons/productview-skeleton";
 
 const PopularProducts = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 5000));
   const res = await getData("products");
 
   return (
@@ -20,8 +19,6 @@ const PopularProducts = async () => {
 };
 
 const BestSellers = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 5000));
-
   const res = await getData("products");
 
   return (
@@ -34,8 +31,6 @@ const BestSellers = async () => {
 };
 
 const FeaturedItems = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 5000));
-
   const res = await getData("products");
 
   return (

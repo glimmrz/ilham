@@ -27,7 +27,7 @@ export function AddressCard({ address }) {
 
         <div className="grid grid-cols-2 gap-2">
           <Button icon="edit">edit</Button>
-          <Button variant="destructive" icon="delete" loading disabled>
+          <Button variant="destructive" icon="delete">
             delete
           </Button>
         </div>
