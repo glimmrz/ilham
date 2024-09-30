@@ -3,6 +3,7 @@ import "./globals.css";
 import { font } from "@/lib/fonts";
 import { Toaster } from "@/components/ui/sonner";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
   title: "ilham",
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
           <Toaster />
         </ThemeProvider>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
