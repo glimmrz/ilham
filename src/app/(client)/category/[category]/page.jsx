@@ -12,7 +12,7 @@ import { CategoryviewSkeleton } from "@/components/skeletons/categoryview-skelet
 async function Categories({ category }) {
   const res = await getData(`categories/${category}`);
 
-  return <CategoryView categories={res.response.payload} />;
+  return <CategoryView categories={res.response.payload?.subCategories} />;
 }
 
 // get products based on category

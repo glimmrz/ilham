@@ -1,19 +1,19 @@
 import Image from "next/image";
 import { Card, CardContent } from "./ui/card";
 
-export const CategoryBox = () => {
+export const CategoryBox = ({ category }) => {
   return (
-    <Card className="shadow-transparent hover:shadow-none cursor-pointer">
+    <Card
+      className="shadow-transparent hover:shadow-none cursor-pointer"
+      style={{ backgroundColor: category.color }}
+    >
       <CardContent className="md:p-2">
         <figure className="relative h-20">
-          <Image
-            src="https://algomart-five.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffood.71ff2cc4.png&w=128&q=75"
-            alt=""
-            fill
-            className="object-contain"
-          />
+          <Image src={category.icon} alt="" fill className="object-contain" />
         </figure>
-        <h2 className="text-lg font-semibold mt-2 text-center">Food</h2>
+        <h2 className="capitalize text-sm font-semibold mt-2 text-center dark:text-background">
+          {category.name}
+        </h2>
       </CardContent>
     </Card>
   );

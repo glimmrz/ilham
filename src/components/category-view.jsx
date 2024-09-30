@@ -10,7 +10,7 @@ import {
 } from "./ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 
-export const CategoryView = () => {
+export const CategoryView = ({ categories }) => {
   return (
     <Section>
       <Carousel
@@ -21,36 +21,14 @@ export const CategoryView = () => {
         ]}
       >
         <CarouselContent>
-          <CarouselItem className="basis-1/2 md:basis-1/4 lg:basis-1/6 xl:basis-[12.5%]">
-            <CategoryBox />
-          </CarouselItem>
-          <CarouselItem className="basis-1/2 md:basis-1/4 lg:basis-1/6 xl:basis-[12.5%]">
-            <CategoryBox />
-          </CarouselItem>
-          <CarouselItem className="basis-1/2 md:basis-1/4 lg:basis-1/6 xl:basis-[12.5%]">
-            <CategoryBox />
-          </CarouselItem>
-          <CarouselItem className="basis-1/2 md:basis-1/4 lg:basis-1/6 xl:basis-[12.5%]">
-            <CategoryBox />
-          </CarouselItem>
-          <CarouselItem className="basis-1/2 md:basis-1/4 lg:basis-1/6 xl:basis-[12.5%]">
-            <CategoryBox />
-          </CarouselItem>
-          <CarouselItem className="basis-1/2 md:basis-1/4 lg:basis-1/6 xl:basis-[12.5%]">
-            <CategoryBox />
-          </CarouselItem>
-          <CarouselItem className="basis-1/2 md:basis-1/4 lg:basis-1/6 xl:basis-[12.5%]">
-            <CategoryBox />
-          </CarouselItem>
-          <CarouselItem className="basis-1/2 md:basis-1/4 lg:basis-1/6 xl:basis-[12.5%]">
-            <CategoryBox />
-          </CarouselItem>{" "}
-          <CarouselItem className="basis-1/2 md:basis-1/4 lg:basis-1/6 xl:basis-[12.5%]">
-            <CategoryBox />
-          </CarouselItem>{" "}
-          <CarouselItem className="basis-1/2 md:basis-1/4 lg:basis-1/6 xl:basis-[12.5%]">
-            <CategoryBox />
-          </CarouselItem>
+          {categories?.map((category, index) => (
+            <CarouselItem
+              key={index}
+              className="basis-1/2 md:basis-1/4 lg:basis-1/6 xl:basis-[12.5%]"
+            >
+              <CategoryBox category={category} />
+            </CarouselItem>
+          ))}
         </CarouselContent>
         <CarouselPrevious className="left-1 md:left-4" />
         <CarouselNext className="right-1 md:right-4" />
