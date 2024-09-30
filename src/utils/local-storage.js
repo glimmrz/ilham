@@ -1,5 +1,5 @@
 export function setLocalData(dataName, dataValue = "") {
-  if (localStorage) {
+  if (window.localStorage) {
     localStorage.setItem(dataName, JSON.stringify(dataValue));
   }
 }

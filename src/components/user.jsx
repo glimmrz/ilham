@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import {
@@ -9,28 +8,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { getLocalData, setLocalData } from "@/utils/local-storage";
 import { logout } from "@/utils/auth";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 
-export function User() {
-  const [user, setUser] = useState(null);
-
-  // Set userdata
-  useEffect(() => {
-    const userData = getLocalData("ilm-user");
-    setUser(userData);
-  }, []);
-  const router = useRouter();
-
-  // Logout user
-  const handleLogout = async () => {
-    await Promise.all([setLocalData("ilm-user", ""), logout()]);
-    setUser(null);
-    router.refresh();
-  };
-
+export function User({ userData }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -41,10 +21,10 @@ export function User() {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel className="capitalize">
-          {user?.name ? user?.name : "My account"}
+          {userData.payload?.name ? userData.payload?.name : "My account"}
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {!user && (
+        {userData.error && (
           <>
             <Link passHref href="/login" className="w-full">
               <DropdownMenuItem>login</DropdownMenuItem>
@@ -54,7 +34,7 @@ export function User() {
             </Link>
           </>
         )}
-        {user && (
+        {!userData.error && (
           <>
             <Link passHref href="/user/profile" className="w-full">
               <DropdownMenuItem>profile</DropdownMenuItem>
@@ -67,10 +47,10 @@ export function User() {
             </Link>
           </>
         )}
-        {user && (
+        {!userData.error && (
           <>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleLogout}>logout</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => logout()}>logout</DropdownMenuItem>
           </>
         )}
       </DropdownMenuContent>

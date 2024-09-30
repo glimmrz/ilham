@@ -33,8 +33,5 @@ export async function getSession() {
 }
 
 export async function logout() {
-  await Promise.all([
-    setCookie("ilm-session", "", 0),
-    setCookie("ilm-partner", "", 0),
-  ]);
+  await Promise.all([setCookie("ilm-session", "", 0)]);
 }

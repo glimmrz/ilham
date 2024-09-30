@@ -8,7 +8,7 @@ import { Button } from "../ui/button";
 import { User } from "../user";
 import { useWishlist } from "@/hooks/use-wishlist";
 
-export const Navbar = () => {
+export const Navbar = ({ userData }) => {
   const { onOpen } = useSearchDrawer();
   const wishlist = useWishlist();
 
@@ -16,9 +16,8 @@ export const Navbar = () => {
     <nav>
       <Container>
         <div className="flex items-center justify-between">
-          <div>
-            <Logo />
-          </div>
+          <Logo />
+
           <div className="flex items-center gap-4">
             <Button
               variant="outline"
@@ -35,7 +34,7 @@ export const Navbar = () => {
               </Button>
             </Link>
 
-            <User />
+            <User userData={userData} />
             <ThemeToggle />
           </div>
         </div>
