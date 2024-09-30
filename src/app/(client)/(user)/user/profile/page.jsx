@@ -1,3 +1,4 @@
+import { ProfileSkeleton } from "@/components/skeletons/profile-skeleton";
 import { Profile } from "@/components/user/profile";
 import { Suspense } from "react";
 
@@ -12,7 +13,7 @@ async function ProfileData() {
 
 export default async function Page() {
   return (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense fallback={<ProfileSkeleton />}>
       <ProfileData />
     </Suspense>
   );
