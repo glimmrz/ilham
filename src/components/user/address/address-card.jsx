@@ -1,9 +1,9 @@
 "use client";
 
-import { DataCell } from "../data-cell";
-import { Heading } from "../heading";
-import { Button } from "../ui/button";
-import { Card, CardContent, CardTitle } from "../ui/card";
+import { DataCell } from "@/components/data-cell";
+import { Heading } from "@/components/heading";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
 export function AddressCard({ address }) {
   return (

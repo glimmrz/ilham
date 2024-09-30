@@ -17,7 +17,6 @@ export function OrdercontainerSkeleton() {
         <OrdercardSkeleton />
         <OrdercardSkeleton />
         <OrdercardSkeleton />
-        <OrdercardSkeleton />
       </div>
     </div>
   );
