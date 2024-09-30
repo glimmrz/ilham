@@ -15,7 +15,7 @@ export function MenuSidebar({ categories }) {
       isOpen={menuSidebar.isOpen}
       onClose={menuSidebar.onClose}
       title="menu"
-      subtitle="browse the site"
+      subtitle="browse our collection"
     >
       <div>
         {/* Header */}
