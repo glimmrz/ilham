@@ -20,7 +20,7 @@ export function OrderCard({ orderItem }) {
             Organic juice
           </CardTitle>
 
-          <div className="mt-2 grid gap-4">
+          <div className="mt-2 grid gap-2 md:gap-4">
             <DataCell dataName="price" dataValue="৳20" />
             <DataCell dataName="quantity" dataValue="56" />
           </div>

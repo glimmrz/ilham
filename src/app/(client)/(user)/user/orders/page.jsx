@@ -1,12 +1,14 @@
 import { Heading } from "@/components/heading";
 import { OrderContainer } from "@/components/order/order-container";
+import { Suspense } from "react";
 
 async function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export default async function Page() {
+async function OrderData() {
   await delay(5000);
+
   return (
     <>
       <Heading className="my-4">Order details</Heading>
@@ -18,5 +20,13 @@ export default async function Page() {
         <OrderContainer />
       </div>
     </>
+  );
+}
+
+export default async function Page() {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <OrderData />
+    </Suspense>
   );
 }
