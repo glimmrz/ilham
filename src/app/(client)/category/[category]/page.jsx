@@ -6,6 +6,7 @@ import { PromoSlider } from "@/components/promo-slider";
 import { getData } from "@/utils/api-calls";
 import { Suspense } from "react";
 import { ProductviewSkeleton } from "@/components/skeletons/productview-skeleton";
+import { CategoryviewSkeleton } from "@/components/skeletons/categoryview-skeleton";
 
 async function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -13,6 +14,7 @@ async function delay(ms) {
 
 // Get sub categories based on category
 async function Categories({ category }) {
+  await new Promise((resolve) => setTimeout(resolve, 3000));
   const res = await getData(`categories/${category}`);
 
   return <CategoryView categories={res.response.payload} />;
@@ -36,7 +38,7 @@ const Page = ({ params }) => {
   return (
     <Container>
       <PromoSlider />
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<CategoryviewSkeleton />}>
         <Categories category={params.category} />
       </Suspense>
 
