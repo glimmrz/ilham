@@ -1,5 +1,5 @@
 import { Heading } from "@/components/heading";
-import { OrderContainer } from "@/components/order/order-container";
+import { OrderContainer } from "@/components/user/order/order-container";
 import { Suspense } from "react";
 
 async function delay(ms) {

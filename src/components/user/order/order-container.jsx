@@ -1,10 +1,10 @@
-import { DataCell } from "../data-cell";
-import { Badge } from "../ui/badge";
+import { DataCell } from "@/components/data-cell";
 import { OrderCard } from "./order-card";
+import { Badge } from "@/components/ui/badge";
 
 export function OrderContainer({ order }) {
   return (
-    <div className="rounded-md shadow-regular bg-accent p-2">
+    <div className="rounded-md shadow-regular bg-accent dark:bg-background p-2">
       <div className="flex justify-between items-start">
         <div className="flex flex-col gap-2">
           <DataCell dataName="order date" dataValue="July 17, 2024" />

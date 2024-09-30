@@ -1,6 +1,6 @@
+import { DataCell } from "@/components/data-cell";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
-import { DataCell } from "../data-cell";
-import { Card, CardContent, CardTitle } from "../ui/card";
 
 export function OrderCard({ orderItem }) {
   return (
