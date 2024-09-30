@@ -5,8 +5,7 @@ import { Suspense } from "react";
 import { ProductviewSkeleton } from "@/components/skeletons/productview-skeleton";
 import { getData } from "@/utils/api-calls";
 
-async function Products({ category }) {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+async function Products() {
   const res = await getData(`products`);
 
   return (
