@@ -15,7 +15,7 @@ export function CartItem({ item }) {
         <div className="relative">
           <Image
             src="https://zeris.vercel.app/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdjtjatcqw%2Fimage%2Fupload%2Fv1726252688%2Fcgvstypfhmxtauhddp3e.webp&w=750&q=75"
-            alt="organic juice"
+            alt={item.title}
             className="object-contain"
             fill
             sizes="100px"

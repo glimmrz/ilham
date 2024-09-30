@@ -54,6 +54,7 @@ export const Product = ({ product }) => {
             alt={product?.title}
             fill
             className="object-contain"
+            sizes="(max-width: 768px) 120px, 140px"
           />
         </figure>
       </CardContent>

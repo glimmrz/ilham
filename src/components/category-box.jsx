@@ -9,7 +9,13 @@ export const CategoryBox = ({ category }) => {
     >
       <CardContent className="md:p-2">
         <figure className="relative h-20">
-          <Image src={category.icon} alt="" fill className="object-contain" />
+          <Image
+            src={category.icon}
+            alt={category.name}
+            fill
+            className="object-contain"
+            sizes="100px"
+          />
         </figure>
         <h2 className="capitalize text-sm font-semibold mt-2 text-center dark:text-background">
           {category.name}

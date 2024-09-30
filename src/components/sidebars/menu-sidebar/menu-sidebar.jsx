@@ -6,7 +6,7 @@ import { useState } from "react";
 import { CategoryMenu } from "./category-menu";
 import { PagesMenu } from "./pages-menu";
 
-export function MenuSidebar({ categories }) {
+export function MenuSidebar() {
   const [selected, setSelected] = useState("categories");
   const menuSidebar = useMenuSidebar();
 
@@ -45,9 +45,7 @@ export function MenuSidebar({ categories }) {
         </div>
         {/* Content */}
         <div className="mt-4">
-          {selected === "categories" && (
-            <CategoryMenu categories={categories} />
-          )}
+          {selected === "categories" && <CategoryMenu />}
           {selected === "pages" && <PagesMenu />}
         </div>
       </div>
