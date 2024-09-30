@@ -5,8 +5,8 @@ export function DatacellSkeleton() {
     <div className="h-fit flex items-center gap-2 text-base">
       <Skeleton className="h-7 w-7 rounded-full" />
       <div className="space-y-2">
+        <Skeleton className="h-4 w-24" />
         <Skeleton className="h-4 w-28" />
-        <Skeleton className="h-4 w-36" />
       </div>
     </div>
   );
