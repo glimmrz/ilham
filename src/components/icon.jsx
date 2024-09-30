@@ -5,6 +5,7 @@ import {
   Heart,
   HeartOff,
   LogIn,
+  Menu,
   Minus,
   Plus,
   Search,
@@ -26,6 +27,7 @@ const Icons = {
   minus: Minus,
   arrowRight: ArrowRight,
   cart: ShoppingCart,
+  menu: Menu,
   shoppingbasket: (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" {...props}>
       <path

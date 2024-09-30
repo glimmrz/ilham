@@ -31,7 +31,6 @@ export const Product = ({ product }) => {
     <Card className="group border-transparent cursor-pointer">
       <CardContent className="relative pb-2">
         <div className="absolute top-2 left-0 flex items-center justify-between w-full px-2 z-[1]">
-          {product?.status && <Badge>{product.status}</Badge>}
           <Button
             size="icon"
             icon={isInWishlist ? "heartCross" : "heart"}
@@ -45,6 +44,8 @@ export const Product = ({ product }) => {
           >
             <span className="sr-only">add to wishlist</span>
           </Button>
+
+          {product?.status && <Badge>{product.status}</Badge>}
         </div>
 
         <figure className="relative h-[120px] md:h-[140px] w-full group-hover:scale-105 transition-transform">

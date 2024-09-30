@@ -15,7 +15,7 @@ export function DrawerModal({ children, isOpen, onClose }) {
           <div className="px-4">{children}</div>
           <DrawerFooter className="flex items-center justify-center">
             <DrawerClose asChild>
-              <Button variant="outline" className="w-96">
+              <Button variant="outline" className="w-full md:w-96">
                 close
               </Button>
             </DrawerClose>
