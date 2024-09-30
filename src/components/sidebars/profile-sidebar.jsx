@@ -15,7 +15,7 @@ const sidebarItems = [
   {
     label: "orders",
     link: "orders",
-    icon: "box",
+    icon: "order",
   },
   {
     label: "address",

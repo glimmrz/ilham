@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { logout } from "@/utils/auth";
+import { Icon } from "./icon";
 
 export function User({ userData }) {
   return (
@@ -37,13 +38,22 @@ export function User({ userData }) {
         {!userData.error && (
           <>
             <Link passHref href="/user/profile" className="w-full">
-              <DropdownMenuItem>profile</DropdownMenuItem>
+              <DropdownMenuItem>
+                <span>profile</span>
+                <Icon icon="user" />
+              </DropdownMenuItem>
             </Link>
             <Link passHref href="/user/orders" className="w-full">
-              <DropdownMenuItem>orders</DropdownMenuItem>
+              <DropdownMenuItem>
+                <span>orders</span>
+                <Icon icon="order" />
+              </DropdownMenuItem>
             </Link>
             <Link passHref href="/user/address" className="w-full">
-              <DropdownMenuItem>addresses</DropdownMenuItem>
+              <DropdownMenuItem>
+                <span>addresses</span>
+                <Icon icon="location" />
+              </DropdownMenuItem>
             </Link>
           </>
         )}
