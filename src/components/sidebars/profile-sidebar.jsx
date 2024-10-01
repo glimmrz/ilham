@@ -49,8 +49,8 @@ export function ProfileSidebar({ userData }) {
         </figure>
 
         <div className="mt-6 text-center border-b-[1px] border-muted pt-2 pb-2">
-          <CardTitle>{userData.name}</CardTitle>
-          <p className="text-base opacity-70">{userData.email}</p>
+          <CardTitle>{userData?.name}</CardTitle>
+          <p className="text-base opacity-70">{userData?.email}</p>
         </div>
       </header>
 

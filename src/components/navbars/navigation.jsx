@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import {
@@ -12,8 +11,14 @@ import {
 } from "@/components/ui/navigation-menu";
 import { forwardRef } from "react";
 import { Container } from "../wrappers/container";
+import { getData } from "@/utils/api-calls";
 
-export function Navigation() {
+export async function Navigation() {
+  const res = await getData("categories");
+  const categories = res.response.payload;
+
+  console.log(categories);
+
   return (
     <div className="hidden md:block bg-accent dark:bg-secondary shadow-regular z-10 sticky top-16">
       <Container>
@@ -23,33 +28,15 @@ export function Navigation() {
               <NavigationMenuTrigger>categories</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  <ListItem href="/category/bags" title="ladies bag">
-                    Re-usable components built using Radix UI and Tailwind CSS.
-                  </ListItem>
-                  <ListItem href="/category/bags" title="clothing">
-                    How to install dependencies and structure your app.
-                  </ListItem>
-                  <ListItem href="/category/bags" title="groceries">
-                    Styles for headings, paragraphs, lists...etc
-                  </ListItem>
-                  <ListItem href="/category/bags" title="home appliances">
-                    Styles for headings, paragraphs, lists...etc
-                  </ListItem>
-                  <ListItem href="/category/bags" title="furniture">
-                    Styles for headings, paragraphs, lists...etc
-                  </ListItem>
-                  <ListItem href="/category/bags" title="makeup">
-                    Styles for headings, paragraphs, lists...etc
-                  </ListItem>
-                  <ListItem href="/category/bags" title="makeup">
-                    Styles for headings, paragraphs, lists...etc
-                  </ListItem>
-                  <ListItem href="/category/bags" title="makeup">
-                    Styles for headings, paragraphs, lists...etc
-                  </ListItem>
-                  <ListItem href="/category/bags" title="makeup">
-                    Styles for headings, paragraphs, lists...etc
-                  </ListItem>
+                  {categories?.map((category, index) => (
+                    <ListItem
+                      href={category?.slug}
+                      title={category?.label}
+                      key={index}
+                    >
+                      {category?.description}
+                    </ListItem>
+                  ))}
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
