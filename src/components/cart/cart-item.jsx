@@ -14,7 +14,7 @@ export function CartItem({ item }) {
       <CardContent className="p-1 grid grid-cols-[1.5fr_3fr] gap-2">
         <div className="relative">
           <Image
-            src="https://zeris.vercel.app/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdjtjatcqw%2Fimage%2Fupload%2Fv1726252688%2Fcgvstypfhmxtauhddp3e.webp&w=750&q=75"
+            src={item.images[0] ? item.images[0] : ""}
             alt={item.title}
             className="object-contain"
             fill
