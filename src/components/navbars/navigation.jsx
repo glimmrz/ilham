@@ -26,15 +26,17 @@ export async function Navigation() {
               <NavigationMenuTrigger>categories</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  {categories?.map((category, index) => (
-                    <ListItem
-                      href={category?.slug}
-                      title={category?.label}
-                      key={index}
-                    >
-                      {category?.description}
-                    </ListItem>
-                  ))}
+                  {categories?.map((category, index) => {
+                    return (
+                      <ListItem
+                        href={category?.slug}
+                        title={category?.label}
+                        key={index}
+                      >
+                        {category?.description}
+                      </ListItem>
+                    );
+                  })}
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
