@@ -6,6 +6,12 @@ import { getData } from "@/utils/api-calls";
 import { Suspense } from "react";
 import { ProductviewSkeleton } from "@/components/skeletons/productview-skeleton";
 
+export function metadata() {
+  return {
+    title: "Home",
+  };
+}
+
 const PopularProducts = async () => {
   const res = await getData("products");
 

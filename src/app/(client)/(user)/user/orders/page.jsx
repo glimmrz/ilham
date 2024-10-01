@@ -5,6 +5,14 @@ import { getData } from "@/utils/api-calls";
 import { getSession } from "@/utils/auth";
 import { Suspense } from "react";
 
+export async function generateMetadata() {
+  const session = await getSession();
+
+  return {
+    title: `${session.payload?.name}'s past orders`,
+  };
+}
+
 async function OrderData() {
   const session = await getSession();
   const res = await getData(`users/${session.payload?._id}`);

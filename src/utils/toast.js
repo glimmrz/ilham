@@ -5,7 +5,7 @@ export const notify = (message, description = "") => {
     description: description,
     action: {
       label: "Close",
-      onClick: () => console.log("Undo"),
+      onClick: () => console.log("closed"),
     },
   });
 };

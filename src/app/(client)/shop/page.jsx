@@ -5,6 +5,12 @@ import { Suspense } from "react";
 import { ProductviewSkeleton } from "@/components/skeletons/productview-skeleton";
 import { getData } from "@/utils/api-calls";
 
+export function metadata() {
+  return {
+    title: "Shop",
+  };
+}
+
 async function Products() {
   const res = await getData(`products`);
 

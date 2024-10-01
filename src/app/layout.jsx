@@ -7,8 +7,23 @@ import { Analytics } from "@vercel/analytics/react";
 import { GoogleTagManager } from "@next/third-parties/google";
 
 export const metadata = {
-  title: "ilham",
-  description: "Modern e-commerce platform",
+  title: {
+    default: "iLHAM",
+    template: "%s | iLHAM",
+  },
+  keywords: [
+    "ilham",
+    "ilham bd",
+    "ilham.com",
+    "ilham.com bd",
+    "bd ilham",
+    "exommerce",
+    "ilham ecommerce",
+    "ilham store",
+  ],
+  openGraph: {
+    description: "Modern e-commerce platform",
+  },
 };
 
 export default function RootLayout({ children }) {

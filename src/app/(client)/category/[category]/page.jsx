@@ -7,10 +7,23 @@ import { getData } from "@/utils/api-calls";
 import { Suspense } from "react";
 import { ProductviewSkeleton } from "@/components/skeletons/productview-skeleton";
 import { CategoryviewSkeleton } from "@/components/skeletons/categoryview-skeleton";
+import { formatParams } from "@/utils/helpers";
+
+// generate metadata
+export async function generateMetadata({ params, searchParams }) {
+  return {
+    title: formatParams(params.category),
+    openGraph: {
+      title: `${formatParams(params.category)} | iLHAM`,
+    },
+  };
+}
 
 // Get sub categories based on category
 async function Categories({ category }) {
   const res = await getData(`categories/${category}`);
+
+  if (!res.response.payload) return null;
 
   return <CategoryView categories={res.response.payload?.subCategories} />;
 }
@@ -36,7 +49,7 @@ const Page = ({ params }) => {
         <Categories category={params.category} />
       </Suspense>
 
-      <ProductView title={params.category}>
+      <ProductView title={formatParams(params.category)}>
         <Suspense fallback={<ProductviewSkeleton />}>
           <Products category={params.category} />
         </Suspense>
