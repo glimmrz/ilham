@@ -17,8 +17,6 @@ export async function Navigation() {
   const res = await getData("categories");
   const categories = res.response.payload;
 
-  console.log(categories);
-
   return (
     <div className="hidden md:block bg-accent dark:bg-secondary shadow-regular z-10 sticky top-16">
       <Container>
