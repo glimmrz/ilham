@@ -4,7 +4,7 @@ import { font } from "@/lib/fonts";
 import { Toaster } from "@/components/ui/sonner";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
-import { GoogleTagManager } from "@next/third-parties/google";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 
 export const metadata = {
   title: {
@@ -35,6 +35,7 @@ export default function RootLayout({ children }) {
           <Toaster />
         </ThemeProvider>
         <GoogleTagManager gtmId="GTM-NHPCWCXZ" />
+        <GoogleAnalytics gaId="GTM-NHPCWCXZ" />
         <SpeedInsights />
         <Analytics />
       </body>
