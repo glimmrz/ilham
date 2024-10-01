@@ -84,6 +84,7 @@ export function AccountSidebar({ userData }) {
             onClick={() => {
               logout();
               accountSidebar.onClose();
+              router.refresh();
             }}
           >
             logout
