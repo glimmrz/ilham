@@ -3,11 +3,12 @@
 import { useSearchDrawer } from "@/hooks/controllers";
 import { DrawerModal } from "./drawer";
 import { InputGroup } from "../input-group";
-import { ProductView } from "../product-view";
-import { ProductSmall } from "../product-cards/product-small";
+import { useState } from "react";
+import { SearchResults } from "./search-results";
 
 export const SearchDrawer = () => {
   const { isOpen, onClose } = useSearchDrawer();
+  const [searchKey, setSearchKey] = useState("");
 
   return (
     <DrawerModal
@@ -22,17 +23,11 @@ export const SearchDrawer = () => {
           placeholder="organic juice"
           name="search"
           label="search product"
+          onChange={(e) => setSearchKey(e.target.value)}
         />
 
         {/* Search results: Loading skeleton must be added. */}
-        <div className="w-full">
-          <ProductView className="grid-cols-1">
-            <ProductSmall />
-            <ProductSmall />
-            <ProductSmall />
-            <ProductSmall />
-          </ProductView>
-        </div>
+        <SearchResults searchKey={searchKey} />
       </div>
     </DrawerModal>
   );
