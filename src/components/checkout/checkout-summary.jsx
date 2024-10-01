@@ -9,7 +9,7 @@ export function CheckoutSummary() {
   return (
     <>
       <Heading>order summary</Heading>
-      <div className="mt-4 max-h-[600px] overflow-auto grid gap-2 mb-2 md:sticky md:top-[calc(theme(height.16)+theme(height.14)+theme(gap.2))]">
+      <div className="mt-4 max-h-[600px] overflow-auto grid gap-2 mb-2 md:sticky">
         {cartItems?.map((item, index) => (
           <CartItem key={index} item={item} />
         ))}

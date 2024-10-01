@@ -14,7 +14,7 @@ export default function Page() {
         <div className="md:p-2 lg:pt-2 lg:pb-2 lg:pl-8 lg:pr-8 xl:pl-20 xl:pr-20">
           <CheckoutForm />
         </div>
-        <div className="h-fit bg-accent rounded-md md:sticky top-[calc(theme(height.navbar)+theme(height.linkbar)+theme(gap.2))] row-start-1 md:row-start-auto md:p-2 lg:pt-2 lg:pb-2 lg:pl-8 lg:pr-8 xl:pl-20 xl:pr-20">
+        <div className="h-fit bg-accent rounded-md md:sticky md:top-[calc(theme(height.16)+theme(height.14)+theme(gap.2))] row-start-1 md:row-start-auto md:p-2 lg:pt-2 lg:pb-2 lg:pl-8 lg:pr-8 xl:pl-20 xl:pr-20">
           <CheckoutSummary />
         </div>
       </div>
