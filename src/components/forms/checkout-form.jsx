@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useCart } from "@/hooks/use-cart";
 import { createGrantToken, createPayment } from "@/utils/bkash";
 import { useRouter } from "next/navigation";
-import { postData } from "@/utils/api-calls";
+import { getData, postData } from "@/utils/api-calls";
 import { notify } from "@/utils/toast";
 import { Heading } from "../heading";
 import { InputGroup } from "../input-group";
