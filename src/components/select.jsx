@@ -55,6 +55,7 @@ export function Select({ placeholder, options, value, setValue, ...props }) {
               <CommandGroup>
                 {options.map((framework, index) => (
                   <CommandItem
+                    className="capitalize"
                     key={index}
                     value={framework.value}
                     onSelect={() => {
@@ -65,7 +66,9 @@ export function Select({ placeholder, options, value, setValue, ...props }) {
                     <Check
                       className={cn(
                         "mr-2 h-4 w-4",
-                        value === framework.value ? "opacity-100" : "opacity-0"
+                        value.label === framework.label
+                          ? "opacity-100"
+                          : "opacity-0"
                       )}
                     />
                     {framework.label}

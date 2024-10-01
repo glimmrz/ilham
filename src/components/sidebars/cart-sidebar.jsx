@@ -21,7 +21,10 @@ export function CartSidebar() {
         className="w-full"
         icon="arrowRight"
         disabled={cartItems.length <= 0}
-        onClick={() => router.push("/checkout")}
+        onClick={() => {
+          router.push("/checkout");
+          onClose();
+        }}
       >
         proceed to Checkout
       </Button>
