@@ -381,7 +381,9 @@ export function CheckoutForm() {
                 <td className="capitalize pt-3 pb-3 pl-0 pr-0">
                   ৳{(((total / 100) * discount) / 100).toFixed(2)}{" "}
                   {discount && (
-                    <span className="text-theme font-bold">({discount}%)</span>
+                    <span className="text-primary font-bold">
+                      ({discount}%)
+                    </span>
                   )}
                 </td>
               </tr>
