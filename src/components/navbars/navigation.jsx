@@ -84,7 +84,7 @@ export const ListItem = forwardRef(
             <div className="text-sm capitalize font-medium leading-none">
               {title}
             </div>
-            <p className="line-clamp-2 text-sm first-letter:capitalize leading-snug text-muted-foreground">
+            <p className="capitalize line-clamp-2 text-sm leading-snug text-muted-foreground">
               {children}
             </p>
           </a>

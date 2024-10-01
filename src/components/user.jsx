@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import {
@@ -10,8 +11,11 @@ import {
 } from "./ui/dropdown-menu";
 import { logout } from "@/utils/auth";
 import { Icon } from "./icon";
+import { useRouter } from "next/navigation";
 
 export function User({ userData }) {
+  const router = useRouter();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -63,7 +67,14 @@ export function User({ userData }) {
         {!userData.error && (
           <>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => logout()}>logout</DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                logout();
+                router.refresh();
+              }}
+            >
+              logout
+            </DropdownMenuItem>
           </>
         )}
       </DropdownMenuContent>
