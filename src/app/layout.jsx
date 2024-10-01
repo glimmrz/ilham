@@ -21,9 +21,9 @@ export const metadata = {
     "ilham ecommerce",
     "ilham store",
   ],
-  openGraph: {
-    description: "Modern e-commerce platform",
-  },
+  openGraph: {},
+  description:
+    "Discover a wide range of eco-friendly jute bags for men and women, premium grocery items, and elegant home decor at iLHAM. Our sustainable jute products are perfect for fashion-conscious individuals who care about the environment. Shop high-quality ladies' handbags, men's bags, and essential grocery items along with stylish home decor pieces that elevate your living space. Enjoy fast delivery, exclusive offers, and unbeatable prices. Shop now for the best in sustainable fashion and home essentials.",
 };
 
 export default function RootLayout({ children }) {

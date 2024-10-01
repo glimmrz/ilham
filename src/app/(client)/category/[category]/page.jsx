@@ -10,12 +10,15 @@ import { CategoryviewSkeleton } from "@/components/skeletons/categoryview-skelet
 import { formatParams } from "@/utils/helpers";
 
 // generate metadata
-export async function generateMetadata({ params, searchParams }) {
+export async function generateMetadata({ params }) {
+  const res = await getData(`categories/${formatParams(params.category)}`);
+
   return {
     title: formatParams(params.category),
     openGraph: {
       title: `${formatParams(params.category)} | iLHAM`,
     },
+    description: res.response.payload?.description,
   };
 }
 
