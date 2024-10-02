@@ -193,6 +193,7 @@ export function CheckoutForm() {
         return notify("Please select city.");
       }
 
+      // Start processing order
       const res = await postData("orders", {
         ...formData,
         products: cartItems,
@@ -219,6 +220,24 @@ export function CheckoutForm() {
 
         router.push(paymenturl.payload);
       }
+
+      // Send tag manager event
+      sendEvent({
+        event: "purchase",
+        ecommerce: {
+          transaction_id: res.response?.payload,
+          value: total,
+          tax: 0,
+          shipping: deliveryCharge.value,
+          currency: "BDT",
+          items: cartItems.map((item) => ({
+            item_id: item._id,
+            item_name: item.title,
+            price: item.price,
+            quantity: item.quantity,
+          })),
+        },
+      });
 
       onClear();
       router.push(`/success?id=${res.response?.payload}`);

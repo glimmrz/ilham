@@ -19,13 +19,36 @@ import {
   useCheckCart,
   useCheckWishlist,
 } from "@/utils/helpers";
+import { useEcommerceEvent } from "@/hooks/use-ecommerce-events";
 
 export const Product = ({ product }) => {
+  const { sendEvent } = useEcommerceEvent();
   const cart = useCart();
   const wishlist = useWishlist();
 
   const isInCart = useCheckCart(product);
   const isInWishlist = useCheckWishlist(product);
+
+  const handleAddToCart = () => {
+    sendEvent({
+      event: "add_to_cart",
+      ecommerce: {
+        items: [
+          {
+            item_id: product._id,
+            item_name: product.title,
+            price: factorCartPrice(product?.discountedPrice, product?.price),
+            quantity: 1,
+          },
+        ],
+      },
+    });
+
+    cart.onAdd({
+      ...product,
+      price: factorCartPrice(product?.discountedPrice, product?.price),
+    });
+  };
 
   return (
     <Card className="group border-transparent dark:border-secondary cursor-pointer">
@@ -87,12 +110,7 @@ export const Product = ({ product }) => {
         <Button
           icon={isInCart ? "check" : "cart"}
           variant="outline"
-          onClick={() =>
-            cart.onAdd({
-              ...product,
-              price: factorCartPrice(product?.discountedPrice, product?.price),
-            })
-          }
+          onClick={handleAddToCart}
         >
           <span>add</span>
         </Button>
