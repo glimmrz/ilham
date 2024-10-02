@@ -38,7 +38,7 @@ export const Product = ({ product }) => {
           {
             item_id: product._id,
             item_name: product?.title,
-            discount: product.price - product.discountedPrice,
+            discount: (product.price - product.discountedPrice) / 100,
             item_brand: product.brand,
             item_category: product.category.label,
             price:
@@ -61,6 +61,27 @@ export const Product = ({ product }) => {
     if (isInWishlist) {
       wishlist.onRemove(product._id, product.title);
     } else {
+      sendEvent({
+        event: "add_to_wishlist",
+        ecommerce: {
+          currency: "BDT",
+          value:
+            factorCartPrice(product?.discountedPrice, product?.price) / 100,
+          items: [
+            {
+              item_id: product._id,
+              item_name: product?.title,
+              discount: (product.price - product.discountedPrice) / 100,
+              item_brand: product.brand,
+              item_category: product.category.label,
+              price:
+                factorCartPrice(product?.discountedPrice, product?.price) / 100,
+              quantity: 1,
+            },
+          ],
+        },
+      });
+
       wishlist.onAdd(product);
     }
   };
