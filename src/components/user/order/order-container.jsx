@@ -13,7 +13,7 @@ export function OrderContainer({ order }) {
           />
           <DataCell
             dataName="total"
-            dataValue={`৳${order.totalWithDeliveryCharge}`}
+            dataValue={`৳${(order.totalWithDeliveryCharge / 100).toFixed(2)}`}
           />
           <DataCell dataName="order ID" dataValue={order._id} />
         </div>

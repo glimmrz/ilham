@@ -47,7 +47,7 @@ export const useWishlist = create(
           }),
       }),
       {
-        name: "ilham-dev-wishlist",
+        name: "ilm-wishlist",
         storage: createJSONStorage(() => localStorage),
       }
     )

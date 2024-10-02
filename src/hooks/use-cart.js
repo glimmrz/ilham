@@ -124,7 +124,7 @@ export const useCart = create(
           }),
       }),
       {
-        name: "ilham-dev-cart",
+        name: "ilm-cart",
         storage: createJSONStorage(() => localStorage),
       }
     )
