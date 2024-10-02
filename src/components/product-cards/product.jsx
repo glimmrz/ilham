@@ -57,9 +57,11 @@ export const Product = ({ product }) => {
   const handleWishlist = (e) => {
     e.preventDefault();
 
-    isInWishlist
-      ? () => wishlist.onRemove(product._id, product.title)
-      : () => wishlist.onAdd(product);
+    if (isInWishlist) {
+      wishlist.onRemove(product._id, product.title);
+    } else {
+      wishlist.onAdd(product);
+    }
   };
 
   return (
