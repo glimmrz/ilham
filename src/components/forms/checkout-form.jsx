@@ -10,6 +10,7 @@ import { InputGroup } from "../input-group";
 import { Icon } from "../icon";
 import { Button } from "../ui/button";
 import { Select } from "../select";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 const locations = [
   {
@@ -222,7 +223,7 @@ export function CheckoutForm() {
       }
 
       // Send tag manager event
-      sendEvent({
+      sendGTMEvent({
         event: "purchase",
         ecommerce: {
           transaction_id: res.response?.payload,
