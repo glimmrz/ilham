@@ -41,7 +41,8 @@ export const Product = ({ product }) => {
             discount: product.price - product.discountedPrice,
             item_brand: product.brand,
             item_category: product.category.label,
-            price: factorCartPrice(product?.discountedPrice, product?.price),
+            price:
+              factorCartPrice(product?.discountedPrice, product?.price) / 100,
             quantity: 1,
           },
         ],

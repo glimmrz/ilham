@@ -15,17 +15,52 @@ import {
 } from "@/utils/helpers";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RichTextViewer } from "./rich-text-viewer";
 import { Review } from "./review";
+import { useEcommerceEvent } from "@/hooks/use-ecommerce-event";
 
 export function ProductPage({ currentProduct }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { sendEvent } = useEcommerceEvent();
   const cart = useCart();
   const wishlist = useWishlist();
 
   const isInCart = useCheckCart(currentProduct);
   const isInWishlist = useCheckWishlist(currentProduct);
+
+  useEffect(() => {
+    sendEvent({
+      event: "view_item",
+      ecommerce: {
+        currency: "BDT",
+        value:
+          factorCartPrice(
+            currentProduct?.discountedPrice,
+            currentProduct?.price
+          ) / 100,
+        items: [
+          {
+            item_id: currentProduct?._id,
+            item_name: currentProduct?.title,
+            discount:
+              (currentProduct?.price - currentProduct?.discountedPrice) / 100,
+            index: 0,
+            item_brand: currentProduct?.brand,
+            item_category: currentProduct?.category?.label,
+
+            price:
+              factorCartPrice(
+                currentProduct?.discountedPrice,
+                currentProduct?.price
+              ) / 100,
+            quantity: 1,
+          },
+        ],
+      },
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentProduct]);
 
   return (
     <>

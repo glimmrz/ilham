@@ -229,9 +229,9 @@ export function CheckoutForm() {
         ecommerce: {
           transaction_id: res.response?.payload,
 
-          value: total,
+          value: total / 100,
           tax: 0,
-          shipping: deliveryCharge.value,
+          shipping: deliveryCharge.value / 100,
           currency: "BDT",
           coupon: couponCode,
           items: cartItems.map((item) => ({
@@ -240,7 +240,7 @@ export function CheckoutForm() {
             coupon: couponCode,
             item_brand: item.brand,
             item_category: item.category.label,
-            price: item.price,
+            price: item.price / 100,
             quantity: item.quantity,
           })),
         },
