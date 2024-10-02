@@ -228,13 +228,18 @@ export function CheckoutForm() {
         event: "purchase",
         ecommerce: {
           transaction_id: res.response?.payload,
+
           value: total,
           tax: 0,
           shipping: deliveryCharge.value,
           currency: "BDT",
+          coupon: couponCode,
           items: cartItems.map((item) => ({
             item_id: item._id,
             item_name: item.title,
+            coupon: couponCode,
+            item_brand: item.brand,
+            item_category: item.category.label,
             price: item.price,
             quantity: item.quantity,
           })),

@@ -36,7 +36,10 @@ export const Product = ({ product }) => {
         items: [
           {
             item_id: product._id,
-            item_name: product.title,
+            item_name: product?.title,
+            discount: product.price - product.discountedPrice,
+            item_brand: product.brand,
+            item_category: product.category.label,
             price: factorCartPrice(product?.discountedPrice, product?.price),
             quantity: 1,
           },
