@@ -10,7 +10,7 @@ import { InputGroup } from "../input-group";
 import { Icon } from "../icon";
 import { Button } from "../ui/button";
 import { Select } from "../select";
-import { sendGTMEvent } from "@next/third-parties/google";
+import { useEcommerceEvent } from "@/hooks/use-ecommerce-event";
 
 const locations = [
   {
@@ -168,6 +168,7 @@ const locations = [
 ];
 
 export function CheckoutForm() {
+  const { sendEvent } = useEcommerceEvent();
   const [isLoading, setIsLoading] = useState(false);
   const [couponCode, setCouponCode] = useState("");
   const [discount, setDiscount] = useState(null);
@@ -223,7 +224,7 @@ export function CheckoutForm() {
       }
 
       // Send tag manager event
-      sendGTMEvent({
+      sendEvent({
         event: "purchase",
         ecommerce: {
           transaction_id: res.response?.payload,

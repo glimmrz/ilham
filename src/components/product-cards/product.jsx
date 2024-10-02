@@ -19,9 +19,10 @@ import {
   useCheckCart,
   useCheckWishlist,
 } from "@/utils/helpers";
-import { sendGTMEvent } from "@next/third-parties/google";
+import { useEcommerceEvent } from "@/hooks/use-ecommerce-event";
 
 export const Product = ({ product }) => {
+  const { sendEvent } = useEcommerceEvent();
   const cart = useCart();
   const wishlist = useWishlist();
 
@@ -29,7 +30,7 @@ export const Product = ({ product }) => {
   const isInWishlist = useCheckWishlist(product);
 
   const handleAddToCart = () => {
-    sendGTMEvent({
+    sendEvent({
       event: "add_to_cart",
       ecommerce: {
         items: [
