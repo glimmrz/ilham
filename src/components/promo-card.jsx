@@ -22,7 +22,7 @@ export function PromoCard({ card }) {
           <figure className="relative h-[200px] w-full lg:h-full">
             <Image
               src="https://zeris.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffruits.266247d2.png&w=384&q=75"
-              alt={card?.title}
+              alt=" Everyday Fresh & Clean With Our Products"
               fill
               className="object-contain"
               sizes="(max-width: 768px) 350px, 400px"
@@ -30,7 +30,6 @@ export function PromoCard({ card }) {
           </figure>
         </div>
         <div className="flex flex-col justify-center items-center gap-4 z-[1]">
-          {/* <Heading title={card?.title} customStyles="text-center" /> */}
           <CardTitle className="text-center">
             Everyday Fresh & Clean With Our Products
           </CardTitle>

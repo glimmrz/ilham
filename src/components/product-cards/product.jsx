@@ -115,7 +115,7 @@ export const Product = ({ product }) => {
           </figure>
         </CardContent>
         <CardHeader>
-          <CardTitle className="text-base line-clamp-2 h-12">
+          <CardTitle className="text-base line-clamp-2">
             {product?.title}
           </CardTitle>
         </CardHeader>

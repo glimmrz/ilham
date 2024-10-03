@@ -32,8 +32,13 @@ async function Categories({ category }) {
 }
 
 // get products based on category
-async function Products({ category }) {
-  const res = await getData(`products`);
+async function Products({ category, subCategory }) {
+  const res = await getData(
+    `products?category=${formatParams(category)}${
+      subCategory ? `&sub=${subCategory}` : ""
+    }`,
+    0
+  );
 
   return (
     <>
@@ -44,7 +49,7 @@ async function Products({ category }) {
   );
 }
 
-const Page = ({ params }) => {
+const Page = ({ params, searchParams }) => {
   return (
     <Container>
       {/* <PromoSlider /> */}
@@ -54,7 +59,7 @@ const Page = ({ params }) => {
 
       <ProductView title={formatParams(params.category)}>
         <Suspense fallback={<ProductviewSkeleton />}>
-          <Products category={params.category} />
+          <Products category={params.category} subCategory={searchParams.sub} />
         </Suspense>
       </ProductView>
     </Container>
