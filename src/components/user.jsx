@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 
 export function User({ userData }) {
   const router = useRouter();
-  console.log(userData);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -47,25 +47,28 @@ export function User({ userData }) {
             <Link passHref href="/user/profile" className="w-full">
               <DropdownMenuItem>
                 <span>profile</span>
-                <Icon icon="user" />
+                <Icon size={22} icon="user" />
               </DropdownMenuItem>
             </Link>
             <Link passHref href="/user/orders" className="w-full">
               <DropdownMenuItem>
                 <span>orders</span>
-                <Icon icon="order" />
+                <Icon size={22} icon="order" />
               </DropdownMenuItem>
             </Link>
             <Link passHref href="/user/address" className="w-full">
               <DropdownMenuItem>
                 <span>addresses</span>
-                <Icon icon="location" />
+                <Icon size={22} icon="location" />
               </DropdownMenuItem>
             </Link>
           </>
         )}
         <Link href="become-a-partner" passHref>
-          <DropdownMenuItem>share & earn</DropdownMenuItem>
+          <DropdownMenuItem>
+            <span>share & earn</span>
+            <Icon size={22} icon="partner" />
+          </DropdownMenuItem>
         </Link>
         {!userData.error && (
           <>
@@ -76,7 +79,8 @@ export function User({ userData }) {
                 router.refresh();
               }}
             >
-              logout
+              <span>logout</span>
+              <Icon icon="logout2" size={22} />
             </DropdownMenuItem>
           </>
         )}
