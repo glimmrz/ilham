@@ -23,9 +23,9 @@ export async function middleware(request) {
   }
 
   if (
-    session.payload?.code &&
+    session.error &&
     request.nextUrl.pathname.startsWith("/become-a-partner")
   ) {
-    return NextResponse.redirect(new URL("/", request.url));
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 }

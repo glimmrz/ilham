@@ -15,7 +15,9 @@ export default async function Layout({ children }) {
     <>
       <Navbar userData={session} />
       <Navigation />
-      <main className="min-h-screen">{children}</main>
+      <main className="min-h-[calc(theme(height.screen)-120px)]">
+        {children}
+      </main>
       <ProductModal />
       <CartIndicator />
       <CartSidebar />
