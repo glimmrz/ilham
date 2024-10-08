@@ -35,10 +35,16 @@ export function User({ userData }) {
         {userData.error && (
           <>
             <Link passHref href="/login" className="w-full">
-              <DropdownMenuItem>login</DropdownMenuItem>
+              <DropdownMenuItem>
+                <span>login</span>
+                <Icon icon="login" size={22} />
+              </DropdownMenuItem>
             </Link>
             <Link passHref href="/register" className="w-full">
-              <DropdownMenuItem>sign up</DropdownMenuItem>
+              <DropdownMenuItem>
+                <span>sign up</span>
+                <Icon icon="register" size={22} />
+              </DropdownMenuItem>
             </Link>
           </>
         )}
