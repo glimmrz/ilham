@@ -14,11 +14,11 @@ import { Container } from "../wrappers/container";
 import { getData } from "@/utils/api-calls";
 
 export async function Navigation() {
-  const res = await getData("categories");
+  const res = await getData("categories", 3600);
   const categories = res.response.payload;
 
   return (
-    <div className="hidden md:block bg-accent dark:bg-secondary shadow-regular z-10 sticky top-16">
+    <div className="hidden md:block bg-foreground dark:bg-secondary shadow-regular z-10 sticky top-16">
       <Container>
         <NavigationMenu>
           <NavigationMenuList>

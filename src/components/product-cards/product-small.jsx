@@ -29,7 +29,7 @@ export function ProductSmall({ product }) {
               <CalculatePrice
                 price={220000}
                 discountedPrice={130000}
-                className="flex-col"
+                className="flex-col md:flex-row"
               />
               <CalculateDiscount price={22} discountedPrice={13} />
             </div>

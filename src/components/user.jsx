@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 
 export function User({ userData }) {
   const router = useRouter();
-
+  console.log(userData);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -64,6 +64,9 @@ export function User({ userData }) {
             </Link>
           </>
         )}
+        <Link href="become-a-partner" passHref>
+          <DropdownMenuItem>share & earn</DropdownMenuItem>
+        </Link>
         {!userData.error && (
           <>
             <DropdownMenuSeparator />

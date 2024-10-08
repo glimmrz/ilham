@@ -66,17 +66,15 @@ export function AccountSidebar({ userData }) {
             />
           ))}
 
-        {!userData.payload?.code && (
-          <Button
-            icon="handshake"
-            onClick={() => {
-              router.push("/become-a-partner");
-              accountSidebar.onClose();
-            }}
-          >
-            become a partner
-          </Button>
-        )}
+        <MenuItem
+          item={{ label: "share & earn", icon: "handshake" }}
+          onClick={() => {
+            router.push("/become-a-partner");
+            accountSidebar.onClose();
+          }}
+        >
+          share & earn
+        </MenuItem>
 
         {!userData.error && (
           <Button
