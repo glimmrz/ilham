@@ -37,7 +37,7 @@ export function User({ userData }) {
             <Link passHref href="/login" className="w-full">
               <DropdownMenuItem>
                 <span>login</span>
-                <Icon icon="login" size={22} />
+                <Icon icon="login2" size={22} />
               </DropdownMenuItem>
             </Link>
             <Link passHref href="/register" className="w-full">
