@@ -20,11 +20,13 @@ import {
   useCheckWishlist,
 } from "@/utils/helpers";
 import { useEcommerceEvent } from "@/hooks/use-ecommerce-event";
+import { useRouter } from "next/navigation";
 
 export const Product = ({ product }) => {
   const { sendEvent } = useEcommerceEvent();
   const cart = useCart();
   const wishlist = useWishlist();
+  const router = useRouter();
 
   const isInCart = useCheckCart(product);
   const isInWishlist = useCheckWishlist(product);
@@ -123,15 +125,16 @@ export const Product = ({ product }) => {
           <RatingStars />
           <span className="text-sm capitalize">
             <span>by </span>
-            <Link
-              href={{
-                pathname: "/shop",
-                query: { brand: product?.brand },
+            <span
+              role="button"
+              onClick={(e) => {
+                e.preventDefault();
+                router.push(`/shop?brand=${product?.brand}`);
               }}
               className="text-primary"
             >
               {product?.brand}
-            </Link>
+            </span>
           </span>
         </div>
 

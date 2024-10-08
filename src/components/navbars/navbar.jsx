@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useMenuSidebar, useSearchDrawer } from "@/hooks/controllers";
+import { useMenuSidebar } from "@/hooks/controllers";
 import { Container } from "../wrappers/container";
 import { Logo } from "../logo";
 import { ThemeToggle } from "../theme-toggle";
@@ -9,7 +9,6 @@ import { User } from "../user";
 import { useWishlist } from "@/hooks/use-wishlist";
 
 export const Navbar = ({ userData }) => {
-  const { onOpen } = useSearchDrawer();
   const menuSidebar = useMenuSidebar();
   const wishlist = useWishlist();
 
@@ -25,7 +24,6 @@ export const Navbar = ({ userData }) => {
               size="icon"
               icon="search"
               className="rounded-full"
-              onClick={onOpen}
             >
               <span className="sr-only">search</span>
             </Button>

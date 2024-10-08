@@ -19,12 +19,6 @@ export const useProductModal = create((set) => ({
     }),
 }));
 
-export const useSearchDrawer = create((set) => ({
-  isOpen: false,
-  onOpen: () => set({ isOpen: true }),
-  onClose: () => set({ isOpen: false }),
-}));
-
 export const useCartSidebar = create((set) => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),

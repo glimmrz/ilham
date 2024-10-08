@@ -1,5 +1,4 @@
 import { CartIndicator } from "@/components/cart/cart-indicator";
-import { SearchDrawer } from "@/components/drawers/search-drawer";
 import { ProductModal } from "@/components/modals/product-modal";
 import { MobileNavbar } from "@/components/navbars/mobile-navbar";
 import { Navbar } from "@/components/navbars/navbar";
@@ -18,7 +17,6 @@ export default async function Layout({ children }) {
       <Navigation />
       <main className="min-h-screen">{children}</main>
       <ProductModal />
-      <SearchDrawer />
       <CartIndicator />
       <CartSidebar />
       <MenuSidebar />
