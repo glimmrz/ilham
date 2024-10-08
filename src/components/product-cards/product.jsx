@@ -87,8 +87,8 @@ export const Product = ({ product }) => {
   };
 
   return (
-    <Card className="group border-transparent dark:border-secondary cursor-pointer">
-      <Link href={`/product/${product.slug}`} passHref>
+    <Link href={`/product/${product.slug}`} passHref>
+      <Card className="group border-transparent dark:border-secondary cursor-pointer">
         <CardContent className="relative pb-2">
           <div className="absolute top-2 left-0 flex items-center justify-between w-full px-2 z-[1]">
             <Button
@@ -119,23 +119,22 @@ export const Product = ({ product }) => {
             {product?.title}
           </CardTitle>
         </CardHeader>
-      </Link>
-      <div className="px-2 py-2 md:px-3">
-        <RatingStars />
-        <span className="text-sm capitalize">
-          <span>by </span>
-          <Link
-            href={{
-              pathname: "/shop",
-              query: { brand: product?.brand },
-            }}
-            className="text-primary"
-          >
-            {product?.brand}
-          </Link>
-        </span>
-      </div>
-      <Link href={`/product/${product.slug}`} passHref>
+        <div className="px-2 py-2 md:px-3">
+          <RatingStars />
+          <span className="text-sm capitalize">
+            <span>by </span>
+            <Link
+              href={{
+                pathname: "/shop",
+                query: { brand: product?.brand },
+              }}
+              className="text-primary"
+            >
+              {product?.brand}
+            </Link>
+          </span>
+        </div>
+
         <CardFooter className="flex items-center justify-between md:pt-0">
           <CalculatePrice
             discountedPrice={product?.discountedPrice}
@@ -150,7 +149,7 @@ export const Product = ({ product }) => {
             <span>add</span>
           </Button>
         </CardFooter>
-      </Link>
-    </Card>
+      </Card>
+    </Link>
   );
 };

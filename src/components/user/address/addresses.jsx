@@ -7,7 +7,7 @@ import { getData } from "@/utils/api-calls";
 
 async function Addresses() {
   const session = await getSession();
-  const res = await getData(`users/${session.payload?._id}`);
+  const res = await getData(`users/${session.payload?._id}`, 0);
 
   return (
     <>

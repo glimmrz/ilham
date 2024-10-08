@@ -2,8 +2,8 @@ import { getData } from "@/utils/api-calls";
 
 export default async function sitemap() {
   const [products, categories] = await Promise.all([
-    getData("products"),
-    getData("categories"),
+    getData("products", 3600),
+    getData("categories", 3600),
   ]);
 
   const product = products.response.payload?.map((item) => ({

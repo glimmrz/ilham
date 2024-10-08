@@ -14,7 +14,7 @@ export async function generateMetadata() {
 
 async function ProfileData() {
   const session = await getSession();
-  const res = await getData(`users/${session.payload?._id}`);
+  const res = await getData(`users/${session.payload?._id}`, 0);
 
   return <Profile data={res.response?.payload} />;
 }
