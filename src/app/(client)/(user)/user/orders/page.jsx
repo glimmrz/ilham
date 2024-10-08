@@ -1,3 +1,4 @@
+import { Empty } from "@/components/empty";
 import { Heading } from "@/components/heading";
 import { OrdercontainerSkeleton } from "@/components/skeletons/ordercontainer-skeleton";
 import { OrderContainer } from "@/components/user/order/order-container";
@@ -18,11 +19,18 @@ async function OrderData() {
   const res = await getData(`users/${session.payload?._id}`, 0);
 
   return (
-    <div className="grid gap-4">
-      {res.response.payload?.orders?.map((order, index) => (
-        <OrderContainer key={index} order={order} />
-      ))}
-    </div>
+    <>
+      {res.response.payload?.orders?.length > 0 && (
+        <div className="grid gap-4">
+          {res.response.payload?.orders?.map((order, index) => (
+            <OrderContainer key={index} order={order} />
+          ))}
+        </div>
+      )}
+      {res.response.payload?.orders?.length === 0 && (
+        <Empty message="You haven't placed any orders yet. Order something to continue." />
+      )}
+    </>
   );
 }
 
