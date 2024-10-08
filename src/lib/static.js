@@ -24,9 +24,4 @@ export const pagesData = [
     icon: "audio-waveform",
     slug: "/track-order",
   },
-  {
-    label: "partner program",
-    icon: "handshake",
-    slug: "/partner-program",
-  },
 ];

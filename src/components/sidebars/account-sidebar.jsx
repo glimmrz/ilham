@@ -66,15 +66,15 @@ export function AccountSidebar({ userData }) {
             />
           ))}
 
-        <MenuItem
-          item={{ label: "share & earn", icon: "handshake" }}
+        <Button
+          icon="handshake"
           onClick={() => {
             router.push("/become-a-partner");
             accountSidebar.onClose();
           }}
         >
           share & earn
-        </MenuItem>
+        </Button>
 
         {!userData.error && (
           <Button
