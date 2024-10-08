@@ -9,7 +9,7 @@ export function Profile({ data }) {
     <>
       <div className="flex justify-between items-center mb-4 md:mb-1">
         <Heading>{data?.name}</Heading>
-        <Button icon="edit">edit profile</Button>
+        <Button icon="edit">update profile</Button>
       </div>
       <div className="flex flex-wrap gap-x-4 gap-y-2 md:gap-6">
         <div className="flex items-center gap-2">
@@ -58,7 +58,7 @@ export function Profile({ data }) {
         </div>
       </div>
 
-      <div className="grid grid-cols-[repeat(auto-fit,_minmax(270px,_1fr))] gap-2">
+      <div className="mt-4 mb-4 grid grid-cols-[repeat(auto-fit,_minmax(270px,_1fr))] gap-2">
         <TotalCard
           data={{
             icon: "coupon",
@@ -90,6 +90,8 @@ export function Profile({ data }) {
           }}
         />
       </div>
+
+      <Button>withdraw money / টাকা তুলুন</Button>
     </>
   );
 }
