@@ -27,7 +27,7 @@ export async function postData(url, data) {
   };
 }
 
-export async function getData(url, revalidate = 300) {
+export async function getData(url, revalidate = 600) {
   const token = await getCookie("ilm-session");
 
   const res = await fetch(process.env.NEXT_PUBLIC_API_URL + url, {
