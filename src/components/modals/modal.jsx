@@ -5,7 +5,6 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "../ui/button";
 
@@ -15,12 +14,16 @@ export function Modal({
   triggerIcon,
   title,
   description,
+  isOpen,
+  onClose,
+  onOpen,
 }) {
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button icon={triggerIcon}>{triggerLabel}</Button>
-      </DialogTrigger>
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <Button onClick={onOpen} icon={triggerIcon}>
+        {triggerLabel}
+      </Button>
+
       <DialogContent className="sm:max-w-[425px]">
         {(title || description) && (
           <DialogHeader>

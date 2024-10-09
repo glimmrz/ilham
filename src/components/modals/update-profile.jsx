@@ -7,6 +7,8 @@ import { Modal } from "./modal";
 import { notify } from "@/utils/toast";
 
 export function UpdateProfile({ data }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [date, setDate] = useState(data?.birthdate);
 
   const handleSubmit = (e) => {
@@ -19,6 +21,9 @@ export function UpdateProfile({ data }) {
       console.log({ ...formData, birthdate: date });
     } catch (err) {
       notify(err.message);
+    } finally {
+      setIsModalOpen(false);
+      setIsLoading(false);
     }
   };
 
@@ -28,6 +33,9 @@ export function UpdateProfile({ data }) {
       description="Make changes to your profile here. Click save when you're done."
       triggerLabel="update profile"
       triggerIcon="edit"
+      isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+      onOpen={() => setIsModalOpen(true)}
     >
       <form onSubmit={handleSubmit} className="grid gap-3">
         <InputGroup
@@ -62,7 +70,12 @@ export function UpdateProfile({ data }) {
           defaultValue={data?.bkash}
         />
 
-        <Button type="submit" className="w-full">
+        <Button
+          type="submit"
+          className="w-full"
+          disabled={isLoading}
+          loading={isLoading}
+        >
           Save changes
         </Button>
       </form>

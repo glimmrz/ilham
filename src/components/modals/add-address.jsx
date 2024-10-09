@@ -5,9 +5,12 @@ import { Button } from "../ui/button";
 import { Modal } from "./modal";
 import { useState } from "react";
 import { notify } from "@/utils/toast";
+import { useRouter } from "next/navigation";
 
 export function AddAddress() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,8 +29,9 @@ export function AddAddress() {
       notify(res.response.msg);
       router.refresh();
     } catch (err) {
-      notify("Something went wrong. Please try again.");
+      notify(err.message);
     } finally {
+      setIsModalOpen(false);
       setIsLoading(false);
     }
   };
@@ -38,6 +42,9 @@ export function AddAddress() {
       description="Add new address here. you can modify them later."
       triggerLabel="add address"
       triggerIcon="plus"
+      isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+      onOpen={() => setIsModalOpen(true)}
     >
       <form onSubmit={handleSubmit} className="grid gap-3">
         <div className="grid grid-cols-2 gap-2">

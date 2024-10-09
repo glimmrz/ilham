@@ -9,19 +9,23 @@ export function AddressCard({ address }) {
   return (
     <Card>
       <CardContent>
-        <Heading>jane doe</Heading>
+        <Heading>{address?.name}</Heading>
         <div className="mt-3 mb-3 ml-0 mr-0 flex gap-4 justify-between">
           <div className="flex flex-col gap-4">
-            <DataCell dataName="address" dataValue="sing street, ireland" />
+            <DataCell
+              dataName="address"
+              dataValue={address?.address}
+              className="h-12 line-clamp-2"
+            />
             <DataCell
               dataName="email"
               dataValue={address?.email ? address?.email : "unset"}
             />
-            <DataCell dataName="phone number" dataValue="01873228724" />
+            <DataCell dataName="phone number" dataValue={address?.phone} />
           </div>
           <div className="flex flex-col gap-4">
-            <DataCell dataName="city" dataValue="dublin" />
-            <DataCell dataName="country" dataValue="ireland" />
+            <DataCell dataName="city" dataValue={address?.city} />
+            <DataCell dataName="country" dataValue={address?.country} />
           </div>
         </div>
 
