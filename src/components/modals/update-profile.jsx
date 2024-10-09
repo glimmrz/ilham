@@ -29,40 +29,38 @@ export function UpdateProfile({ data }) {
       triggerLabel="update profile"
       triggerIcon="edit"
     >
-      <form onSubmit={handleSubmit}>
-        <div className="grid gap-4 py-4">
-          <InputGroup
-            name="name"
-            placeholder=""
-            label="name"
-            defaultValue={data?.name}
-          />
-          <DatePicker date={date} setDate={setDate} label="birthdate" />
-          <InputGroup
-            name="phone"
-            placeholder=""
-            label="phone number"
-            defaultValue={data?.phone}
-          />
-          <InputGroup
-            name="address"
-            placeholder=""
-            label="address"
-            defaultValue={data?.address}
-          />
-          <InputGroup
-            name="code"
-            placeholder=""
-            label="coupon code"
-            defaultValue={data?.code.code}
-          />
-          <InputGroup
-            name="bkash"
-            placeholder=""
-            label="bkash account number"
-            defaultValue={data?.bkash}
-          />
-        </div>
+      <form onSubmit={handleSubmit} className="grid gap-3">
+        <InputGroup
+          name="name"
+          placeholder=""
+          label="name"
+          defaultValue={data?.name}
+        />
+        <DatePicker date={date} setDate={setDate} label="birthdate" />
+        <InputGroup
+          name="phone"
+          placeholder=""
+          label="phone number"
+          defaultValue={data?.phone}
+        />
+        <InputGroup
+          name="address"
+          placeholder=""
+          label="address"
+          defaultValue={data?.address}
+        />
+        <InputGroup
+          name="code"
+          placeholder=""
+          label="coupon code"
+          defaultValue={data?.code.code}
+        />
+        <InputGroup
+          name="bkash"
+          placeholder=""
+          label="bkash account number"
+          defaultValue={data?.bkash}
+        />
 
         <Button type="submit" className="w-full">
           Save changes

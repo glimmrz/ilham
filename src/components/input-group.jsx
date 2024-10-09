@@ -9,9 +9,9 @@ export function InputGroup({ className, ...props }) {
     <div className={cn("w-full space-y-1.5", className)}>
       <Label
         htmlFor={props.name}
-        className={`capitalize ${
+        className={`capitalize relative ${
           props.required
-            ? "after:content-['*'] after:text-destructive after:pl-1 after:text-lg"
+            ? "after:content-['*'] after:absolute after:text-destructive after:text-lg"
             : ""
         }`}
       >
