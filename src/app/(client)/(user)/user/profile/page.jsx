@@ -25,7 +25,7 @@ async function ProfileData() {
     <>
       <div className="flex justify-between items-center mb-4 md:mb-1">
         <Heading>{res.response?.payload?.name}</Heading>
-        <UpdateProfile />
+        <UpdateProfile data={res.response?.payload} />
       </div>
       <div className="flex flex-wrap gap-x-4 gap-y-2 md:gap-6">
         <div className="flex items-center gap-2">

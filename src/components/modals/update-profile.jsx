@@ -1,62 +1,73 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { InputGroup } from "../input-group";
 import { useState } from "react";
 import { DatePicker } from "../date-picker";
+import { Modal } from "./modal";
+import { notify } from "@/utils/toast";
 
-export function UpdateProfile() {
-  const [date, setDate] = useState();
+export function UpdateProfile({ data }) {
+  const [date, setDate] = useState(data?.birthdate);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    try {
+      const data = new FormData(e.target);
+      const formData = Object.fromEntries(data.entries());
+
+      console.log({ ...formData, birthdate: date });
+    } catch (err) {
+      notify(err.message);
+    }
+  };
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button icon="edit">update Profile</Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>update profile</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you&apos;re done.
-          </DialogDescription>
-        </DialogHeader>
+    <Modal
+      title="Edit profile"
+      description="Make changes to your profile here. Click save when you're done."
+      triggerLabel="update profile"
+      triggerIcon="edit"
+    >
+      <form onSubmit={handleSubmit}>
         <div className="grid gap-4 py-4">
-          <InputGroup name="" placeholder="" label="name" defaultValue="" />
+          <InputGroup
+            name="name"
+            placeholder=""
+            label="name"
+            defaultValue={data?.name}
+          />
           <DatePicker date={date} setDate={setDate} label="birthdate" />
           <InputGroup
-            name=""
+            name="phone"
             placeholder=""
             label="phone number"
-            defaultValue=""
+            defaultValue={data?.phone}
           />
-          <InputGroup name="" placeholder="" label="address" defaultValue="" />
           <InputGroup
-            name=""
+            name="address"
+            placeholder=""
+            label="address"
+            defaultValue={data?.address}
+          />
+          <InputGroup
+            name="code"
             placeholder=""
             label="coupon code"
-            defaultValue=""
+            defaultValue={data?.code.code}
           />
           <InputGroup
-            name=""
+            name="bkash"
             placeholder=""
-            label="bKash account number"
-            defaultValue=""
+            label="bkash account number"
+            defaultValue={data?.bkash}
           />
         </div>
-        <DialogFooter>
-          <Button type="submit">Save changes</Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+
+        <Button type="submit" className="w-full">
+          Save changes
+        </Button>
+      </form>
+    </Modal>
   );
 }
