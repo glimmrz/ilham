@@ -70,7 +70,7 @@ export function User({ userData }) {
             </Link>
           </>
         )}
-        <Link href="become-a-partner" passHref>
+        <Link href="/become-a-partner" passHref>
           <DropdownMenuItem>
             <span>share & earn</span>
             <Icon size={22} icon="partner" />
