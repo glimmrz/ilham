@@ -19,7 +19,7 @@ export async function generateMetadata() {
 
 async function ProfileData() {
   const session = await getSession();
-  const res = await getData(`users/${session.payload?._id}`, 900);
+  const res = await getData(`users/${session.payload?._id}`, 0);
 
   return (
     <>
@@ -72,10 +72,10 @@ async function ProfileData() {
             }
           />
           <DataCell
-            dataName="address"
+            dataName="bKash number"
             dataValue={
-              res.response?.payload?.address
-                ? res.response?.payload?.address
+              res.response?.payload?.bkash
+                ? res.response?.payload?.bkash
                 : "-----"
             }
           />

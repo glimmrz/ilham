@@ -30,8 +30,10 @@ export function AddressCard({ address }) {
         </div>
 
         <div className="grid grid-cols-2 gap-2">
-          <Button icon="edit">edit</Button>
-          <Button variant="destructive" icon="delete">
+          <Button icon="edit" disabled>
+            edit
+          </Button>
+          <Button variant="destructive" icon="delete" disabled>
             delete
           </Button>
         </div>

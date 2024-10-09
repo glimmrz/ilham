@@ -5,24 +5,38 @@ import { useState } from "react";
 import { DatePicker } from "../date-picker";
 import { Modal } from "./modal";
 import { notify } from "@/utils/toast";
+import { putData } from "@/utils/api-calls";
+import { useRouter } from "next/navigation";
 
 export function UpdateProfile({ data }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [date, setDate] = useState(data?.birthdate);
+  const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
-      const data = new FormData(e.target);
-      const formData = Object.fromEntries(data.entries());
+      const fd = new FormData(e.target);
+      const formData = Object.fromEntries(fd.entries());
 
-      console.log({ ...formData, birthdate: date });
+      const res = await putData(`users/${data?._id}`, {
+        ...formData,
+        birthdate: date,
+      });
+
+      if (res.error) {
+        return notify(res.response.msg);
+      }
+
+      notify(res.response.msg);
+      setIsModalOpen(false);
+      router.refresh();
     } catch (err) {
       notify(err.message);
     } finally {
-      setIsModalOpen(false);
       setIsLoading(false);
     }
   };
@@ -50,18 +64,6 @@ export function UpdateProfile({ data }) {
           placeholder=""
           label="phone number"
           defaultValue={data?.phone}
-        />
-        <InputGroup
-          name="address"
-          placeholder=""
-          label="address"
-          defaultValue={data?.address}
-        />
-        <InputGroup
-          name="code"
-          placeholder=""
-          label="coupon code"
-          defaultValue={data?.code.code}
         />
         <InputGroup
           name="bkash"
