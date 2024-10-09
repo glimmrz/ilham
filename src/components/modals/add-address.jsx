@@ -1,10 +1,36 @@
 "use client";
+import { postData } from "@/utils/api-calls";
 import { InputGroup } from "../input-group";
 import { Button } from "../ui/button";
 import { Modal } from "./modal";
+import { useState } from "react";
+import { notify } from "@/utils/toast";
 
 export function AddAddress() {
-  const handleSubmit = (e) => {};
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const data = new FormData(e.target);
+      const formData = Object.fromEntries(data.entries());
+
+      const res = await postData("address", formData);
+
+      if (res.error) {
+        return notify(res.response.msg);
+      }
+
+      notify(res.response.msg);
+      router.refresh();
+    } catch (err) {
+      notify("Something went wrong. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <Modal
@@ -23,7 +49,7 @@ export function AddAddress() {
             required
           />
           <InputGroup
-            name="name"
+            name="address"
             placeholder=""
             label="addreess / ঠিকানা"
             defaultValue=""
@@ -32,28 +58,34 @@ export function AddAddress() {
         </div>
         <div className="grid grid-cols-2 gap-2">
           <InputGroup
-            name="name"
+            name="city"
             placeholder=""
             label="city / শহর"
             defaultValue=""
             required
           />
           <InputGroup
-            name="name"
+            name="email"
             placeholder=""
             label="email / ইমেইল"
             defaultValue=""
           />
         </div>
         <InputGroup
-          name="name"
+          name="phone"
           placeholder=""
           label="phone number / মোবাইল নম্বর"
           defaultValue=""
           required
         />
 
-        <Button type="submit" className="w-full">
+        <Button
+          type="submit"
+          icon="save"
+          className="w-full"
+          disabled={isLoading}
+          loading={isLoading}
+        >
           Save address
         </Button>
       </form>

@@ -10,6 +10,7 @@ import {
   Menu,
   Minus,
   Plus,
+  Save,
   Search,
   ShoppingCart,
   Trash,
@@ -32,6 +33,7 @@ const Icons = {
   cart: ShoppingCart,
   menu: Menu,
   handshake: Handshake,
+  save: Save,
   register: (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" {...props}>
       <path
