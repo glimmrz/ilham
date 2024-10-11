@@ -104,7 +104,7 @@ export function CheckoutForm({ referrer }) {
       });
 
       onClear();
-      // router.push(`/success?id=${res.response?.payload}`);
+      router.push(`/success?id=${res.response?.payload}`);
       notify(res.response.msg);
     } catch (err) {
       notify(err.message);
