@@ -38,13 +38,16 @@ export function ShareProduct({ product, referrer }) {
           <CardTitle className="capitalize font-bold text-base cursor-pointer transition-colors duration-300 hover:text-primary dark:hover:text-muted">
             organic honey with spices
           </CardTitle>
-          <RatingStars />
           <div className="flex items-center justify-between">
-            <CalculatePrice
-              price={220000}
-              discountedPrice={130000}
-              className="flex-col md:flex-row"
-            />
+            <div>
+              <p>Price: ৳{product?.discountedPrice / 100}</p>
+              <p>
+                Comission:{" "}
+                <span className="text-primary font-bold">
+                  ৳{((product?.discountedPrice * 10) / 100 / 100).toFixed(2)}
+                </span>
+              </p>
+            </div>
             <Button
               size="icon"
               icon="copy"
