@@ -11,6 +11,7 @@ import { Icon } from "../icon";
 import { Button } from "../ui/button";
 import { Select } from "../select";
 import { useEcommerceEvent } from "@/hooks/use-ecommerce-event";
+import { useEffect } from "react";
 
 // const locations = [
 //   {
@@ -178,10 +179,10 @@ const locations = [
   },
 ];
 
-export function CheckoutForm() {
+export function CheckoutForm({ referrer }) {
   const { sendEvent } = useEcommerceEvent();
   const [isLoading, setIsLoading] = useState(false);
-  const [couponCode, setCouponCode] = useState("");
+  const [couponCode, setCouponCode] = useState(referrer);
   const [discount, setDiscount] = useState(null);
   const [deliveryCharge, setDeliveryCharge] = useState({
     label: "",
@@ -189,6 +190,12 @@ export function CheckoutForm() {
   });
   const { cartItems, total, onClear } = useCart();
   const router = useRouter();
+
+  useEffect(() => {
+    if (referrer) {
+      handleCoupon();
+    }
+  }, [referrer]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -340,8 +347,9 @@ export function CheckoutForm() {
         <div className="grid gap-4 border border-shade border-dashed p-4 rounded-md">
           <InputGroup
             label="coupon code / কুপন"
-            placeholder="example2024"
+            placeholder={couponCode ? couponCode : "example2024"}
             onChange={(e) => setCouponCode(e.target.value)}
+            defaultValue={referrer}
           />
           <Button
             icon="discount"
