@@ -30,8 +30,9 @@ export function ProductPage({ currentProduct, referrer }) {
   const isInCart = useCheckCart(currentProduct);
   const isInWishlist = useCheckWishlist(currentProduct);
 
+  // Set referrer cookie for 30 days
   const setReferrer = async () => {
-    await setCookie("referrer", referrer);
+    await setCookie("referrer", referrer, 2592000);
   };
 
   useEffect(() => {
