@@ -13,161 +13,6 @@ import { Select } from "../select";
 import { useEcommerceEvent } from "@/hooks/use-ecommerce-event";
 import { useEffect } from "react";
 
-// const locations = [
-//   {
-//     value: 8000,
-//     label: "dhaka - ঢাকা",
-//   },
-//   {
-//     value: 10000,
-//     label: "chittagong - চট্টগ্রাম",
-//   },
-//   {
-//     value: 10000,
-//     label: "sylhet - সিলেট",
-//   },
-//   {
-//     value: 10000,
-//     label: "cumilla - কুমিল্লা",
-//   },
-//   {
-//     value: 10000,
-//     label: "rangpur - রংপুর",
-//   },
-//   {
-//     value: 10000,
-//     label: "barisal - বরিশাল",
-//   },
-//   {
-//     value: 10000,
-//     label: "khulna - খুলনা",
-//   },
-//   {
-//     value: 10000,
-//     label: "rajshahi - রাজশাহী",
-//   },
-//   {
-//     value: 10000,
-//     label: "narsingdi - নরসিংদী",
-//   },
-//   {
-//     value: 10000,
-//     label: "faridpur - ফরিদপুর",
-//   },
-//   {
-//     value: 10000,
-//     label: "jashore - যশোর",
-//   },
-//   {
-//     value: 10000,
-//     label: "pabna - পাবনা",
-//   },
-//   {
-//     value: 10000,
-//     label: "noakhali - নোয়াখালী",
-//   },
-//   {
-//     value: 10000,
-//     label: "shariatpur - শরীয়তপুর",
-//   },
-//   {
-//     value: 10000,
-//     label: "magura - মাগুরা",
-//   },
-//   {
-//     value: 10000,
-//     label: "netrokona - নেত্রকোনা",
-//   },
-//   {
-//     value: 10000,
-//     label: "panchagarh - পঞ্চগড়",
-//   },
-//   {
-//     value: 10000,
-//     label: "dinajpur - দিনাজপুর",
-//   },
-//   {
-//     value: 10000,
-//     label: "kurigram - কুড়িগ্রাম",
-//   },
-//   {
-//     value: 10000,
-//     label: "sunamganj - সুনামগঞ্জ",
-//   },
-//   {
-//     value: 10000,
-//     label: "moulvibazar - মৌলভীবাজার",
-//   },
-//   {
-//     value: 10000,
-//     label: "habiganj - হবিগঞ্জ",
-//   },
-//   {
-//     value: 10000,
-//     label: "gazipur - গাজীপুর",
-//   },
-//   {
-//     value: 10000,
-//     label: "kishoreganj - কিশোরগঞ্জ",
-//   },
-//   {
-//     value: 10000,
-//     label: "bholan - ভোলা",
-//   },
-//   {
-//     value: 10000,
-//     label: "bhola - ভোলা",
-//   },
-//   {
-//     value: 10000,
-//     label: "brahmanbaria - ব্রাহ্মণবাড়িয়া",
-//   },
-//   {
-//     value: 10000,
-//     label: "sherpur - শেরপুর",
-//   },
-//   {
-//     value: 10000,
-//     label: "joypurhat - জয়পুরহাট",
-//   },
-//   {
-//     value: 10000,
-//     label: "thakurgaon - ঠাকুরগাঁও",
-//   },
-//   {
-//     value: 10000,
-//     label: "patuakhali - পটুয়াখালী",
-//   },
-//   {
-//     value: 10000,
-//     label: "bagerhat - বাগেরহাট",
-//   },
-//   {
-//     value: 10000,
-//     label: "mymensingh - ময়মনসিংহ",
-//   },
-//   {
-//     value: 10000,
-//     label: "jhalokati - ঝালকাঠী",
-//   },
-//   {
-//     value: 10000,
-//     label: "kishoreganj - কিশোরগঞ্জ",
-//   },
-//   {
-//     value: 10000,
-//     label: "satkhira - সাতক্ষীরা",
-//   },
-//   {
-//     value: 10000,
-//     label: "sherpur - শেরপুর",
-//   },
-//   {
-//     value: 10000,
-//     label: "Jessore - যশোর",
-//   },
-// ];
-
 const locations = [
   {
     value: 8000,
@@ -190,12 +35,6 @@ export function CheckoutForm({ referrer }) {
   });
   const { cartItems, total, onClear } = useCart();
   const router = useRouter();
-
-  useEffect(() => {
-    if (referrer) {
-      handleCoupon();
-    }
-  }, [referrer]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -275,7 +114,9 @@ export function CheckoutForm({ referrer }) {
   };
 
   const handleCoupon = async (e) => {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
     setIsLoading(true);
 
     try {
@@ -288,7 +129,7 @@ export function CheckoutForm({ referrer }) {
         setCouponCode("");
         return notify(res.response.msg);
       }
-
+      console.log(res);
       setDiscount(res.response.payload.discount);
       notify("Coupon code applied successfully.");
     } catch (err) {
@@ -297,6 +138,12 @@ export function CheckoutForm({ referrer }) {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (referrer) {
+      handleCoupon();
+    }
+  }, [referrer]);
 
   return (
     <div>
