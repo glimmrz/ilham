@@ -14,7 +14,7 @@ async function Products() {
         <ShareProduct
           key={index}
           product={product}
-          referrer={session.payload.generatedCode}
+          referrer={session.payload.generatedCode?.code}
         />
       ))}
     </>

@@ -19,8 +19,9 @@ import { useEffect, useState } from "react";
 import { RichTextViewer } from "./rich-text-viewer";
 import { Review } from "./review";
 import { useEcommerceEvent } from "@/hooks/use-ecommerce-event";
+import { setCookie } from "@/utils/cookie";
 
-export function ProductPage({ currentProduct }) {
+export function ProductPage({ currentProduct, referrer }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { sendEvent } = useEcommerceEvent();
   const cart = useCart();
@@ -28,6 +29,16 @@ export function ProductPage({ currentProduct }) {
 
   const isInCart = useCheckCart(currentProduct);
   const isInWishlist = useCheckWishlist(currentProduct);
+
+  const setReferrer = async () => {
+    await setCookie("referrer", referrer);
+  };
+
+  useEffect(() => {
+    if (referrer) {
+      setReferrer();
+    }
+  }, [referrer]);
 
   useEffect(() => {
     sendEvent({
