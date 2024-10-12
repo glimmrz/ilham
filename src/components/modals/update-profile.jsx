@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import { InputGroup } from "../input-group";
 import { useState } from "react";
-import { DatePicker } from "../date-picker";
 import { Modal } from "./modal";
 import { notify } from "@/utils/toast";
 import { putData } from "@/utils/api-calls";
@@ -11,7 +10,6 @@ import { useRouter } from "next/navigation";
 export function UpdateProfile({ data }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [date, setDate] = useState(data?.birthdate);
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -24,7 +22,6 @@ export function UpdateProfile({ data }) {
 
       const res = await putData(`users/${data?._id}`, {
         ...formData,
-        birthdate: date,
       });
 
       if (res.error) {
@@ -58,7 +55,13 @@ export function UpdateProfile({ data }) {
           label="name"
           defaultValue={data?.name}
         />
-        <DatePicker date={date} setDate={setDate} label="birthdate" />
+        <InputGroup
+          type="date"
+          name="birthdate"
+          placeholder=""
+          label="birthdate"
+          defaultValue={data?.birthdate}
+        />
         <InputGroup
           name="phone"
           placeholder=""
