@@ -5,7 +5,7 @@ export async function middleware(request) {
   const session = await getSession();
 
   if (
-    session.role?.toLowerCase() !== "admin" &&
+    session.payload.role?.toLowerCase() !== "admin" &&
     request.nextUrl.pathname.startsWith("/dashboard")
   ) {
     return NextResponse.redirect(new URL("/", request.url));
