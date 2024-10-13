@@ -27,6 +27,7 @@ export function FormSelect({
   placeholder,
   description,
   options,
+  required,
 }) {
   return (
     <FormField
@@ -34,7 +35,17 @@ export function FormSelect({
       name={name || ""}
       render={({ field }) => (
         <FormItem>
-          {label && <FormLabel className="capitalize">{label}</FormLabel>}
+          {label && (
+            <FormLabel
+              className={`capitalize relative ${
+                required
+                  ? "after:content-['*'] after:absolute after:text-destructive after:text-lg"
+                  : ""
+              }`}
+            >
+              {label}
+            </FormLabel>
+          )}
           <Select onValueChange={field.onChange} defaultValue={field.value}>
             <FormControl>
               <SelectTrigger className="capitalize">
