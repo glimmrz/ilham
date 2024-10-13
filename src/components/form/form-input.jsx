@@ -20,28 +20,26 @@ export function FormInput({
     <FormField
       control={form.control}
       name={name || ""}
-      render={({ field }) => {
-        return (
-          <FormItem>
-            {label && (
-              <FormLabel
-                className={`capitalize relative ${
-                  required
-                    ? "after:content-['*'] after:absolute after:text-destructive after:text-lg"
-                    : ""
-                }`}
-              >
-                {label}
-              </FormLabel>
-            )}
-            <FormControl>
-              <Input placeholder={placeholder || ""} {...field} />
-            </FormControl>
-            {description && <FormDescription>{description}</FormDescription>}
-            <FormMessage />
-          </FormItem>
-        );
-      }}
+      render={({ field }) => (
+        <FormItem>
+          {label && (
+            <FormLabel
+              className={`capitalize relative ${
+                required
+                  ? "after:content-['*'] after:absolute after:text-destructive after:text-lg"
+                  : ""
+              }`}
+            >
+              {label}
+            </FormLabel>
+          )}
+          <FormControl>
+            <Input placeholder={placeholder || ""} {...field} />
+          </FormControl>
+          {description && <FormDescription>{description}</FormDescription>}
+          <FormMessage />
+        </FormItem>
+      )}
     />
   );
 }

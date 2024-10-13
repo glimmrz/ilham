@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCart } from "@/hooks/use-cart";
 import { createGrantToken, createPayment } from "@/utils/bkash";
 import { useRouter } from "next/navigation";
@@ -7,66 +7,85 @@ import { getData, postData } from "@/utils/api-calls";
 import { notify } from "@/utils/toast";
 import { Heading } from "../heading";
 import { InputGroup } from "../input-group";
-import { Icon } from "../icon";
 import { Button } from "../ui/button";
-import { Select } from "../select";
 import { useEcommerceEvent } from "@/hooks/use-ecommerce-event";
-import { useEffect } from "react";
+import { FormModal } from "../form/form";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { FormInput } from "../form/form-input";
+import { FormSelect } from "../form/form-select";
+import { FormRadio } from "../form/form-radio";
 
 const locations = [
   {
-    value: 8000,
-    label: "dhaka - ঢাকা",
+    name: "dhaka - 80TK",
+    value: "8000",
   },
   {
-    value: 10000,
-    label: "outside dhaka",
+    name: "outside dhaka - 100TK",
+    value: "10000",
   },
 ];
+
+const formSchema = z.object({
+  name: z.string().min(3, {
+    message: "Name must be at least 3 characters.",
+  }),
+  address: z.string().min(5, {
+    message: "Address must be at least 5 characters.",
+  }),
+  phone: z.string().min(9, {
+    message: "Phone number must be at least 9 characters.",
+  }),
+  city: z.string({
+    required_error: "Please select city.",
+  }),
+  paymentMethod: z.enum(["BKASH", "COD"], {
+    required_error: "You need to select a payment method.",
+  }),
+});
 
 export function CheckoutForm({ referrer }) {
   const { sendEvent } = useEcommerceEvent();
   const [isLoading, setIsLoading] = useState(false);
   const [couponCode, setCouponCode] = useState(referrer);
   const [discount, setDiscount] = useState(null);
-  const [deliveryCharge, setDeliveryCharge] = useState({
-    label: "",
-    value: 0,
-  });
+  const [deliveryCharge, setDeliveryCharge] = useState(0);
   const { cartItems, total, onClear } = useCart();
   const router = useRouter();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+  });
+
+  useEffect(() => {
+    const charge = form.watch("city");
+    if (charge) {
+      setDeliveryCharge(charge);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [form.watch("city")]);
+
+  const handleSubmit = async (data) => {
     setIsLoading(true);
 
     try {
-      const data = new FormData(e.target);
-      const formData = Object.fromEntries(data.entries());
-
-      if (!formData.paymentMethod) {
-        return notify("Please select payment method.");
-      }
-
-      if (deliveryCharge.value <= 0) {
-        return notify("Please select city.");
-      }
-
       // Start processing order
       const res = await postData("orders", {
-        ...formData,
+        ...data,
         products: cartItems,
         total: total,
         couponCode: couponCode,
-        deliveryCharge: parseInt(deliveryCharge.value),
-        location: deliveryCharge.label,
+        deliveryCharge: data.city,
+        location: locations.filter((loc) => loc.value === data.city)[0]?.name,
       });
 
       if (res.error) {
         return notify(res.response.msg);
       }
 
-      if (formData.paymentMethod === "BKASH") {
+      if (data.paymentMethod === "BKASH") {
         const grantToken = await createGrantToken();
         if (grantToken.error) {
           return notify("An error occured during payment. Please try again.");
@@ -129,7 +148,7 @@ export function CheckoutForm({ referrer }) {
         setCouponCode("");
         return notify(res.response.msg);
       }
-      console.log(res);
+
       setDiscount(res.response.payload.discount);
       notify("Coupon code applied successfully.");
     } catch (err) {
@@ -143,48 +162,53 @@ export function CheckoutForm({ referrer }) {
     if (referrer) {
       handleCoupon();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [referrer]);
 
   return (
     <div>
-      <form
-        className="flex flex-col gap-4"
-        aria-label="checkout form"
+      <FormModal
         onSubmit={handleSubmit}
+        form={form}
+        loading={isLoading}
+        disabled={cartItems.length <= 0 || isLoading}
       >
         <div>
           <Heading>shipping information</Heading>
           <div className="flex flex-col gap-4 mt-4">
-            <InputGroup
+            <FormInput
+              form={form}
               label="full name / পুরো নাম"
               placeholder="John Doe"
-              aria-label="customer name"
               name="name"
               required
+              description=""
             />
-            <InputGroup
+            <FormInput
+              form={form}
               label="address / ঠিকানা"
               placeholder="21/3, Mariana Drive, AC"
-              aria-label="delivery address"
               name="address"
               required
+              description=""
             />
+
             <div className="grid md:grid-cols-2 gap-2 md:gap-4">
-              <Select
+              <FormSelect
+                form={form}
+                name="city"
                 placeholder="select city"
                 options={locations}
-                value={deliveryCharge}
-                setValue={setDeliveryCharge}
                 label="city / শহর"
                 required
               />
-
-              <InputGroup
-                label="phone number / মোবাইল নম্বর"
+              <FormInput
+                form={form}
                 placeholder="01..."
-                aria-label="phone"
                 name="phone"
+                label="phone number / মোবাইল নম্বর"
                 required
+                description=""
               />
             </div>
           </div>
@@ -212,41 +236,7 @@ export function CheckoutForm({ referrer }) {
         <div className="mt-4">
           <Heading>payment method</Heading>
           <div className="grid gap-2 md:gap-4 mt-4">
-            {/* Option 1 */}
-            <div className="w-full">
-              <input
-                value="COD"
-                type="radio"
-                id="paymentMethod"
-                name="paymentMethod"
-                className="hidden peer"
-              />
-              <label
-                htmlFor="paymentMethod"
-                className="flex items-center gap-2 p-4 w-full border border-dashed rounded-md cursor-pointer peer-checked:border-primary peer-checked:border-solid"
-              >
-                <Icon icon="cod" size={22} />
-                <span>Cash On Delivery / পণ্য পেয়ে পেমেন্ট</span>
-              </label>
-            </div>
-
-            {/* Option 2 */}
-            <div className="w-full">
-              <input
-                value="BKASH"
-                type="radio"
-                id="paymentMethod2"
-                name="paymentMethod"
-                className="hidden peer"
-              />
-              <label
-                htmlFor="paymentMethod2"
-                className="flex items-center gap-2 p-4 w-full border border-dashed rounded-md cursor-pointer peer-checked:border-primary peer-checked:border-solid"
-              >
-                <Icon icon="bkash" size={22} />
-                <span>bKash pay / বিকাশ পেমেন্ট</span>
-              </label>
-            </div>
+            <FormRadio form={form} />
           </div>
         </div>
 
@@ -265,7 +255,7 @@ export function CheckoutForm({ referrer }) {
                   Delivery Charge
                 </td>
                 <td className="capitalize pt-3 pb-3 pl-0 pr-0">
-                  ৳{(deliveryCharge.value / 100).toFixed(2)}
+                  ৳{(deliveryCharge / 100).toFixed(2)}
                 </td>
               </tr>
               <tr>
@@ -287,11 +277,11 @@ export function CheckoutForm({ referrer }) {
                     ? (
                         (parseInt(total) -
                           parseInt(total * discount) / 100 +
-                          parseInt(deliveryCharge.value)) /
+                          parseInt(deliveryCharge)) /
                         100
                       ).toFixed(2)
                     : (
-                        (parseInt(total) + parseInt(deliveryCharge.value)) /
+                        (parseInt(total) + parseInt(deliveryCharge)) /
                         100
                       ).toFixed(2)}
                 </td>
@@ -299,16 +289,7 @@ export function CheckoutForm({ referrer }) {
             </tbody>
           </table>
         </div>
-
-        <Button
-          type="submit"
-          icon="card"
-          loading={isLoading}
-          disabled={isLoading || cartItems.length === 0}
-        >
-          place order
-        </Button>
-      </form>
+      </FormModal>
     </div>
   );
 }

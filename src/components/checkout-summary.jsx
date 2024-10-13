@@ -1,7 +1,7 @@
 "use client";
 import { useCart } from "@/hooks/use-cart";
-import { CartItem } from "../cart/cart-item";
-import { Heading } from "../heading";
+import { CartItem } from "./cart/cart-item";
+import { Heading } from "./heading";
 
 export function CheckoutSummary() {
   const { cartItems } = useCart();

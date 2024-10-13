@@ -1,4 +1,4 @@
-import { CheckoutSummary } from "@/components/checkout/checkout-summary";
+import { CheckoutSummary } from "@/components/checkout-summary";
 import { CheckoutForm } from "@/components/forms/checkout-form";
 import { Container } from "@/components/wrappers/container";
 import { getCookie } from "@/utils/cookie";
