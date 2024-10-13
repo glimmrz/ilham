@@ -13,7 +13,11 @@ export function PagesMenu() {
         <MenuItem item={item} key={index} onClick={menuSidebar.onClose} />
       ))}
       <Link href="/become-a-partner" passHref>
-        <Button icon="handshake" className="w-full">
+        <Button
+          icon="handshake"
+          className="w-full"
+          onClick={menuSidebar.onClose}
+        >
           share & earn
         </Button>
       </Link>
