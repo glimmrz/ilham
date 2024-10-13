@@ -104,16 +104,27 @@ export function CheckoutForm({ referrer }) {
         event: "purchase",
         ecommerce: {
           transaction_id: res.response?.payload,
-
           value: total / 100,
+          user_data: {
+            phone_number: data.phone,
+            address: {
+              first_name: data.name.split(" ")[0],
+              last_name: data.name.split(" ")[1],
+              city: deliveryCharge === 8000 ? "Dhaka" : "Outside Dhaka",
+              country: "Bangladesh",
+            },
+          },
           tax: 0,
-          shipping: deliveryCharge.value / 100,
+          shipping: deliveryCharge / 100,
           currency: "BDT",
           coupon: couponCode,
+          affiliation: couponCode,
+          customer_first_name: data.name,
           items: cartItems.map((item) => ({
             item_id: item._id,
             item_name: item.title,
             coupon: couponCode,
+            discount: (item.discountedPrice * discount) / 100 / 100,
             item_brand: item.brand,
             item_category: item.category.label,
             price: item.price / 100,
