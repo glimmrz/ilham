@@ -7,6 +7,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormInput } from "@/components/form/form-input";
 import { FormSelect } from "@/components/form/form-select";
+import { putData } from "@/utils/api-calls";
+import { notify } from "@/utils/toast";
+import { useRouter } from "next/navigation";
 
 const statuses = [
   {
@@ -25,6 +28,10 @@ const statuses = [
     name: "delivered",
     value: "delivered",
   },
+  {
+    name: "cancelled",
+    value: "cancelled",
+  },
 ];
 
 const paymentStatus = [
@@ -42,9 +49,12 @@ const formSchema = z.object({
   address: z.string().min(8, {
     message: "Address must be at least 8 characters.",
   }),
-  status: z.enum(["pending", "processing", "courier", "delivered"], {
-    required_error: "Please select an order status.",
-  }),
+  status: z.enum(
+    ["pending", "processing", "courier", "delivered", "cancelled"],
+    {
+      required_error: "Please select an order status.",
+    }
+  ),
   paymentStatus: z.enum(["pending", "confirmed"], {
     required_error: "Please select an payment status.",
   }),
@@ -53,6 +63,7 @@ const formSchema = z.object({
 export function UpdateOrder({ order }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -63,19 +74,43 @@ export function UpdateOrder({ order }) {
     },
   });
 
-  async function handleSubmit(data) {}
+  async function handleSubmit(data) {
+    setIsLoading(true);
+
+    try {
+      const res = await putData(`orders/${order?._id}`, data);
+
+      if (res.error) {
+        return notify(res.response.msg);
+      }
+
+      notify("Order updated successfully.");
+      router.refresh();
+      setIsModalOpen(false);
+    } catch (err) {
+      notify(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   return (
     <Modal
-      title="add new address"
-      description="Add new address here. you can modify them later."
+      title="order status"
+      description="Update order details."
       triggerLabel="update"
       triggerIcon="edit"
       isOpen={isModalOpen}
       onClose={() => setIsModalOpen(false)}
       onOpen={() => setIsModalOpen(true)}
     >
-      <FormModal form={form} onSubmit={handleSubmit} formLabel="save">
+      <FormModal
+        form={form}
+        onSubmit={handleSubmit}
+        formLabel="save"
+        loading={isLoading}
+        disabled={isLoading}
+      >
         <FormInput form={form} name="address" label="delivery address" />
         <FormSelect
           form={form}

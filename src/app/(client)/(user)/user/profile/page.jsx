@@ -113,8 +113,15 @@ async function ProfileData() {
         <TotalCard
           data={{
             icon: "revenue",
-            dataKey: "confirmed earnings",
+            dataKey: "available earnings",
             dataValue: `৳ ${res.response?.payload?.availableComission / 100}`,
+          }}
+        />
+        <TotalCard
+          data={{
+            icon: "revenue",
+            dataKey: "cancelled earnings",
+            dataValue: `৳ ${res.response?.payload?.cancelledComission / 100}`,
           }}
         />
         <TotalCard

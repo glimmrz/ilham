@@ -9,13 +9,15 @@ export function OrderCard({ order }) {
     <Card
       className={`shadow-md ${
         order?.status === "pending"
-          ? "border-primary shadow-primary"
+          ? "border-yellow-400 shadow-yellow-400"
           : order?.status === "processing"
           ? "border-violet-500 shadow-violet-500"
           : order?.status === "delivered"
           ? "border-green-800 shadow-green-800"
           : order?.status === "courier"
           ? "border-teal-400 shadow-teal-400"
+          : order?.status === "cancelled"
+          ? "border-destructive shadow-destructive"
           : ""
       }`}
     >
