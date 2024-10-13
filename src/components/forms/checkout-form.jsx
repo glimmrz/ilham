@@ -168,6 +168,7 @@ export function CheckoutForm({ referrer }) {
   return (
     <div>
       <FormModal
+        formLabel="place order"
         onSubmit={handleSubmit}
         form={form}
         loading={isLoading}

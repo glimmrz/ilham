@@ -14,16 +14,12 @@ const statuses = [
     value: "pending",
   },
   {
-    name: "confirmed",
-    value: "confirmed",
-  },
-  {
     name: "processing",
     value: "processing",
   },
   {
-    name: "delivering",
-    value: "delivering",
+    name: "courier",
+    value: "courier",
   },
   {
     name: "delivered",
@@ -76,7 +72,7 @@ export function UpdateOrder({ order }) {
       onClose={() => setIsModalOpen(false)}
       onOpen={() => setIsModalOpen(true)}
     >
-      <FormModal form={form} onSubmit={handleSubmit}>
+      <FormModal form={form} onSubmit={handleSubmit} formLabel="save">
         <FormInput form={form} name="address" label="delivery address" />
         <FormSelect
           form={form}

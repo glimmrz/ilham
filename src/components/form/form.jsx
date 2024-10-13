@@ -2,7 +2,14 @@
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 
-export function FormModal({ form, onSubmit, children, loading, disabled }) {
+export function FormModal({
+  form,
+  onSubmit,
+  children,
+  formLabel,
+  loading,
+  disabled,
+}) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -13,7 +20,7 @@ export function FormModal({ form, onSubmit, children, loading, disabled }) {
           loading={loading}
           disabled={disabled}
         >
-          Submit
+          {formLabel}
         </Button>
       </form>
     </Form>

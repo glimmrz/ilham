@@ -14,6 +14,8 @@ export function OrderCard({ order }) {
           ? "border-violet-500 shadow-violet-500"
           : order?.status === "delivered"
           ? "border-green-800 shadow-green-800"
+          : order?.status === "courier"
+          ? "border-teal-400 shadow-teal-400"
           : ""
       }`}
     >
@@ -37,7 +39,7 @@ export function OrderCard({ order }) {
             dataValue={new Date(order?.orderDate).toDateString()}
           />
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-2">
           <Link href={`/dashboard/orders/view/${order?._id}`}>
             <Button className="w-full" icon="details">
               details
