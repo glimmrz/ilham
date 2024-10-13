@@ -8,17 +8,31 @@ import { useState } from "react";
 import { notify } from "@/utils/toast";
 import { setCookie } from "@/utils/cookie";
 import { useRouter } from "next/navigation";
+import { FormModal } from "../form/form";
+import { FormInput } from "../form/form-input";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
+const formSchema = z.object({
+  email: z.string().email({
+    message: "Please enter a valid email address.",
+  }),
+  password: z.string().min(8, {
+    message: "Password must be at least 8 characters.",
+  }),
+});
 
 export function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  const handleLoginForm = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+  });
 
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
+  const handleLoginForm = async (data) => {
+    setIsLoading(true);
 
     try {
       const res = await postData("login", data);
@@ -26,16 +40,13 @@ export function LoginForm() {
         return notify(res.response.msg);
       }
 
-      await Promise.all([
-        setCookie(
-          "ilm-session",
-          res.response.session_token,
-          res.response.expiryTime
-        ),
-      ]);
+      await setCookie(
+        "ilm-session",
+        res.response.session_token,
+        res.response.expiryTime
+      );
 
       router.push("/");
-
       notify(res.response.msg);
     } catch (err) {
       notify(err.message);
@@ -47,32 +58,30 @@ export function LoginForm() {
   return (
     <>
       <Heading className="text-center">Welcome back!</Heading>
-      <form className="mt-8 flex flex-col gap-4" onSubmit={handleLoginForm}>
-        <InputGroup
+      <FormModal
+        form={form}
+        formLabel="sign in"
+        loading={isLoading}
+        disabled={isLoading}
+        onSubmit={handleLoginForm}
+      >
+        <FormInput
           placeholder="example@email.com"
           type="email"
           label="Email address / ইমেইল"
-          aria-label="enter your email address"
           required
           name="email"
+          form={form}
         />
-        <InputGroup
+        <FormInput
           placeholder="********"
           type="password"
           label="Password / পাসওয়ার্ড"
-          aria-label="enter your password"
           required
           name="password"
+          form={form}
         />
-        <Button
-          icon="login"
-          type="submit"
-          disabled={isLoading}
-          loading={isLoading}
-        >
-          sign in
-        </Button>
-      </form>
+      </FormModal>
       <span className="block text-mute mt-2">
         Don&apos;t have an account?
         <Link

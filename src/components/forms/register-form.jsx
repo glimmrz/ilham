@@ -7,21 +7,46 @@ import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 import { notify } from "@/utils/toast";
 import { postData } from "@/utils/api-calls";
+import { FormModal } from "../form/form";
+import { FormInput } from "../form/form-input";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
+const formSchema = z
+  .object({
+    name: z.string().min(3, {
+      message: "Name must be at least 3 characters.",
+    }),
+    email: z.string().email({
+      message: "Please enter a valid email address.",
+    }),
+    password: z.string().min(8, {
+      message: "Password must be at least 8 characters.",
+    }),
+    confirmPassword: z.string().min(8, {
+      message: "Password must be at least 8 characters.",
+    }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    path: ["confirmPassword"],
+    message: "Passwords do not match.",
+  });
 
 export function RegisterForm() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+  });
+
   // Handle register form submission
-  const handleRegister = async (e) => {
-    e.preventDefault();
+  const handleRegister = async (data) => {
     setIsLoading(true);
 
-    const rawData = new FormData(e.target);
-    const formData = Object.fromEntries(rawData.entries());
-
     try {
-      const res = await postData("register", formData);
+      const res = await postData("register", data);
 
       if (res.error) {
         return notify(res.response.msg);
@@ -30,8 +55,7 @@ export function RegisterForm() {
       router.push("/login");
       notify(res.response.msg);
     } catch (err) {
-      console.log(err.message);
-      notify("An error occured");
+      notify(err.message);
     } finally {
       setIsLoading(false);
     }
@@ -40,50 +64,45 @@ export function RegisterForm() {
   return (
     <>
       <CardTitle className="text-center">Create an account.</CardTitle>
-      <form className="mt-8 flex flex-col gap-4" onSubmit={handleRegister}>
-        <InputGroup
+      <FormModal
+        formLabel="register"
+        form={form}
+        loading={isLoading}
+        disabled={isLoading}
+        onSubmit={handleRegister}
+      >
+        <FormInput
+          form={form}
           placeholder="john doe"
-          type="text"
           label="name / নাম"
-          aria-label="enter your name"
           required
           name="name"
         />
-        <InputGroup
+        <FormInput
+          form={form}
           placeholder="example@email.com"
-          type="email"
           label="Email address / ইমেইল"
-          aria-label="enter your email address"
           required
           name="email"
+          type="email"
         />
-        <InputGroup
+        <FormInput
+          form={form}
           placeholder="********"
-          type="password"
           label="Password / পাসওয়ার্ড"
-          aria-label="enter your password"
           required
           name="password"
-          minLength={8}
-        />
-        <InputGroup
-          placeholder="********"
           type="password"
+        />
+        <FormInput
+          form={form}
+          placeholder="********"
           label="confirm Password / পাসওয়ার্ড নিশ্চিত করুন"
-          aria-label="confirm your password"
           required
           name="confirmPassword"
-          minLength={8}
+          type="password"
         />
-        <Button
-          aria-label="create your account."
-          type="submit"
-          disabled={isLoading}
-          loading={isLoading}
-        >
-          register
-        </Button>
-      </form>
+      </FormModal>
       <span className="block text-mute mt-2">
         Already have an account?
         <Link href="/login" className="text-font font-bold hover:underline">
