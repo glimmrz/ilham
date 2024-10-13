@@ -42,8 +42,11 @@ const formSchema = z.object({
   address: z.string().min(8, {
     message: "Address must be at least 8 characters.",
   }),
-  status: z.string({
+  status: z.enum(["pending", "processing", "courier", "delivered"], {
     required_error: "Please select an order status.",
+  }),
+  paymentStatus: z.enum(["pending", "confirmed"], {
+    required_error: "Please select an payment status.",
   }),
 });
 
