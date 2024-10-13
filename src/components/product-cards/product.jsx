@@ -35,6 +35,8 @@ export const Product = ({ product }) => {
     e.preventDefault();
     sendEvent({
       event: "add_to_cart",
+      currency: "BDT",
+      value: factorCartPrice(product?.discountedPrice, product?.price) / 100,
       ecommerce: {
         items: [
           {

@@ -39,6 +39,7 @@ export function ProductPage({ currentProduct, referrer }) {
     if (referrer) {
       setReferrer();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [referrer]);
 
   useEffect(() => {
@@ -73,6 +74,76 @@ export function ProductPage({ currentProduct, referrer }) {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentProduct]);
+
+  const handleAddToCart = () => {
+    sendEvent({
+      event: "add_to_cart",
+      currency: "BDT",
+      value:
+        factorCartPrice(
+          currentProduct?.discountedPrice,
+          currentProduct?.price
+        ) / 100,
+      ecommerce: {
+        items: [
+          {
+            item_id: currentProduct?._id,
+            item_name: currentProduct?.title,
+            discount:
+              (currentProduct?.price - currentProduct?.discountedPrice) / 100,
+            item_brand: currentProduct?.brand,
+            item_category: currentProduct?.category.label,
+            price:
+              factorCartPrice(
+                currentProduct?.discountedPrice,
+                currentProduct?.price
+              ) / 100,
+            quantity: 1,
+          },
+        ],
+      },
+    });
+
+    cart.onAdd({
+      ...currentProduct,
+      price: factorCartPrice(
+        currentProduct?.discountedPrice,
+        currentProduct?.price
+      ),
+    });
+  };
+
+  const handleAddToWishlist = () => {
+    sendEvent({
+      event: "add_to_wishlist",
+      ecommerce: {
+        currency: "BDT",
+        value:
+          factorCartPrice(
+            currentProduct?.discountedPrice,
+            currentProduct?.price
+          ) / 100,
+        items: [
+          {
+            item_id: currentProduct?._id,
+            item_name: currentProduct?.title,
+            discount:
+              (currentProduct?.price - currentProduct.discountedPrice) / 100,
+            item_brand: currentProduct?.brand,
+            item_category: currentProduct?.category?.label,
+            price:
+              factorCartPrice(
+                currentProduct?.discountedPrice,
+                currentProduct?.price
+              ) / 100,
+            quantity: 1,
+          },
+        ],
+      },
+    });
+
+    wishlist.onAdd(currentProduct);
+  };
 
   return (
     <>
@@ -186,15 +257,7 @@ export function ProductPage({ currentProduct, referrer }) {
                 <Button
                   aria-label="add product to shopping cart"
                   icon="bag"
-                  onClick={() =>
-                    cart.onAdd({
-                      ...currentProduct,
-                      price: factorCartPrice(
-                        currentProduct?.discountedPrice,
-                        currentProduct?.price
-                      ),
-                    })
-                  }
+                  onClick={handleAddToCart}
                 >
                   add to cart
                 </Button>
@@ -212,7 +275,7 @@ export function ProductPage({ currentProduct, referrer }) {
                 variant="outline"
                 onClick={
                   !isInWishlist
-                    ? () => wishlist.onAdd(currentProduct)
+                    ? () => handleAddToWishlist()
                     : () =>
                         wishlist.onRemove(
                           currentProduct?._id,

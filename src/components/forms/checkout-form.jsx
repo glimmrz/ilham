@@ -110,6 +110,7 @@ export function CheckoutForm({ referrer }) {
             address: {
               first_name: data.name.split(" ")[0],
               last_name: data.name.split(" ")[1],
+              address: data.address,
               city: deliveryCharge === 8000 ? "Dhaka" : "Outside Dhaka",
               country: "Bangladesh",
             },
@@ -118,7 +119,7 @@ export function CheckoutForm({ referrer }) {
           shipping: deliveryCharge / 100,
           currency: "BDT",
           coupon: couponCode,
-          affiliation: couponCode,
+          affiliation: "iLHAM",
           customer_first_name: data.name,
           items: cartItems.map((item) => ({
             item_id: item._id,
