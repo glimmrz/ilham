@@ -70,6 +70,14 @@ export function User({ userData }) {
             </Link>
           </>
         )}
+        {userData.payload?.role === "admin" && (
+          <Link href="/dashboard" passHref>
+            <DropdownMenuItem>
+              <span>dashboard</span>
+              <Icon size={22} icon="dashboard" />
+            </DropdownMenuItem>
+          </Link>
+        )}
         <Link href="/become-a-partner" passHref>
           <DropdownMenuItem>
             <span>share & earn</span>

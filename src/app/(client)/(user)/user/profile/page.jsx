@@ -105,7 +105,7 @@ async function ProfileData() {
         />
         <TotalCard
           data={{
-            icon: "revenue",
+            icon: "pending",
             dataKey: "pending earnings",
             dataValue: `৳ ${res.response?.payload?.pendingComission / 100}`,
           }}
@@ -119,14 +119,14 @@ async function ProfileData() {
         />
         <TotalCard
           data={{
-            icon: "revenue",
+            icon: "cancel",
             dataKey: "cancelled earnings",
             dataValue: `৳ ${res.response?.payload?.cancelledComission / 100}`,
           }}
         />
         <TotalCard
           data={{
-            icon: "revenue",
+            icon: "withdrawMoney",
             dataKey: "withdrawn earnings",
             dataValue: `৳ ${res.response?.payload?.withdrawnComission / 100}`,
           }}
