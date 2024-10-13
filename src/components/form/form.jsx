@@ -7,6 +7,7 @@ export function FormModal({
   onSubmit,
   children,
   formLabel,
+  icon,
   loading,
   disabled,
 }) {
@@ -15,6 +16,7 @@ export function FormModal({
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         {children}
         <Button
+          icon={icon}
           type="submit"
           className="w-full"
           loading={loading}

@@ -1,26 +1,50 @@
 "use client";
 import { postData } from "@/utils/api-calls";
-import { InputGroup } from "../input-group";
-import { Button } from "../ui/button";
 import { Modal } from "./modal";
 import { useState } from "react";
 import { notify } from "@/utils/toast";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { FormModal } from "../form/form";
+import { FormInput } from "../form/form-input";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const formSchema = z.object({
+  name: z.string().min(3, {
+    message: "Name must be at least 3 characters.",
+  }),
+  address: z.string().min(5, {
+    message: "Address must be at least 5 characters.",
+  }),
+  phone: z.string().min(9, {
+    message: "Phone number must be at least 9 characters.",
+  }),
+  city: z.string({
+    message: "Please enter city name.",
+  }),
+  email: z
+    .string()
+    .email({
+      message: "Please enter a valid email address.",
+    })
+    .optional(),
+});
 
 export function AddAddress() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+  });
+
+  const handleSubmit = async (data) => {
     setIsLoading(true);
 
     try {
-      const data = new FormData(e.target);
-      const formData = Object.fromEntries(data.entries());
-
-      const res = await postData("address", formData);
+      const res = await postData("address", data);
 
       if (res.error) {
         return notify(res.response.msg);
@@ -46,56 +70,52 @@ export function AddAddress() {
       onClose={() => setIsModalOpen(false)}
       onOpen={() => setIsModalOpen(true)}
     >
-      <form onSubmit={handleSubmit} className="grid gap-3">
-        <div className="grid grid-cols-2 gap-2">
-          <InputGroup
-            name="name"
-            placeholder=""
-            label="name / নাম"
-            defaultValue=""
-            required
-          />
-          <InputGroup
-            name="address"
-            placeholder=""
-            label="addreess / ঠিকানা"
-            defaultValue=""
-            required
-          />
-        </div>
-        <div className="grid grid-cols-2 gap-2">
-          <InputGroup
-            name="city"
-            placeholder=""
-            label="city / শহর"
-            defaultValue=""
-            required
-          />
-          <InputGroup
-            name="email"
-            placeholder=""
-            label="email / ইমেইল"
-            defaultValue=""
-          />
-        </div>
-        <InputGroup
-          name="phone"
-          placeholder=""
-          label="phone number / মোবাইল নম্বর"
-          defaultValue=""
+      <FormModal
+        form={form}
+        loading={isLoading}
+        disabled={isLoading}
+        onSubmit={handleSubmit}
+        formLabel="save address"
+        icon="save"
+      >
+        <FormInput
+          form={form}
+          name="name"
+          placeholder="john doe"
+          label="name / নাম"
           required
         />
-
-        <Button
-          type="submit"
-          icon="save"
-          className="w-full"
-          disabled={isLoading}
-          loading={isLoading}
-        >
-          Save address
-        </Button>
-      </form>
+        <FormInput
+          form={form}
+          name="address"
+          placeholder="house no - 18, road no - 3, marine drive, chittagong"
+          label="addreess / ঠিকানা"
+          required
+        />
+        <div className="grid grid-cols-2 gap-2">
+          <FormInput
+            form={form}
+            name="city"
+            placeholder="chittagong"
+            label="city / শহর"
+            required
+          />
+          <FormInput
+            form={form}
+            name="email"
+            placeholder="example@email.com"
+            label="email / ইমেইল"
+            type="email"
+          />
+        </div>
+        <FormInput
+          form={form}
+          name="phone"
+          placeholder="01XXXXXXXXX"
+          label="phone number / মোবাইল নম্বর"
+          required
+        />
+      </FormModal>
     </Modal>
   );
 }
