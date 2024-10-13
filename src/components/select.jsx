@@ -56,7 +56,7 @@ export function Select({
         </PopoverTrigger>
         <PopoverContent className="w-full p-0">
           <Command>
-            <CommandInput placeholder="Search framework..." />
+            <CommandInput placeholder={placeholder} />
             <CommandList>
               <CommandEmpty>No framework found.</CommandEmpty>
               <CommandGroup>

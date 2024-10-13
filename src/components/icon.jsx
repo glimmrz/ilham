@@ -5,6 +5,7 @@ import {
   ChevronUp,
   Copy,
   Edit,
+  Eye,
   Handshake,
   Heart,
   HeartOff,
@@ -21,6 +22,7 @@ import {
 } from "lucide-react";
 
 const Icons = {
+  details: Eye,
   arrowDown: ChevronDown,
   arrowUp: ChevronUp,
   search: Search,
