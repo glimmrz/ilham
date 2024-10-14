@@ -1,8 +1,6 @@
-"use client";
 import Link from "next/link";
 import { Heading } from "../heading";
 import { RatingStars } from "../rating-stars";
-import { ProductActions } from "./product-actions";
 
 export function ProductSpecifications({ currentProduct, actionButtons }) {
   return (

@@ -10,6 +10,7 @@ import { Review } from "@/components/review";
 import { ProductView } from "@/components/product-view";
 import { ProductSmall } from "@/components/product-cards/product-small";
 import { ReferActions } from "@/components/product-page/refer-actions";
+import { setCookie } from "@/utils/cookie";
 
 async function ProductData({ slug }) {
   const res = await getData(`products/${slug}`);
