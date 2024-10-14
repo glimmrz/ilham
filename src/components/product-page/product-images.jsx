@@ -3,10 +3,22 @@ import Image from "next/image";
 import { useEcommerceEvent } from "@/hooks/use-ecommerce-event";
 import { useState, useEffect } from "react";
 import { factorCartPrice } from "@/utils/helpers";
+import { setCookie } from "@/utils/cookie";
 
-export function ProductImages({ currentProduct }) {
+export function ProductImages({ currentProduct, referrer }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { sendEvent } = useEcommerceEvent();
+
+  // Set referrer cookie for 30 days
+  const setReferrer = async () => {
+    await setCookie("referrer", referrer, 2592000);
+  };
+
+  useEffect(() => {
+    if (referrer) {
+      setReferrer();
+    }
+  }, [referrer]);
 
   useEffect(() => {
     sendEvent({

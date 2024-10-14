@@ -10,9 +10,8 @@ import { Review } from "@/components/review";
 import { ProductView } from "@/components/product-view";
 import { ProductSmall } from "@/components/product-cards/product-small";
 import { ReferActions } from "@/components/product-page/refer-actions";
-import { setCookie } from "@/utils/cookie";
 
-async function ProductData({ slug }) {
+async function ProductData({ slug, referrer }) {
   const res = await getData(`products/${slug}`);
 
   return (
@@ -20,7 +19,10 @@ async function ProductData({ slug }) {
       <Section>
         <div className="grid grid-cols-1 gap-2 lg:grid-cols-2">
           {/* Product Images */}
-          <ProductImages currentProduct={res.response.payload} />
+          <ProductImages
+            currentProduct={res.response.payload}
+            referrer={referrer}
+          />
           {/* Product Details */}
           <ProductSpecifications
             currentProduct={res.response.payload}
@@ -54,15 +56,10 @@ async function ProductData({ slug }) {
 export default async function Page({ params, searchParams }) {
   const { referrer } = searchParams;
 
-  // Set referrer cookie for 30 days
-  if (referrer) {
-    await setCookie("referrer", referrer, 2592000);
-  }
-
   return (
     <Container>
       <Suspense fallback={<ProductPageSkeleton />}>
-        <ProductData slug={params.slug} />
+        <ProductData slug={params.slug} referrer={referrer} />
       </Suspense>
     </Container>
   );
