@@ -32,45 +32,30 @@ export function ProductPageSkeleton() {
             </div>
             {/* Product specification */}
             <div>
-              {" "}
-              <h4 className="grid gap-2 text-xl font-bold capitalize after:content-[''] after:h-[1px] after:w-full after:rounded-md after:bg-shade">
-                product specifications
-              </h4>
+              <Skeleton className="h-6 w-36" />
               <ul className="grid grid-cols-1 gap-2 mt-2 md:grid-cols-2">
-                <li className="capitalize">
-                  <span className="inline-flex font-bold min-w-[100px]">
-                    weight
-                  </span>{" "}
+                <li className="space-y-2">
+                  <Skeleton className="h-6 w-20" />
                   <Skeleton className="h-6 w-12" />
                 </li>
-                <li className="capitalize">
-                  <span className="inline-flex font-bold min-w-[100px]">
-                    brand
-                  </span>{" "}
+                <li className="space-y-2">
+                  <Skeleton className="h-6 w-20" />
                   <Skeleton className="h-6 w-12" />
                 </li>
-                <li className="capitalize">
-                  <span className="inline-flex font-bold min-w-[100px]">
-                    material
-                  </span>{" "}
+                <li className="space-y-2">
+                  <Skeleton className="h-6 w-20" />
                   <Skeleton className="h-6 w-12" />
                 </li>
-                <li className="capitalize">
-                  <span className="inline-flex font-bold min-w-[100px]">
-                    warranty
-                  </span>{" "}
+                <li className="space-y-2">
+                  <Skeleton className="h-6 w-20" />
                   <Skeleton className="h-6 w-12" />
                 </li>
-                <li className="capitalize">
-                  <span className="inline-flex font-bold min-w-[100px]">
-                    box type
-                  </span>{" "}
+                <li className="space-y-2">
+                  <Skeleton className="h-6 w-20" />
                   <Skeleton className="h-6 w-12" />
                 </li>
-                <li className="capitalize">
-                  <span className="inline-flex font-bold min-w-[100px]">
-                    color
-                  </span>{" "}
+                <li className="space-y-2">
+                  <Skeleton className="h-6 w-20" />
                   <Skeleton className="h-6 w-12" />
                 </li>
               </ul>
