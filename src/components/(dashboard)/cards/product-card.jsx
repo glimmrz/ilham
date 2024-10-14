@@ -1,14 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Card, CardContent, CardTitle } from "../ui/card";
-import { RatingStars } from "../rating-stars";
-import { CalculatePrice } from "../product-cards/calculate-price";
-import { Button } from "../ui/button";
+import { Card, CardContent, CardTitle } from "../../ui/card";
+import { RatingStars } from "../../rating-stars";
+import { CalculatePrice } from "../../product-cards/calculate-price";
+import { Button } from "../../ui/button";
 
 export function ProductCard({ product }) {
   return (
     <Card title={product?.title}>
-      <CardContent className="flex items-center p-1 md:p-1">
+      <CardContent className="flex items-center gap-2 p-1 md:p-1">
         <figure className="relative h-[100px] w-[120px]">
           <Image
             src={product?.images[0] ? product.images[0] : ""}
@@ -32,11 +32,7 @@ export function ProductCard({ product }) {
             <div className="space-x-2">
               <Button size="icon" className="rounded-full" icon="edit" />
               <Link href={`/dashboard/products/${product?.slug}`} passHref>
-                <Button
-                  size="icon"
-                  className="rounded-full"
-                  icon="details"
-                ></Button>
+                <Button size="icon" className="rounded-full" icon="details" />
               </Link>
               <Button
                 variant="destructive"

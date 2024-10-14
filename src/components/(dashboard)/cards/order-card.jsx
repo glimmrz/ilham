@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { DataCell } from "../data-cell";
-import { Card, CardContent } from "../ui/card";
-import { Button } from "../ui/button";
-import { UpdateOrder } from "./modals/update-order";
+import { DataCell } from "../../data-cell";
+import { Card, CardContent } from "../../ui/card";
+import { Button } from "../../ui/button";
+import { UpdateOrder } from "../modals/update-order";
 
 export function OrderCard({ order }) {
   return (

@@ -1,36 +1,28 @@
-import Link from "next/link";
-import { Card, CardContent, CardTitle } from "../ui/card";
-import { Button } from "../ui/button";
-import { Icon } from "../icon";
+import { Icon } from "@/components/icon";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 
-export function UserCard({ user }) {
+export function ExpenseCard({ expense }) {
   return (
-    <Card title={user?.title}>
-      <CardContent className="flex items-center p-1 md:p-1">
+    <Card title={expense?.title}>
+      <CardContent className="flex items-center gap-2 p-1 md:p-1">
         <div className="bg-slate-100 p-1">
-          <Icon icon="user" size={110} />
+          <Icon icon="revenue" size={80} />
         </div>
         <div className="py-0 px-1 w-full flex flex-col gap-1">
           <CardTitle className="capitalize font-bold text-base cursor-pointer transition-colors duration-300 hover:text-primary dark:hover:text-muted">
-            {user?.name}
+            {expense?.title}
           </CardTitle>
-          <span>{user?.email}</span>
+          <span>{new Date(expense?.date).toDateString()}</span>
           <div className="flex items-center justify-between">
             <span>
-              role:{" "}
-              <span className="text-primary font-bold uppercase">
-                {user?.role}
+              Amount:{" "}
+              <span className="text-primary font-bold">
+                {expense?.amount / 100}
               </span>
             </span>
             <div className="space-x-2">
               <Button size="icon" className="rounded-full" icon="edit" />
-              <Link href={`/dashboard/products/${user?.slug}`} passHref>
-                <Button
-                  size="icon"
-                  className="rounded-full"
-                  icon="details"
-                ></Button>
-              </Link>
               <Button
                 variant="destructive"
                 size="icon"

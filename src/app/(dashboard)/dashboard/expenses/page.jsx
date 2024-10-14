@@ -1,16 +1,16 @@
 import { Block } from "@/components/(dashboard)/block";
 import { CardView } from "@/components/(dashboard)/card-view";
-import { UserCard } from "@/components/(dashboard)/cards/user-card";
+import { ExpenseCard } from "@/components/(dashboard)/cards/expense-card";
 import { getData } from "@/utils/api-calls";
 import { Suspense } from "react";
 
-async function Users() {
-  const res = await getData("users", 0);
+async function Expenses() {
+  const res = await getData("expenses", 0);
 
   return (
     <CardView>
-      {res.response.payload?.map((user, index) => (
-        <UserCard key={index} user={user} />
+      {res.response.payload?.map((expense, index) => (
+        <ExpenseCard key={index} expense={expense} />
       ))}
     </CardView>
   );
@@ -19,8 +19,8 @@ async function Users() {
 export default function Page() {
   return (
     <Suspense fallback={<p>Loading...</p>}>
-      <Block title="users">
-        <Users />
+      <Block title="expenses">
+        <Expenses />
       </Block>
     </Suspense>
   );

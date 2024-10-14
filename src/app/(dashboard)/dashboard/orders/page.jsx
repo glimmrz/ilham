@@ -1,5 +1,5 @@
 import { Block } from "@/components/(dashboard)/block";
-import { OrderCard } from "@/components/(dashboard)/order-card";
+import { OrderCard } from "@/components/(dashboard)/cards/order-card";
 import { getData } from "@/utils/api-calls";
 import { Suspense } from "react";
 

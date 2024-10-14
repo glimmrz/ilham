@@ -1,6 +1,6 @@
-import { Card, CardContent, CardTitle } from "../ui/card";
-import { Button } from "../ui/button";
-import { DynamicIcon } from "../dynamic-icon";
+import { Card, CardContent, CardTitle } from "../../ui/card";
+import { Button } from "../../ui/button";
+import { DynamicIcon } from "../../dynamic-icon";
 
 export function CategoryCard({ category }) {
   return (

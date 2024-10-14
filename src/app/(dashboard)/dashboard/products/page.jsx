@@ -1,6 +1,6 @@
 import { Block } from "@/components/(dashboard)/block";
 import { CardView } from "@/components/(dashboard)/card-view";
-import { ProductCard } from "@/components/(dashboard)/product-card";
+import { ProductCard } from "@/components/(dashboard)/cards/product-card";
 import { getData } from "@/utils/api-calls";
 import { Suspense } from "react";
 
