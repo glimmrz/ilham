@@ -145,7 +145,8 @@ export function CheckoutForm({ referrer }) {
           currency: "BDT",
           coupon: couponCode,
           affiliation: "iLHAM",
-          customer_first_name: data.name,
+          customer_first_name: data.name.split(" ")[0],
+          customer_last_name: data.name.split(" ")[1],
           items: cartItems.map((item) => ({
             item_id: item._id,
             item_name: item.title,
