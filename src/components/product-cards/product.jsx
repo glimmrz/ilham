@@ -67,14 +67,14 @@ export const Product = ({ product }) => {
     } else {
       sendEvent({
         event: "add_to_wishlist",
+        currency: "BDT",
+        value: factorCartPrice(product?.discountedPrice, product?.price) / 100,
         ecommerce: {
-          currency: "BDT",
-          value:
-            factorCartPrice(product?.discountedPrice, product?.price) / 100,
           items: [
             {
               item_id: product._id,
               item_name: product?.title,
+              affiliation: "iLHAM",
               discount: (product.price - product.discountedPrice) / 100,
               item_brand: product.brand,
               item_category: product.category.label,

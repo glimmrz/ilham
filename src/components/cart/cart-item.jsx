@@ -5,9 +5,39 @@ import { Button } from "../ui/button";
 import { QuantityControl } from "../quantity-control";
 import { Card, CardContent } from "../ui/card";
 import { useCart } from "@/hooks/use-cart";
+import { useEcommerceEvent } from "@/hooks/use-ecommerce-event";
+import { factorCartPrice } from "@/utils/helpers";
 
 export function CartItem({ item }) {
   const cart = useCart();
+  const { sendEvent } = useEcommerceEvent();
+
+  const handleRemoveFromCart = () => {
+    sendEvent({
+      event: "remove_from_cart",
+      currency: "BDT",
+      value:
+        (factorCartPrice(item?.discountedPrice, item?.price) / 100) *
+        item?.quantity,
+      ecommerce: {
+        items: [
+          {
+            item_id: item?._id,
+            item_name: item?.title,
+            affiliation: "iLHAM",
+            discount: (item?.price - item?.discountedPrice) / 100,
+            index: 0,
+            item_brand: item?.brand,
+            item_category: item?.category?.label,
+            price: factorCartPrice(item?.discountedPrice, item?.price) / 100,
+            quantity: item?.quantity,
+          },
+        ],
+      },
+    });
+
+    cart.onRemove(item._id, item.title);
+  };
 
   return (
     <Card className="shadow-transparent hover:shadow-transparent">
@@ -35,7 +65,7 @@ export function CartItem({ item }) {
           />
 
           <Button
-            onClick={() => cart.onRemove(item._id, item.title)}
+            onClick={handleRemoveFromCart}
             className="rounded-full absolute top-0 bottom-0 right-0 m-auto"
             icon="delete"
             variant="destructive"

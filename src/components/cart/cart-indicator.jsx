@@ -14,20 +14,21 @@ export function CartIndicator() {
     onOpen();
 
     const products = cartItems?.map((product) => ({
-      item_id: product._id,
+      item_id: product?._id,
       item_name: product?.title,
-      discount: (product.price - product.discountedPrice) / 100,
-      item_brand: product.brand,
-      item_category: product.category.label,
+      affiliation: "iLHAM",
+      discount: (product?.price - product?.discountedPrice) / 100,
+      item_brand: product?.brand,
+      item_category: product?.category?.label,
       price: factorCartPrice(product?.discountedPrice, product?.price) / 100,
-      quantity: product.quantity,
+      quantity: product?.quantity,
     }));
 
     sendEvent({
       event: "view_cart",
+      currency: "BDT",
+      value: total / 100,
       ecommerce: {
-        currency: "BDT",
-        value: total / 100,
         items: [...products],
       },
     });
