@@ -67,6 +67,30 @@ export function CheckoutForm({ referrer }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [form.watch("city")]);
 
+  useEffect(() => {
+    const products = cartItems?.map((product) => ({
+      item_id: product?._id,
+      item_name: product?.title,
+      affiliation: "iLHAM",
+      discount: (product?.price - product?.discountedPrice) / 100,
+      item_brand: product?.brand,
+      item_category: product?.category?.label,
+      price: factorCartPrice(product?.discountedPrice, product?.price) / 100,
+      quantity: product?.quantity,
+    }));
+
+    sendEvent({
+      event: "begin_checkout",
+      currency: "BDT",
+      value: total / 100,
+      coupon: couponCode,
+      ecommerce: {
+        items: [...products],
+      },
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cartItems, couponCode, total]);
+
   const handleSubmit = async (data) => {
     setIsLoading(true);
 
