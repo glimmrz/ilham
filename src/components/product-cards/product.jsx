@@ -12,52 +12,16 @@ import {
 import { Badge } from "../ui/badge";
 import { RatingStars } from "../rating-stars";
 import { CalculatePrice } from "./calculate-price";
-import { useCart } from "@/hooks/use-cart";
 import { useWishlist } from "@/hooks/use-wishlist";
-import {
-  factorCartPrice,
-  useCheckCart,
-  useCheckWishlist,
-} from "@/utils/helpers";
-import { useEcommerceEvent } from "@/hooks/use-ecommerce-event";
+import { useCheckCart, useCheckWishlist, useEcommerce } from "@/utils/helpers";
 import { useRouter } from "next/navigation";
 
 export const Product = ({ product }) => {
-  const { sendEvent } = useEcommerceEvent();
-  const cart = useCart();
   const wishlist = useWishlist();
   const router = useRouter();
-
+  const { handleAddToCart, handleAddToWishlist } = useEcommerce();
   const isInCart = useCheckCart(product);
   const isInWishlist = useCheckWishlist(product);
-
-  const handleAddToCart = (e) => {
-    e.preventDefault();
-    sendEvent({
-      event: "add_to_cart",
-      currency: "BDT",
-      value: factorCartPrice(product?.discountedPrice, product?.price) / 100,
-      ecommerce: {
-        items: [
-          {
-            item_id: product._id,
-            item_name: product?.title,
-            discount: (product.price - product.discountedPrice) / 100,
-            item_brand: product.brand,
-            item_category: product.category.label,
-            price:
-              factorCartPrice(product?.discountedPrice, product?.price) / 100,
-            quantity: 1,
-          },
-        ],
-      },
-    });
-
-    cart.onAdd({
-      ...product,
-      price: factorCartPrice(product?.discountedPrice, product?.price),
-    });
-  };
 
   const handleWishlist = (e) => {
     e.preventDefault();
@@ -65,28 +29,7 @@ export const Product = ({ product }) => {
     if (isInWishlist) {
       wishlist.onRemove(product._id, product.title);
     } else {
-      sendEvent({
-        event: "add_to_wishlist",
-        currency: "BDT",
-        value: factorCartPrice(product?.discountedPrice, product?.price) / 100,
-        ecommerce: {
-          items: [
-            {
-              item_id: product._id,
-              item_name: product?.title,
-              affiliation: "iLHAM",
-              discount: (product.price - product.discountedPrice) / 100,
-              item_brand: product.brand,
-              item_category: product.category.label,
-              price:
-                factorCartPrice(product?.discountedPrice, product?.price) / 100,
-              quantity: 1,
-            },
-          ],
-        },
-      });
-
-      wishlist.onAdd(product);
+      handleAddToWishlist(product);
     }
   };
 
@@ -148,8 +91,11 @@ export const Product = ({ product }) => {
           />
           <Button
             icon={isInCart ? "check" : "cart"}
-            variant="outline"
-            onClick={handleAddToCart}
+            variant={!isInCart ? "outline" : "default"}
+            onClick={(e) => {
+              e.preventDefault();
+              handleAddToCart(product);
+            }}
           >
             <span>add</span>
           </Button>
