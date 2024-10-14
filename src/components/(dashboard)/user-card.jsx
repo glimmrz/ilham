@@ -1,37 +1,30 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Card, CardContent, CardTitle } from "../ui/card";
-import { RatingStars } from "../rating-stars";
-import { CalculatePrice } from "../product-cards/calculate-price";
 import { Button } from "../ui/button";
+import { Icon } from "../icon";
 
-export function ProductCard({ product }) {
+export function UserCard({ user }) {
   return (
-    <Card title={product?.title}>
+    <Card title={user?.title}>
       <CardContent className="flex items-center p-1 md:p-1">
-        <figure className="relative h-[100px] w-[120px]">
-          <Image
-            src={product?.images[0] ? product.images[0] : ""}
-            alt={product?.title}
-            fill
-            sizes="100px"
-            className="object-contain"
-          />
-        </figure>
+        <div className="bg-slate-100 p-1">
+          <Icon icon="user" size={110} />
+        </div>
         <div className="py-0 px-1 w-full flex flex-col gap-1">
           <CardTitle className="capitalize font-bold text-base cursor-pointer transition-colors duration-300 hover:text-primary dark:hover:text-muted">
-            organic honey with spices
+            {user?.name}
           </CardTitle>
-          <RatingStars />
+          <span>{user?.email}</span>
           <div className="flex items-center justify-between">
-            <CalculatePrice
-              price={220000}
-              discountedPrice={130000}
-              className="flex-col md:flex-row"
-            />
+            <span>
+              role:{" "}
+              <span className="text-primary font-bold uppercase">
+                {user?.role}
+              </span>
+            </span>
             <div className="space-x-2">
               <Button size="icon" className="rounded-full" icon="edit" />
-              <Link href={`/dashboard/products/${product?.slug}`} passHref>
+              <Link href={`/dashboard/products/${user?.slug}`} passHref>
                 <Button
                   size="icon"
                   className="rounded-full"

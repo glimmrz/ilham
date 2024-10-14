@@ -42,7 +42,7 @@ export function OrderCard({ order }) {
           />
         </div>
         <div className="grid grid-cols-2 gap-2">
-          <Link href={`/dashboard/orders/view/${order?._id}`}>
+          <Link href={`/dashboard/orders/${order?._id}`}>
             <Button className="w-full" icon="details">
               details
             </Button>

@@ -1,26 +1,26 @@
 import { Block } from "@/components/(dashboard)/block";
 import { CardView } from "@/components/(dashboard)/card-view";
-import { ProductCard } from "@/components/(dashboard)/product-card";
+import { CategoryCard } from "@/components/(dashboard)/category-card";
 import { getData } from "@/utils/api-calls";
 import { Suspense } from "react";
 
-async function Products() {
-  const res = await getData("products", 0);
+async function Categories() {
+  const res = await getData("categories", 0);
 
   return (
     <CardView>
-      {res.response.payload?.map((product, index) => (
-        <ProductCard key={index} product={product} />
+      {res.response.payload?.map((category, index) => (
+        <CategoryCard key={index} category={category} />
       ))}
     </CardView>
   );
 }
 
-export default async function Page() {
+export default function Page() {
   return (
     <Suspense fallback={<p>loading...</p>}>
-      <Block title="all products">
-        <Products />
+      <Block title="categories">
+        <Categories />
       </Block>
     </Suspense>
   );
