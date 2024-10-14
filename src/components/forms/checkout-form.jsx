@@ -16,6 +16,7 @@ import { z } from "zod";
 import { FormInput } from "../form/form-input";
 import { FormSelect } from "../form/form-select";
 import { FormRadio } from "../form/form-radio";
+import { factorCartPrice } from "@/utils/helpers";
 
 const locations = [
   {
