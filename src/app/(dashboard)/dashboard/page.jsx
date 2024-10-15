@@ -9,7 +9,7 @@ const summaryData = [
     icon: "revenue",
   },
   {
-    dataKey: "toal order",
+    dataKey: "total order",
     dataValue: "13",
     icon: "box",
   },
