@@ -1,54 +1,53 @@
 import { Block } from "@/components/(dashboard)/block";
 import { Empty } from "@/components/empty";
 import { TotalCard } from "@/components/total-card";
+import { getData } from "@/utils/api-calls";
+import { Suspense } from "react";
 
-const summaryData = [
-  {
-    dataKey: "total revenue",
-    dataValue: "৳1818",
-    icon: "revenue",
-  },
-  {
-    dataKey: "total order",
-    dataValue: "13",
-    icon: "box",
-  },
-  {
-    dataKey: "partner revenue",
-    dataValue: "৳139",
-    icon: "profit",
-  },
-  {
-    dataKey: "total partners",
-    dataValue: "7",
-    icon: "partner",
-  },
-];
+async function DashboardData() {
+  const res = await getData("dashboard-data", 0);
 
-const orderData = [
-  {
-    dataKey: "pending order",
-    dataValue: "0",
-    icon: "pending",
-  },
-  {
-    dataKey: "processing order",
-    dataValue: "2",
-    icon: "processing",
-  },
-  {
-    dataKey: "completed order",
-    dataValue: "90",
-    icon: "complete",
-  },
-  {
-    dataKey: "cancelled order",
-    dataValue: "11",
-    icon: "cancel",
-  },
-];
+  const summaryData = [
+    {
+      dataKey: "total revenue",
+      dataValue: `৳ ${res.response.payload?.totalEarnings / 100}`,
+      icon: "total",
+    },
+    {
+      dataKey: "total orders",
+      dataValue: res.response.payload?.totalOrders,
+      icon: "total",
+    },
+    {
+      dataKey: "partner revenue",
+      dataValue: `৳ ${res.response.payload?.partnerEarnings / 100}`,
+      icon: "total",
+    },
+  ];
 
-export default function Page() {
+  const orderData = [
+    {
+      dataKey: "pending orders",
+      dataValue: res.response.payload?.pendingOrders,
+      icon: "pending",
+    },
+    {
+      dataKey: "processing orders",
+      dataValue: res.response.payload?.processingOrders,
+      icon: "processing",
+    },
+    {
+      dataKey: "completed orders",
+      dataValue: res.response.payload?.completedOrders,
+      icon: "verified",
+    },
+    {
+      dataKey: "cancelled orders",
+      dataValue: res.response.payload?.cancelledOrders,
+      icon: "cancel",
+    },
+  ];
+
   return (
     <div className="grid gap-8">
       {/* Summary */}
@@ -76,5 +75,13 @@ export default function Page() {
         <Empty message="looks like there's no data to display." />
       </Block>
     </div>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <DashboardData />
+    </Suspense>
   );
 }
