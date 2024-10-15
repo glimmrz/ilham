@@ -31,9 +31,8 @@ export function ProductCard({ product }) {
               className="flex-col md:flex-row"
             />
             <div className="space-x-2">
-              <Button size="icon" className="rounded-full" icon="edit" />
               <Link href={`/dashboard/products/${product?.slug}`} passHref>
-                <Button size="icon" className="rounded-full" icon="details" />
+                <Button size="icon" className="rounded-full" icon="edit" />
               </Link>
               <DeleteItem requestUrl="products" _id={product?._id} />
             </div>

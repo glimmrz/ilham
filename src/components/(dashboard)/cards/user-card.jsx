@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Card, CardContent, CardTitle } from "../../ui/card";
 import { Button } from "../../ui/button";
 import { Icon } from "../../icon";
@@ -24,9 +23,6 @@ export function UserCard({ user }) {
             </span>
             <div className="space-x-2">
               <Button size="icon" className="rounded-full" icon="edit" />
-              <Link href={`/dashboard/products/${user?.slug}`} passHref>
-                <Button size="icon" className="rounded-full" icon="details" />
-              </Link>
               <Button
                 variant="destructive"
                 size="icon"

@@ -38,7 +38,7 @@ export function AddSubCategory({ categories }) {
       }
 
       notify(res.response.msg);
-      router.push("categories/sub-categories");
+      router.push("/dashboard/categories/sub-categories");
     } catch (err) {
       notify(err.message);
     } finally {
