@@ -19,6 +19,7 @@ import {
   ShoppingCart,
   Trash,
   UserPlus,
+  X,
 } from "lucide-react";
 
 const Icons = {
@@ -42,6 +43,7 @@ const Icons = {
   handshake: Handshake,
   save: Save,
   copy: Copy,
+  close: X,
   pending: (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" {...props}>
       <path

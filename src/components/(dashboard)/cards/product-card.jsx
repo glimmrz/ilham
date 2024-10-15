@@ -20,13 +20,13 @@ export function ProductCard({ product }) {
         </figure>
         <div className="py-0 px-1 w-full flex flex-col gap-1">
           <CardTitle className="capitalize font-bold text-base">
-            organic honey with spices
+            {product?.title}
           </CardTitle>
           <RatingStars />
           <div className="flex items-center justify-between">
             <CalculatePrice
-              price={220000}
-              discountedPrice={130000}
+              price={product?.price}
+              discountedPrice={product?.discountedPrice}
               className="flex-col md:flex-row"
             />
             <div className="space-x-2">

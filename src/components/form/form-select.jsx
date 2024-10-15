@@ -1,10 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { z } from "zod";
-
 import {
-  Form,
   FormControl,
   FormDescription,
   FormField,
@@ -28,6 +24,8 @@ export function FormSelect({
   description,
   options,
   required,
+  keyName = "name",
+  keyValue = "value",
 }) {
   return (
     <FormField
@@ -53,15 +51,17 @@ export function FormSelect({
               </SelectTrigger>
             </FormControl>
             <SelectContent>
-              {options?.map((option, index) => (
-                <SelectItem
-                  value={option?.value}
-                  key={index}
-                  className="capitalize"
-                >
-                  {option?.name}
-                </SelectItem>
-              ))}
+              {options?.map((option, index) => {
+                return (
+                  <SelectItem
+                    value={option[keyValue]}
+                    key={index}
+                    className="capitalize"
+                  >
+                    {option[keyName]}
+                  </SelectItem>
+                );
+              })}
             </SelectContent>
           </Select>
           {description && <FormDescription>{description}</FormDescription>}
