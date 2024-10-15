@@ -1,6 +1,7 @@
 import { Card, CardContent, CardTitle } from "../../ui/card";
 import { Button } from "../../ui/button";
 import { DynamicIcon } from "../../dynamic-icon";
+import { DeleteItem } from "../modals/delete";
 
 export function CategoryCard({ category }) {
   return (
@@ -21,12 +22,7 @@ export function CategoryCard({ category }) {
             </div>
             <div className="flex space-x-2">
               <Button size="icon" className="rounded-full" icon="edit" />
-              <Button
-                variant="destructive"
-                size="icon"
-                className="rounded-full"
-                icon="delete"
-              />
+              <DeleteItem requestUrl="categories" _id={category?._id} />
             </div>
           </div>
         </div>

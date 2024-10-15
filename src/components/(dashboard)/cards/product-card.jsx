@@ -4,6 +4,7 @@ import { Card, CardContent, CardTitle } from "../../ui/card";
 import { RatingStars } from "../../rating-stars";
 import { CalculatePrice } from "../../product-cards/calculate-price";
 import { Button } from "../../ui/button";
+import { DeleteItem } from "../modals/delete";
 
 export function ProductCard({ product }) {
   return (
@@ -34,12 +35,7 @@ export function ProductCard({ product }) {
               <Link href={`/dashboard/products/${product?.slug}`} passHref>
                 <Button size="icon" className="rounded-full" icon="details" />
               </Link>
-              <Button
-                variant="destructive"
-                size="icon"
-                className="rounded-full"
-                icon="delete"
-              />
+              <DeleteItem requestUrl="products" _id={product?._id} />
             </div>
           </div>
         </div>
