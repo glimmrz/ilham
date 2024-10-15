@@ -1,53 +1,52 @@
-import Link from "next/link";
-import { DataCell } from "../../data-cell";
-import { Card, CardContent } from "../../ui/card";
-import { Button } from "../../ui/button";
+import { Icon } from "@/components/icon";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { UpdateOrder } from "../modals/update-order";
 
 export function OrderCard({ order }) {
   return (
     <Card
+      title={order?._id}
       className={`shadow-md ${
         order?.status === "pending"
-          ? "border-yellow-400 shadow-yellow-400"
+          ? "border-yellow-500 shadow-yellow-400"
           : order?.status === "processing"
-          ? "border-violet-500 shadow-violet-500"
+          ? "border-blue-500 shadow-blue-500"
           : order?.status === "delivered"
           ? "border-green-800 shadow-green-800"
           : order?.status === "courier"
-          ? "border-teal-400 shadow-teal-400"
+          ? "border-slate-400 shadow-slate-400"
           : order?.status === "cancelled"
           ? "border-destructive shadow-destructive"
           : ""
       }`}
     >
-      <CardContent className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
-          <DataCell dataName="Order ID" dataValue={order?._id} />
-          <DataCell dataName="name" dataValue={order?.name} />
-          <DataCell dataName="phone" dataValue={order?.phone} />
-          <DataCell
-            dataName="total"
-            dataValue={order?.totalAfterDiscount / 100}
-          />
-          <DataCell dataName="address" dataValue={order?.address} />
-          <DataCell
-            dataName="payment status"
-            dataValue={order?.paymentStatus}
-          />
-          <DataCell dataName="order status" dataValue={order?.status} />
-          <DataCell
-            dataName="order Date"
-            dataValue={new Date(order?.orderDate).toDateString()}
-          />
+      <CardContent className="flex items-center gap-2 p-1 md:p-1">
+        <div className="bg-slate-100 px-1">
+          <Icon icon="order" size={80} />
         </div>
-        <div className="grid grid-cols-2 gap-2">
-          <Link href={`/dashboard/orders/${order?._id}`}>
-            <Button className="w-full" icon="details">
-              details
-            </Button>
-          </Link>
-          <UpdateOrder order={order} />
+        <div className="py-0 px-1 w-full flex flex-col gap-1">
+          <CardTitle className="capitalize font-bold text-base">
+            {order?.name}
+          </CardTitle>
+          <span>
+            {new Date(order?.orderDate).toDateString()}{" "}
+            <b>
+              <em>{order?.phone}</em>
+            </b>
+          </span>
+          <div className="flex items-center justify-between">
+            <span>
+              Amount:{" "}
+              <span className="text-primary font-bold">
+                ৳{order?.totalAfterDiscount / 100}
+              </span>
+            </span>
+            <div className="space-x-2">
+              <UpdateOrder order={order} />
+              <Button size="icon" className="rounded-full" icon="details" />
+            </div>
+          </div>
         </div>
       </CardContent>
     </Card>

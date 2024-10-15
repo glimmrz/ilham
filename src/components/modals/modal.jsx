@@ -7,6 +7,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "../ui/button";
+import { cn } from "@/lib/utils";
 
 export function Modal({
   children,
@@ -17,10 +18,17 @@ export function Modal({
   isOpen,
   onClose,
   onOpen,
+  className,
+  triggerSize,
 }) {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <Button onClick={onOpen} icon={triggerIcon}>
+      <Button
+        className={cn(className)}
+        onClick={onOpen}
+        icon={triggerIcon}
+        size={triggerSize}
+      >
         {triggerLabel}
       </Button>
 

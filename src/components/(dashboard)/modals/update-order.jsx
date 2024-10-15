@@ -98,11 +98,12 @@ export function UpdateOrder({ order }) {
     <Modal
       title="order status"
       description="Update order details."
-      triggerLabel="update"
       triggerIcon="edit"
       isOpen={isModalOpen}
       onClose={() => setIsModalOpen(false)}
       onOpen={() => setIsModalOpen(true)}
+      className="rounded-full"
+      triggerSize="icon"
     >
       <FormModal
         form={form}
