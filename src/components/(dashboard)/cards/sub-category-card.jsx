@@ -35,7 +35,10 @@ export function SubCategoryCard({ subCategory }) {
             </span>
             <div className="space-x-2">
               <Button size="icon" className="rounded-full" icon="edit" />
-              <DeleteItem requestUrl="products" _id={subCategory?._id} />
+              <DeleteItem
+                requestUrl="categories/sub-categories"
+                _id={subCategory?._id}
+              />
             </div>
           </div>
         </div>

@@ -10,6 +10,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormModal } from "@/components/form/form";
 import { Icon } from "@/components/icon";
 import { z } from "zod";
+import { postData } from "@/utils/api-calls";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   category: z.string().min(1, "Category name is required"),
@@ -20,6 +22,7 @@ const formSchema = z.object({
 export function AddSubCategory({ categories }) {
   const [isLoading, setIsLoading] = useState(false);
   const [images, setImages] = useState([]);
+  const router = useRouter();
 
   const handleSubmit = async (data) => {
     setIsLoading(true);
@@ -35,8 +38,9 @@ export function AddSubCategory({ categories }) {
       }
 
       notify(res.response.msg);
+      router.push("categories/sub-categories");
     } catch (err) {
-      console.error(err);
+      notify(err.message);
     } finally {
       setIsLoading(false);
     }
