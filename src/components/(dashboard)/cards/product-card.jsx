@@ -19,7 +19,7 @@ export function ProductCard({ product }) {
           />
         </figure>
         <div className="py-0 px-1 w-full flex flex-col gap-1">
-          <CardTitle className="capitalize font-bold text-base cursor-pointer transition-colors duration-300 hover:text-primary dark:hover:text-muted">
+          <CardTitle className="capitalize font-bold text-base">
             organic honey with spices
           </CardTitle>
           <RatingStars />

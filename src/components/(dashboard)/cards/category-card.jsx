@@ -6,11 +6,11 @@ export function CategoryCard({ category }) {
   return (
     <Card title={category?.title}>
       <CardContent className="flex items-center gap-2 p-1 md:p-1">
-        <div className="bg-slate-100 p-1">
+        <div className="bg-slate-100 px-1">
           <DynamicIcon name={category?.icon} size={80} />
         </div>
         <div className="py-0 px-1 w-full space-y-2">
-          <CardTitle className="capitalize font-bold text-base cursor-pointer transition-colors duration-300 hover:text-primary dark:hover:text-muted">
+          <CardTitle className="capitalize font-bold text-base">
             {category?.label}
           </CardTitle>
           <div className="flex items-end justify-between space-x-2">
