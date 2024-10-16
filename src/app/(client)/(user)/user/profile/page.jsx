@@ -2,6 +2,7 @@ import { DataCell } from "@/components/data-cell";
 import { Heading } from "@/components/heading";
 import { Icon } from "@/components/icon";
 import { UpdateProfile } from "@/components/modals/update-profile";
+import { WithdrawMoney } from "@/components/modals/withdraw-money";
 import { ProfileSkeleton } from "@/components/skeletons/profile-skeleton";
 import { TotalCard } from "@/components/total-card";
 import { Button } from "@/components/ui/button";
@@ -133,7 +134,7 @@ async function ProfileData() {
         />
       </div>
 
-      <Button>withdraw money / টাকা তুলুন</Button>
+      <WithdrawMoney />
     </>
   );
 }
