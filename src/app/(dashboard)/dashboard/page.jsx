@@ -12,18 +12,71 @@ async function DashboardData() {
 
   const summaryData = [
     {
-      dataKey: "total revenue",
+      dataKey: "total sales",
       dataValue: `৳ ${res.response.payload?.totalEarnings / 100}`,
-      icon: "total",
-    },
-    {
-      dataKey: "total orders",
-      dataValue: res.response.payload?.totalOrders,
       icon: "total",
     },
     {
       dataKey: "partner revenue",
       dataValue: `৳ ${res.response.payload?.partnerEarnings / 100}`,
+      icon: "total",
+    },
+    {
+      dataKey: "total expense",
+      dataValue: `৳ ${res.response.payload?.totalExpenses / 100}`,
+      icon: "total",
+    },
+    {
+      dataKey: "total revenue",
+      dataValue: `৳ ${
+        (res.response.payload?.totalEarnings -
+          (res.response.payload?.partnerEarnings +
+            res.response.payload?.totalExpenses)) /
+        100
+      }`,
+      icon: "total",
+    },
+  ];
+
+  const CurrentMonthData = [
+    {
+      dataKey: "total sales",
+      dataValue: `৳ ${res.response.payload?.currentMonthTotalEarnings / 100}`,
+      icon: "total",
+    },
+    {
+      dataKey: "total orders",
+      dataValue: `${res.response.payload?.currentMonthTotalOrders}`,
+      icon: "total",
+    },
+    {
+      dataKey: "completed orders",
+      dataValue: `${res.response.payload?.currentMonthCompletedOrders}`,
+      icon: "total",
+    },
+    {
+      dataKey: "cancelled orders",
+      dataValue: `${res.response.payload?.currentMonthCancelledOrders}`,
+      icon: "total",
+    },
+    {
+      dataKey: "partner revenue",
+      dataValue: `৳ ${res.response.payload?.currentMonthPartnerEarnings / 100}`,
+      icon: "total",
+    },
+    {
+      dataKey: "total expense",
+      dataValue: `৳ ${res.response.payload?.currentMonthTotalExpenses / 100}`,
+      icon: "total",
+    },
+    {
+      dataKey: "revenue this month",
+      dataValue: `৳ ${
+        (res.response.payload?.currentMonthTotalEarnings -
+          (res.response.payload?.currentMonthTotalExpenses +
+            res.response.payload?.currentMonthPartnerEarnings)) /
+        100
+      }`,
       icon: "total",
     },
   ];
@@ -53,7 +106,7 @@ async function DashboardData() {
 
   return (
     <div className="grid gap-8">
-      {/* Summary */}
+      {/* Total Summary */}
       <Block title="summary">
         <div className="grid grid-cols-[repeat(auto-fit,minmax(270px,1fr))] gap-4">
           {summaryData.map((data, index) => (
@@ -61,8 +114,20 @@ async function DashboardData() {
           ))}
         </div>
       </Block>
+      {/* Current Month */}
+      <Block
+        title={`${new Date().toLocaleString("default", {
+          month: "long",
+        })} ${new Date().getFullYear()}`}
+      >
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(270px,1fr))] gap-4">
+          {CurrentMonthData.map((data, index) => (
+            <TotalCard key={index} data={data} />
+          ))}
+        </div>
+      </Block>
       {/* Order Status */}
-      <Block title="order status">
+      <Block title="order summary">
         <div className="grid grid-cols-[repeat(auto-fit,minmax(270px,1fr))] gap-4">
           {orderData.map((data, index) => (
             <TotalCard key={index} data={data} />
