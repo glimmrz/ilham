@@ -22,6 +22,16 @@ async function DashboardData() {
       icon: "total",
     },
     {
+      dataKey: "paid partner revenue",
+      dataValue: `৳ `,
+      icon: "total",
+    },
+    {
+      dataKey: "unpaid partner revenue",
+      dataValue: `৳ `,
+      icon: "total",
+    },
+    {
       dataKey: "total expense",
       dataValue: `৳ ${res.response.payload?.totalExpenses / 100}`,
       icon: "total",
@@ -62,6 +72,16 @@ async function DashboardData() {
     {
       dataKey: "partner revenue",
       dataValue: `৳ ${res.response.payload?.currentMonthPartnerEarnings / 100}`,
+      icon: "total",
+    },
+    {
+      dataKey: "paid partner revenue",
+      dataValue: `৳ `,
+      icon: "total",
+    },
+    {
+      dataKey: "unpaid partner revenue",
+      dataValue: `৳ `,
       icon: "total",
     },
     {

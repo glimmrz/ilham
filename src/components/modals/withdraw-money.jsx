@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { FormInput } from "../form/form-input";
+import { notify } from "@/utils/toast";
+import { postData } from "@/utils/api-calls";
 
 const formSchema = z.object({
   amount: z.string().min(3, {
@@ -25,7 +27,20 @@ export function WithdrawMoney() {
   });
 
   const handleSubmit = async (data) => {
-    console.log(data);
+    setIsLoading(true);
+    try {
+      const res = await postData("withdrawal", data);
+      if (res.error) {
+        return notify(res.response.msg);
+      }
+
+      notify(res.response.msg);
+      setIsModalOpen(false);
+    } catch (err) {
+      notify(err.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
