@@ -1,6 +1,7 @@
 import { Block } from "@/components/(dashboard)/block";
 import { CardView } from "@/components/(dashboard)/card-view";
 import { OrderCard } from "@/components/(dashboard)/cards/order-card";
+import { ProductCard } from "@/components/(dashboard)/cards/product-card";
 import { Empty } from "@/components/empty";
 import { TotalCard } from "@/components/total-card";
 import { getData } from "@/utils/api-calls";
@@ -80,8 +81,15 @@ async function DashboardData() {
         )}
       </Block>
       {/* Popular Products */}
-      <Block title="popular products">
-        <Empty message="looks like there's no data to display." />
+      <Block title="Most sold products">
+        <CardView>
+          {res.response.payload.products?.map((product, index) => (
+            <ProductCard key={index} product={product} />
+          ))}
+        </CardView>
+        {res.response.payload.recentOrders?.length === 0 && (
+          <Empty message="looks like there's no data to display." />
+        )}
       </Block>
     </div>
   );

@@ -23,7 +23,10 @@ export function ProductCard({ product, disabled }) {
           <CardTitle className="capitalize font-bold text-base">
             {product?.title}
           </CardTitle>
-          <RatingStars />
+          <div className="flex gap-2">
+            <span>Stock: {product?.stock}</span>{" "}
+            <span>Sold: {product?.sold}</span>
+          </div>
           <div className="flex items-center justify-between">
             <CalculatePrice
               price={product?.price}
