@@ -22,27 +22,27 @@ export default async function Page({ params }) {
           <DataCell dataName="Customer Phone" dataValue={order?.phone} />
           <DataCell
             dataName="Total Before discount"
-            dataValue={order?.totalBeforeDiscount}
+            dataValue={`৳ ${order?.totalBeforeDiscount / 100}`}
           />
           <DataCell
             dataName="total after discount"
-            dataValue={order?.totalAfterDiscount}
+            dataValue={`৳ ${order?.totalAfterDiscount / 100}`}
           />
           <DataCell
             dataName="total after comission"
-            dataValue={order?.totalAfterComission}
+            dataValue={`৳ ${order?.totalAfterComission / 100}`}
           />
           <DataCell
             dataName="seller total amount"
-            dataValue={order?.sellerTotal}
+            dataValue={`৳ ${order?.sellerTotal / 100}`}
           />
           <DataCell
             dataName="delivery charge"
-            dataValue={order?.deliveryCharge}
+            dataValue={`৳ ${order?.deliveryCharge / 100}`}
           />
           <DataCell
             dataName="total with delivery charge"
-            dataValue={order?.totalWithDeliveryCharge}
+            dataValue={`৳ ${order?.totalWithDeliveryCharge / 100}`}
           />
           <DataCell
             dataName="discount percentage"
@@ -53,7 +53,10 @@ export default async function Page({ params }) {
             dataName="coupon code"
             dataValue={order?.couponCode?.code}
           />
-          <DataCell dataName="comission" dataValue={order?.comission} />
+          <DataCell
+            dataName="comission"
+            dataValue={`৳ ${order?.comission / 100}`}
+          />
           <DataCell
             dataName="comission to"
             dataValue={order?.comissionTo?.name}
@@ -76,7 +79,7 @@ export default async function Page({ params }) {
           <Heading>Ordered Items</Heading>
           <CardView>
             {order?.products?.map((product, index) => (
-              <ProductCard key={index} product={product} />
+              <ProductCard key={index} product={product} disabled />
             ))}
           </CardView>
         </div>
