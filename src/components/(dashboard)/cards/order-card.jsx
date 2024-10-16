@@ -2,6 +2,7 @@ import { Icon } from "@/components/icon";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { UpdateOrder } from "../modals/update-order";
+import Link from "next/link";
 
 export function OrderCard({ order }) {
   return (
@@ -44,7 +45,9 @@ export function OrderCard({ order }) {
             </span>
             <div className="space-x-2">
               <UpdateOrder order={order} />
-              <Button size="icon" className="rounded-full" icon="details" />
+              <Link href={`/dashboard/orders/${order?._id}`}>
+                <Button size="icon" className="rounded-full" icon="details" />
+              </Link>
             </div>
           </div>
         </div>

@@ -86,11 +86,11 @@ export function EditProduct({ categories, currentProduct }) {
     resolver: zodResolver(formSchema),
     defaultValues: {
       ...currentProduct,
-      category: currentProduct.category._id,
+      category: currentProduct?.category?._id,
       seoTags: currentProduct?.seoTags?.join(", "),
       tags: currentProduct?.tags?.join(", "),
-      price: currentProduct.price / 100,
-      discountedPrice: currentProduct.discountedPrice / 100,
+      price: currentProduct?.price / 100,
+      discountedPrice: currentProduct?.discountedPrice / 100,
     },
   });
 
