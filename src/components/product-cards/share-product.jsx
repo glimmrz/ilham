@@ -1,16 +1,17 @@
 "use client";
 import Image from "next/image";
 import { Card, CardContent, CardTitle } from "../ui/card";
-import { RatingStars } from "../rating-stars";
-import { CalculatePrice } from "./calculate-price";
 import { Button } from "../ui/button";
 import { notify } from "@/utils/toast";
+import { CalculatePrice } from "./calculate-price";
 
 export function ShareProduct({ product, referrer }) {
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(
-        `https://ilham.com.bd/refer/product/${product?.slug}?referrer=${referrer}`
+        `https://ilham.com.bd/refer/product/${product?.slug}?referrer=${
+          referrer ? referrer : ""
+        }`
       );
       notify(
         "Copied to clipboard",
@@ -40,7 +41,10 @@ export function ShareProduct({ product, referrer }) {
           </CardTitle>
           <div className="flex items-center justify-between">
             <div>
-              <p>Price: ৳{product?.discountedPrice / 100}</p>
+              <CalculatePrice
+                price={product?.price}
+                discountedPrice={product?.discountedPrice}
+              />
               <p>
                 Comission:{" "}
                 <span className="text-primary font-bold">

@@ -8,6 +8,7 @@ import { z } from "zod";
 import { FormInput } from "../form/form-input";
 import { notify } from "@/utils/toast";
 import { postData } from "@/utils/api-calls";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   amount: z.string().min(3, {
@@ -18,6 +19,7 @@ const formSchema = z.object({
 export function WithdrawMoney() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -36,6 +38,7 @@ export function WithdrawMoney() {
 
       notify(res.response.msg);
       setIsModalOpen(false);
+      router.refresh();
     } catch (err) {
       notify(err.message);
     } finally {

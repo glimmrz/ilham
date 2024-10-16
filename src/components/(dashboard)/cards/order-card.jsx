@@ -33,14 +33,14 @@ export function OrderCard({ order }) {
           <span>
             {new Date(order?.orderDate).toDateString()}{" "}
             <b>
-              <em>{order?.phone}</em>
+              <em>{order?._id}</em>
             </b>
           </span>
           <div className="flex items-center justify-between">
             <span>
               Amount:{" "}
               <span className="text-primary font-bold">
-                ৳{order?.totalAfterDiscount / 100}
+                ৳{(order?.totalAfterDiscount + order?.deliveryCharge) / 100}
               </span>
             </span>
             <div className="space-x-2">

@@ -23,14 +23,14 @@ async function DashboardData() {
     },
     {
       dataKey: "paid partner revenue",
-      dataValue: `৳ ${res.response.payload?.totalPaidPartnerRevenue / 100}`,
+      dataValue: `৳ ${res.response.payload?.totalPaidWithdrawals / 100}`,
       icon: "total",
     },
     {
       dataKey: "unpaid partner revenue",
       dataValue: `৳ ${
         (res.response.payload?.partnerEarnings -
-          res.response.payload?.totalPaidPartnerRevenue) /
+          res.response.payload?.totalPaidWithdrawals) /
         100
       }`,
       icon: "total",
@@ -81,7 +81,7 @@ async function DashboardData() {
     {
       dataKey: "paid partner revenue",
       dataValue: `৳ ${
-        res.response.payload?.currentMonthPaidPartnerRevenue / 100
+        res.response.payload?.totalPaidWithdrawalsThisMonth / 100
       }`,
       icon: "total",
     },
@@ -89,7 +89,7 @@ async function DashboardData() {
       dataKey: "unpaid partner revenue",
       dataValue: `৳ ${
         (res.response.payload?.currentMonthPartnerEarnings -
-          res.response.payload?.currentMonthPaidPartnerRevenue) /
+          res.response.payload?.totalPaidWithdrawalsThisMonth) /
         100
       }`,
       icon: "total",
@@ -104,7 +104,7 @@ async function DashboardData() {
       dataValue: `৳ ${
         (res.response.payload?.currentMonthTotalEarnings -
           (res.response.payload?.currentMonthTotalExpenses +
-            res.response.payload?.currentMonthPartnerEarnings)) /
+            res.response.payload?.totalPaidWithdrawalsThisMonth)) /
         100
       }`,
       icon: "total",
@@ -182,7 +182,7 @@ async function DashboardData() {
             <ProductCard key={index} product={product} />
           ))}
         </CardView>
-        {res.response.payload.recentOrders?.length === 0 && (
+        {res.response.payload.products?.length === 0 && (
           <Empty message="looks like there's no data to display." />
         )}
       </Block>
