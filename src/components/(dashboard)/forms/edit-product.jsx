@@ -17,10 +17,10 @@ import { notify } from "@/utils/toast";
 const formSchema = z.object({
   title: z.string().optional(),
   seoTitle: z.string().optional(),
-  price: z.string().optional(),
-  discountedPrice: z.string().optional(),
+  price: z.union([z.string(), z.number()]).optional(),
+  discountedPrice: z.union([z.string(), z.number()]).optional(),
   weight: z.string().optional(),
-  stock: z.string().optional(),
+  stock: z.union([z.string(), z.number()]).optional(),
   category: z
     .string()
     .regex(/^[0-9a-fA-F]{24}$/, "Invalid ObjectId")
