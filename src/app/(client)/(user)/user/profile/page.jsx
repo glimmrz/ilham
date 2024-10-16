@@ -120,6 +120,13 @@ async function ProfileData() {
         />
         <TotalCard
           data={{
+            icon: "pending",
+            dataKey: "pending withdrawal",
+            dataValue: `৳ ${res.response?.payload?.pendingWithdrawal / 100}`,
+          }}
+        />
+        <TotalCard
+          data={{
             icon: "cancel",
             dataKey: "cancelled earnings",
             dataValue: `৳ ${res.response?.payload?.cancelledComission / 100}`,

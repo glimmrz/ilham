@@ -23,12 +23,16 @@ async function DashboardData() {
     },
     {
       dataKey: "paid partner revenue",
-      dataValue: `৳ `,
+      dataValue: `৳ ${res.response.payload?.totalPaidPartnerRevenue / 100}`,
       icon: "total",
     },
     {
       dataKey: "unpaid partner revenue",
-      dataValue: `৳ `,
+      dataValue: `৳ ${
+        (res.response.payload?.partnerEarnings -
+          res.response.payload?.totalPaidPartnerRevenue) /
+        100
+      }`,
       icon: "total",
     },
     {
@@ -76,12 +80,18 @@ async function DashboardData() {
     },
     {
       dataKey: "paid partner revenue",
-      dataValue: `৳ `,
+      dataValue: `৳ ${
+        res.response.payload?.currentMonthPaidPartnerRevenue / 100
+      }`,
       icon: "total",
     },
     {
       dataKey: "unpaid partner revenue",
-      dataValue: `৳ `,
+      dataValue: `৳ ${
+        (res.response.payload?.currentMonthPartnerEarnings -
+          res.response.payload?.currentMonthPaidPartnerRevenue) /
+        100
+      }`,
       icon: "total",
     },
     {
