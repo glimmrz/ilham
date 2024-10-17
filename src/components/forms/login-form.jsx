@@ -82,16 +82,25 @@ export function LoginForm() {
           form={form}
         />
       </FormModal>
-      <span className="block text-mute mt-2">
-        Don&apos;t have an account?
+      <div className="flex justify-between mt-2">
+        <span className="block text-mute">
+          Don&apos;t have an account?{" "}
+          <Link
+            href="/register"
+            className="text-font font-bold hover:underline decoration-1"
+          >
+            Sign up.
+          </Link>
+        </span>
+
         <Link
-          href="/register"
+          href="/forgot-password"
           className="text-font font-bold hover:underline decoration-1"
         >
           {" "}
-          Sign up.
+          Forgot password?
         </Link>
-      </span>
+      </div>
     </>
   );
 }

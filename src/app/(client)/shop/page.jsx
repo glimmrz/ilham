@@ -23,7 +23,7 @@ async function Products() {
   );
 }
 
-export default function Page() {
+export default async function Page() {
   return (
     <Container>
       <ProductView title="all products">

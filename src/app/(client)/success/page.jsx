@@ -9,7 +9,7 @@ export const metadata = {
   description: "Order placed successfully.",
 };
 
-export default function OrderSuccessPage({ searchParams }) {
+export default async function OrderSuccessPage({ searchParams }) {
   return (
     <Container>
       <div className="min-h-[80vh] pt-4 pb-4 pl-0 pr-0 flex flex-col items-center justify-center gap-2">
