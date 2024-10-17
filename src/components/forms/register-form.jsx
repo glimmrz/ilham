@@ -63,7 +63,7 @@ export function RegisterForm() {
 
   return (
     <>
-      <CardTitle className="text-center">Create an account.</CardTitle>
+      <CardTitle className="text-center mb-2">Create an account.</CardTitle>
       <FormModal
         formLabel="register"
         form={form}

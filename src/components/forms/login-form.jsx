@@ -1,7 +1,5 @@
 "use client";
 import Link from "next/link";
-import { Button } from "../ui/button";
-import { InputGroup } from "../input-group";
 import { Heading } from "../heading";
 import { postData } from "@/utils/api-calls";
 import { useState } from "react";
@@ -57,7 +55,7 @@ export function LoginForm() {
 
   return (
     <>
-      <Heading className="text-center">Welcome back!</Heading>
+      <Heading className="text-center mb-2">Welcome back!</Heading>
       <FormModal
         form={form}
         formLabel="sign in"
