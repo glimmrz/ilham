@@ -47,5 +47,23 @@ export default async function sitemap() {
       changeFrequency: "yearly",
       priority: 0.5,
     },
+    {
+      url: `${process.env.SITE_URL}/about-us`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
+    {
+      url: `${process.env.SITE_URL}/contact-us`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
+    {
+      url: `${process.env.SITE_URL}/faqs`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
   ];
 }

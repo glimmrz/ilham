@@ -103,7 +103,7 @@ export default async function Page() {
             <figure className="relative h-full hidden lg:block">
               <Image
                 src={ab2}
-                alt=""
+                alt="visit out shop"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 400px, 550px"
