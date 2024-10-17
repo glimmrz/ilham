@@ -48,7 +48,7 @@ async function Products({ category, subCategory }) {
   );
 }
 
-const Page = ({ params, searchParams }) => {
+export default async function Page({ params, searchParams }) {
   return (
     <Container>
       {/* <PromoSlider /> */}
@@ -63,6 +63,4 @@ const Page = ({ params, searchParams }) => {
       </ProductView>
     </Container>
   );
-};
-
-export default Page;
+}
