@@ -6,6 +6,8 @@ import { AccountSidebar } from "@/components/sidebars/account-sidebar";
 import { CartSidebar } from "@/components/sidebars/cart-sidebar";
 import { MenuSidebar } from "@/components/sidebars/menu-sidebar/menu-sidebar";
 import { getSession } from "@/utils/auth";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export default async function Layout({ children }) {
   const session = await getSession();
@@ -22,6 +24,8 @@ export default async function Layout({ children }) {
       <MenuSidebar />
       <AccountSidebar userData={session} />
       <MobileNavbar />
+      <SpeedInsights />
+      <Analytics />
     </>
   );
 }

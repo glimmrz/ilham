@@ -33,7 +33,7 @@ export function OrderCard({ order }) {
           <span>
             {new Date(order?.orderDate).toDateString()}{" "}
             <b>
-              <em>{order?._id}</em>
+              <em>{order?.orderId}</em>
             </b>
           </span>
           <div className="flex items-center justify-between">

@@ -9,18 +9,18 @@ export function OrderContainer({ order }) {
         <div className="flex flex-col gap-2">
           <DataCell
             dataName="order date"
-            dataValue={new Date(order.orderDate).toDateString()}
+            dataValue={new Date(order?.orderDate).toDateString()}
           />
           <DataCell
             dataName="total"
-            dataValue={`৳${(order.totalWithDeliveryCharge / 100).toFixed(2)}`}
+            dataValue={`৳${(order?.totalWithDeliveryCharge / 100).toFixed(2)}`}
           />
-          <DataCell dataName="order ID" dataValue={order._id} />
+          <DataCell dataName="order ID" dataValue={order?.orderId} />
         </div>
         <Badge>pending</Badge>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mt-4">
-        {order.products?.map((product, index) => (
+        {order?.products?.map((product, index) => (
           <OrderCard key={index} orderItem={product} />
         ))}
       </div>
