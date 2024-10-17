@@ -120,6 +120,18 @@ const sidebarItems = [
       },
     ],
   },
+  {
+    label: "withdrawals",
+    href: "",
+    icon: "user",
+    children: [
+      {
+        label: "withdrawal requests",
+        href: "withdrawals",
+        icon: "",
+      },
+    ],
+  },
 ];
 
 export function DashboardSidebar() {
