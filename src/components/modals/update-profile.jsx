@@ -1,25 +1,78 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { InputGroup } from "../input-group";
 import { useState } from "react";
 import { Modal } from "./modal";
 import { notify } from "@/utils/toast";
 import { putData } from "@/utils/api-calls";
 import { useRouter } from "next/navigation";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormModal } from "../form/form";
+import { FormInput } from "../form/form-input";
+import { FormSelect } from "../form/form-select";
+
+const formSchema = z.object({
+  name: z
+    .string()
+    .min(3, {
+      message: "Name must be at least 3 characters.",
+    })
+    .max(50),
+  gender: z
+    .enum(["male", "female"], {
+      required_error: "Please select a gender",
+      message: "Please select a gender",
+    })
+    .optional()
+    .or(z.literal("")),
+  phone: z
+    .string()
+    .min(11, {
+      message: "Phone number must be at least 11 characters.",
+    })
+    .max(11)
+    .optional()
+    .or(z.literal("")),
+  bkash: z
+    .string()
+    .min(11, {
+      message: "Bkash number must be at least 11 characters.",
+    })
+    .max(11)
+    .optional()
+    .or(z.literal("")),
+});
+
+const genderOptions = [
+  {
+    name: "male",
+    value: "male",
+  },
+  {
+    name: "female",
+    value: "female",
+  },
+];
 
 export function UpdateProfile({ data }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: data?.name,
+      gender: data?.gender,
+      phone: data?.phone,
+      bkash: data?.bkash,
+    },
+  });
+
+  const handleSubmit = async (formData) => {
     setIsLoading(true);
 
     try {
-      const fd = new FormData(e.target);
-      const formData = Object.fromEntries(fd.entries());
-
       const res = await putData(`users/${data?._id}`, {
         ...formData,
       });
@@ -48,42 +101,43 @@ export function UpdateProfile({ data }) {
       onClose={() => setIsModalOpen(false)}
       onOpen={() => setIsModalOpen(true)}
     >
-      <form onSubmit={handleSubmit} className="grid gap-3">
-        <InputGroup
+      <FormModal
+        onSubmit={handleSubmit}
+        form={form}
+        loading={isLoading}
+        disabled={isLoading}
+        formLabel="update"
+      >
+        <FormInput
+          form={form}
           name="name"
           placeholder=""
           label="name"
           defaultValue={data?.name}
         />
-        <InputGroup
-          type="date"
-          name="birthdate"
-          placeholder=""
-          label="birthdate"
-          defaultValue={data?.birthdate}
+        <FormSelect
+          form={form}
+          options={genderOptions}
+          placeholder="select gender"
+          name="gender"
+          label="gender"
+          defaultValue={data?.gender}
         />
-        <InputGroup
+        <FormInput
+          form={form}
           name="phone"
           placeholder=""
           label="phone number"
           defaultValue={data?.phone}
         />
-        <InputGroup
+        <FormInput
+          form={form}
           name="bkash"
           placeholder=""
           label="bkash account number"
           defaultValue={data?.bkash}
         />
-
-        <Button
-          type="submit"
-          className="w-full"
-          disabled={isLoading}
-          loading={isLoading}
-        >
-          Save changes
-        </Button>
-      </form>
+      </FormModal>
     </Modal>
   );
 }
