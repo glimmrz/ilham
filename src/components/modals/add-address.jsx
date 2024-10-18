@@ -38,6 +38,13 @@ export function AddAddress() {
 
   const form = useForm({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      address: "",
+      city: "",
+      email: "",
+      phone: "",
+    },
   });
 
   const handleSubmit = async (data) => {

@@ -41,6 +41,12 @@ export function AddCategory() {
 
   const form = useForm({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      label: "",
+      slug: "",
+      icon: "",
+      description: "",
+    },
   });
 
   return (

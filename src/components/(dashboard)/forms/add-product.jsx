@@ -44,6 +44,25 @@ export function AddProduct({ categories }) {
 
   const form = useForm({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      title: "",
+      seoTitle: "",
+      price: "",
+      discountedPrice: "",
+      weight: "",
+      stock: "",
+      category: "",
+      status: "",
+      warranty: "",
+      boxType: "",
+      color: "",
+      material: "",
+      featured: false,
+      brand: "",
+      tags: "",
+      seoTags: "",
+      seoDescription: "",
+    },
   });
 
   const handleSubmit = async (data) => {

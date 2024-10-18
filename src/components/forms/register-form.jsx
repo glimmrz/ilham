@@ -1,9 +1,6 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import { CardTitle } from "../ui/card";
-import { InputGroup } from "../input-group";
-import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 import { notify } from "@/utils/toast";
 import { postData } from "@/utils/api-calls";
@@ -12,6 +9,7 @@ import { FormInput } from "../form/form-input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { Heading } from "../heading";
 
 const formSchema = z
   .object({
@@ -39,6 +37,12 @@ export function RegisterForm() {
 
   const form = useForm({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
   });
 
   // Handle register form submission
@@ -63,7 +67,7 @@ export function RegisterForm() {
 
   return (
     <>
-      <CardTitle className="text-center mb-2">Create an account.</CardTitle>
+      <Heading className="text-center mb-2">Create an account.</Heading>
       <FormModal
         formLabel="register"
         form={form}

@@ -48,6 +48,11 @@ export function AddSubCategory({ categories }) {
 
   const form = useForm({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      category: "",
+      name: "",
+      color: "",
+    },
   });
 
   return (
