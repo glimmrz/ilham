@@ -18,7 +18,7 @@ export function FaqDropodown({ faq }) {
       >
         <Container>
           <div className="flex justify-between items-center gap-2 cursor-pointer">
-            <Heading>{faq?.question}</Heading>
+            <Heading className="text-xl md:text-2xl">{faq?.question}</Heading>
             <Icon icon={!isOpen ? "arrowDown" : "arrowUp"} size={20} />
           </div>
         </Container>

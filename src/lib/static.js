@@ -15,9 +15,9 @@ export const pagesData = [
     slug: "/contact-us",
   },
   {
-    label: "FAQ",
+    label: "FAQs",
     icon: "circle-help",
-    slug: "/faq",
+    slug: "/faqs",
   },
   {
     label: "track order",

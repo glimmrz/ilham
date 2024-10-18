@@ -32,12 +32,12 @@ export default async function Page() {
             <DataCell
               dataName="Dhaka office"
               dataValue="mirpur, dhaka 1216"
-              icon="address"
+              icon="location"
             />
             <DataCell
               dataName="barishal office"
-              dataValue="marine drive, barishal"
-              icon="address"
+              dataValue="barishal"
+              icon="location"
             />
           </div>
         </div>
