@@ -80,7 +80,15 @@ export function LoginForm() {
           form={form}
         />
       </FormModal>
-      <div className="flex justify-between mt-2">
+      <div className="flex flex-col md:flex-row justify-between gap-2 mt-2">
+        <Link
+          href="/forgot-password"
+          className="text-font font-bold hover:underline decoration-1"
+        >
+          {" "}
+          Forgot password?
+        </Link>
+
         <span className="block text-mute">
           Don&apos;t have an account?{" "}
           <Link
@@ -90,14 +98,6 @@ export function LoginForm() {
             Sign up.
           </Link>
         </span>
-
-        <Link
-          href="/forgot-password"
-          className="text-font font-bold hover:underline decoration-1"
-        >
-          {" "}
-          Forgot password?
-        </Link>
       </div>
     </>
   );
