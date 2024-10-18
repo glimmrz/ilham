@@ -7,6 +7,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { FormInput } from "../form/form-input";
 import Link from "next/link";
+import { notify } from "@/utils/toast";
+import { postData } from "@/utils/api-calls";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -21,7 +23,18 @@ export function ForgotPasswordForm() {
     resolver: zodResolver(formSchema),
   });
 
-  const handleSubmit = async (data) => {};
+  const handleSubmit = async (data) => {
+    setIsLoading(true);
+    try {
+      const res = await postData("forgot-password", data);
+      notify(res.response.msg);
+    } catch (err) {
+      notify(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <>
       <Heading className="text-center mb-2">reset password</Heading>
