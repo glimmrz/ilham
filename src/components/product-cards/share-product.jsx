@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { Card, CardContent, CardTitle } from "../ui/card";
 import { Button } from "../ui/button";
-import { notify } from "@/utils/toast";
+import { errorNotification, successNotification } from "@/utils/toast";
 import { CalculatePrice } from "./calculate-price";
 
 export function ShareProduct({ product, referrer }) {
@@ -13,13 +13,13 @@ export function ShareProduct({ product, referrer }) {
           referrer ? referrer : ""
         }`
       );
-      notify(
+      successNotification(
         "Copied to clipboard",
         "Product share link copied. Share and earn money!"
       );
     } catch (err) {
       console.log(err);
-      notify("Could not copy product link.");
+      errorNotification("Could not copy product link.");
     }
   };
 

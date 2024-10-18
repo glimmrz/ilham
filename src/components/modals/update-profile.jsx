@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Modal } from "./modal";
-import { notify } from "@/utils/toast";
+import { errorNotification, successNotification } from "@/utils/toast";
 import { putData } from "@/utils/api-calls";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
@@ -78,14 +78,14 @@ export function UpdateProfile({ data }) {
       });
 
       if (res.error) {
-        return notify(res.response.msg);
+        return errorNotification(res.response.msg);
       }
 
-      notify(res.response.msg);
+      successNotification(res.response.msg);
       setIsModalOpen(false);
       router.refresh();
     } catch (err) {
-      notify(err.message);
+      errorNotification(err.message);
     } finally {
       setIsLoading(false);
     }

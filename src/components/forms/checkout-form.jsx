@@ -4,7 +4,11 @@ import { useCart } from "@/hooks/use-cart";
 import { createGrantToken, createPayment } from "@/utils/bkash";
 import { useRouter } from "next/navigation";
 import { getData, postData } from "@/utils/api-calls";
-import { notify } from "@/utils/toast";
+import {
+  errorNotification,
+  successNotification,
+  warningNotification,
+} from "@/utils/toast";
 import { Heading } from "../heading";
 import { InputGroup } from "../input-group";
 import { Button } from "../ui/button";
@@ -107,18 +111,22 @@ export function CheckoutForm({ referrer }) {
       });
 
       if (res.error) {
-        return notify(res.response.msg);
+        return errorNotification(res.response.msg);
       }
 
       if (data.paymentMethod === "BKASH") {
         const grantToken = await createGrantToken();
         if (grantToken.error) {
-          return notify("An error occured during payment. Please try again.");
+          return errorNotification(
+            "An error occured during payment. Please try again."
+          );
         }
 
         const paymenturl = await createPayment({}, grantToken.payload);
         if (paymenturl.error) {
-          return notify("An error occured during payment. Please try again.");
+          return errorNotification(
+            "An error occured during payment. Please try again."
+          );
         }
 
         router.push(paymenturl.payload);
@@ -162,9 +170,9 @@ export function CheckoutForm({ referrer }) {
 
       onClear();
       router.push(`/success?id=${res.response?.payload}`);
-      notify(res.response.msg);
+      successNotification(res.response.msg);
     } catch (err) {
-      notify(err.message);
+      errorNotification(err.message);
     } finally {
       setIsLoading(false);
     }
@@ -178,19 +186,19 @@ export function CheckoutForm({ referrer }) {
 
     try {
       if (!couponCode) {
-        return notify("Please enter valid a coupon code.");
+        return warningNotification("Please enter valid a coupon code.");
       }
 
       const res = await getData(`coupons/${couponCode}`, 0);
       if (res.error) {
         setCouponCode("");
-        return notify(res.response.msg);
+        return errorNotification(res.response.msg);
       }
 
       setDiscount(res.response.payload.discount);
-      notify("Coupon code applied successfully.");
+      successNotification("Coupon code applied successfully.");
     } catch (err) {
-      notify(err.message);
+      errorNotification(err.message);
     } finally {
       setIsLoading(false);
     }

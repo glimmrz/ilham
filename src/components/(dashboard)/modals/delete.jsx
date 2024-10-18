@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { notify } from "@/utils/toast";
+import { errorNotification, successNotification } from "@/utils/toast";
 import { useRouter } from "next/navigation";
 import { deleteData } from "@/utils/api-calls";
 import {
@@ -24,14 +24,14 @@ export function DeleteItem({ _id, requestUrl }) {
       const res = await deleteData(requestUrl, { _id: _id });
 
       if (res.error) {
-        return notify(res.response.msg);
+        return errorNotification(res.response.msg);
       }
 
-      notify(res.response.msg);
+      successNotification(res.response.msg);
       router.refresh();
       handleModalClose();
     } catch (err) {
-      notify(err.message);
+      errorNotification(err.message);
     } finally {
       setIsLoading(false);
     }

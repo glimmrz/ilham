@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { notify } from "@/utils/toast";
+import { errorNotification, successNotification } from "@/utils/toast";
 import { postData } from "@/utils/api-calls";
 import { FormModal } from "../form/form";
 import { FormInput } from "../form/form-input";
@@ -53,13 +53,13 @@ export function RegisterForm() {
       const res = await postData("register", data);
 
       if (res.error) {
-        return notify(res.response.msg);
+        return errorNotification(res.response.msg);
       }
 
       router.push("/login");
-      notify(res.response.msg);
+      successNotification(res.response.msg);
     } catch (err) {
-      notify(err.message);
+      errorNotification(err.message);
     } finally {
       setIsLoading(false);
     }

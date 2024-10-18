@@ -2,7 +2,7 @@
 import { postData } from "@/utils/api-calls";
 import { Modal } from "./modal";
 import { useState } from "react";
-import { notify } from "@/utils/toast";
+import { errorNotification, successNotification } from "@/utils/toast";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -54,15 +54,15 @@ export function AddAddress() {
       const res = await postData("address", data);
 
       if (res.error) {
-        return notify(res.response.msg);
+        return errorNotification(res.response.msg);
       }
 
-      notify(res.response.msg);
+      successNotification(res.response.msg);
       router.refresh();
-    } catch (err) {
-      notify(err.message);
-    } finally {
       setIsModalOpen(false);
+    } catch (err) {
+      errorNotification(err.message);
+    } finally {
       setIsLoading(false);
     }
   };

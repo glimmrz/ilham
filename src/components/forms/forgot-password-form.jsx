@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { FormInput } from "../form/form-input";
 import Link from "next/link";
-import { notify } from "@/utils/toast";
+import { errorNotification, successNotification } from "@/utils/toast";
 import { postData } from "@/utils/api-calls";
 
 const formSchema = z.object({
@@ -30,9 +30,13 @@ export function ForgotPasswordForm() {
     setIsLoading(true);
     try {
       const res = await postData("forgot-password", data);
-      notify(res.response.msg);
+      if (res.error) {
+        return errorNotification(res.response.msg);
+      }
+
+      successNotification(res.response.msg);
     } catch (err) {
-      notify(err.message);
+      errorNotification(err.message);
     } finally {
       setIsLoading(false);
     }

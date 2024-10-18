@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { CldUploadWidget } from "next-cloudinary";
 import { useState } from "react";
-import { notify } from "@/utils/toast";
+import { errorNotification, successNotification } from "@/utils/toast";
 import { FormInput } from "@/components/form/form-input";
 import { FormSelect } from "@/components/form/form-select";
 import { useForm } from "react-hook-form";
@@ -34,13 +34,13 @@ export function AddSubCategory({ categories }) {
       });
 
       if (res.error) {
-        return notify(res.response.msg);
+        return errorNotification(res.response.msg);
       }
 
-      notify(res.response.msg);
+      successNotification(res.response.msg);
       router.push("/dashboard/categories/sub-categories");
     } catch (err) {
-      notify(err.message);
+      errorNotification(err.message);
     } finally {
       setIsLoading(false);
     }

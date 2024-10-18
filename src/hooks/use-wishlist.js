@@ -1,4 +1,4 @@
-import { notify } from "@/utils/toast";
+import { successNotification, warningNotification } from "@/utils/toast";
 import { create } from "zustand";
 import {
   persist,
@@ -18,13 +18,13 @@ export const useWishlist = create(
             );
 
             if (existingItem) {
-              notify(`${product?.title} already in wishlist!`);
+              warningNotification(`${product?.title} already in wishlist!`);
               return {
                 wishlistItems: state.wishlistItems,
               };
             }
 
-            notify(`${product?.title} added to wishlist!`);
+            successNotification(`${product?.title} added to wishlist!`);
             return {
               wishlistItems: [...state.wishlistItems, { ...product }],
             };
@@ -38,7 +38,7 @@ export const useWishlist = create(
 
             if (!existingItem) return;
 
-            notify(`${title} removed from wishlist!`);
+            warningNotification(`${title} removed from wishlist!`);
             return {
               wishlistItems: state.wishlistItems.filter(
                 (item) => item._id !== id

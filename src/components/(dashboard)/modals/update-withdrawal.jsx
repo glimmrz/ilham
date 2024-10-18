@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormSelect } from "@/components/form/form-select";
 import { putData } from "@/utils/api-calls";
-import { notify } from "@/utils/toast";
+import { errorNotification, successNotification } from "@/utils/toast";
 import { useRouter } from "next/navigation";
 
 const paymentStatus = [
@@ -50,14 +50,14 @@ export function UpdateWithdrawal({ withdrawal }) {
       const res = await putData(`withdrawal/${withdrawal?._id}`, data);
 
       if (res.error) {
-        return notify(res.response.msg);
+        return errorNotification(res.response.msg);
       }
 
-      notify("Withdrawal status updated successfully.");
+      successNotification("Withdrawal status updated successfully.");
       router.refresh();
       setIsModalOpen(false);
     } catch (err) {
-      notify(err.message);
+      errorNotification(err.message);
     } finally {
       setIsLoading(false);
     }

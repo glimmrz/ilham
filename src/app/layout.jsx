@@ -72,7 +72,7 @@ export default function RootLayout({ children }) {
       <body className={`${font.className} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="light">
           {children}
-          <Toaster />
+          <Toaster richColors position="bottom-left" />
         </ThemeProvider>
         <GoogleTagManager gtmId="GTM-W3ST2L6G" />
       </body>

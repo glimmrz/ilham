@@ -1,4 +1,8 @@
-import { notify } from "@/utils/toast";
+import {
+  infoNotification,
+  successNotification,
+  warningNotification,
+} from "@/utils/toast";
 import { create } from "zustand";
 import {
   persist,
@@ -33,7 +37,7 @@ export const useCart = create(
               );
               const newTotal = state.total + product.price;
 
-              notify("Quantity increased!");
+              infoNotification("Quantity increased!");
               return {
                 cartItems: newItems,
                 total: newTotal,
@@ -47,7 +51,7 @@ export const useCart = create(
               ];
               const newTotal = state.total + product.price;
 
-              notify(`${product?.title} added to cart!`);
+              successNotification(`${product?.title} added to cart!`);
               return {
                 cartItems: newItems,
                 total: newTotal,
@@ -71,7 +75,7 @@ export const useCart = create(
             const newTotal =
               state.total - existingItem.quantity * existingItem.price;
 
-            notify(`${title} removed from cart!`);
+            warningNotification(`${title} removed from cart!`);
             return {
               cartItems: newItems,
               total: newTotal,
@@ -114,7 +118,7 @@ export const useCart = create(
 
             if (state.cartItems[index].quantity === 0) {
               state.cartItems.splice(index, 1);
-              notify(`${title} removed from cart!`);
+              warningNotification(`${title} removed from cart!`);
             }
 
             return {

@@ -2,7 +2,7 @@
 import { FormModal } from "@/components/form/form";
 import { FormInput } from "@/components/form/form-input";
 import { postData } from "@/utils/api-calls";
-import { notify } from "@/utils/toast";
+import { errorNotification, successNotification } from "@/utils/toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -27,13 +27,13 @@ export function AddCategory() {
       const res = await postData("categories", data);
 
       if (res.error) {
-        return notify(res.response.msg);
+        return errorNotification(res.response.msg);
       }
 
-      notify(res.response.msg);
+      successNotification(res.response.msg);
       router.push("/dashboard/categories");
     } catch (err) {
-      console.error(err);
+      errorNotification(err.message);
     } finally {
       setIsLoading(false);
     }

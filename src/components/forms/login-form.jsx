@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Heading } from "../heading";
 import { postData } from "@/utils/api-calls";
 import { useState } from "react";
-import { notify } from "@/utils/toast";
+import { errorNotification, successNotification } from "@/utils/toast";
 import { setCookie } from "@/utils/cookie";
 import { useRouter } from "next/navigation";
 import { FormModal } from "../form/form";
@@ -39,7 +39,7 @@ export function LoginForm() {
     try {
       const res = await postData("login", data);
       if (res.error) {
-        return notify(res.response.msg);
+        return errorNotification(res.response.msg);
       }
 
       await setCookie(
@@ -49,9 +49,9 @@ export function LoginForm() {
       );
 
       router.push("/");
-      notify(res.response.msg);
+      successNotification(res.response.msg);
     } catch (err) {
-      notify(err.message);
+      errorNotification(err.message);
     } finally {
       setIsLoading(false);
     }

@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { Heading } from "../heading";
-import { notify } from "@/utils/toast";
+import { errorNotification, successNotification } from "@/utils/toast";
 import { putData } from "@/utils/api-calls";
 import { useRouter } from "next/navigation";
 
@@ -40,13 +40,13 @@ export function ResetPasswordForm({ resetToken }) {
     try {
       const res = await putData(`reset-password/${resetToken}`, values);
       if (res.error) {
-        return notify(res.response.msg);
+        return errorNotification(res.response.msg);
       }
 
-      notify(res.response.msg);
+      successNotification(res.response.msg);
       router.push("/login");
     } catch (err) {
-      notify(err.message);
+      errorNotification(err.message);
     } finally {
       setIsLoading(false);
     }
