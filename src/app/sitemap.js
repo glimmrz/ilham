@@ -10,14 +10,14 @@ export default async function sitemap() {
     url: `${process.env.SITE_URL}/product/${item.slug}`,
     lastModified: item.updatedAt,
     changeFrequency: "daily",
-    priority: 0.8,
+    priority: 1,
   }));
 
   const category = categories.response.payload?.map((item) => ({
     url: `${process.env.SITE_URL}${item.slug}`,
     lastModified: item.updatedAt,
     changeFrequency: "weekly",
-    priority: 0.8,
+    priority: 1,
   }));
 
   return [
@@ -61,6 +61,18 @@ export default async function sitemap() {
     },
     {
       url: `${process.env.SITE_URL}/faqs`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
+    {
+      url: `${process.env.SITE_URL}/become-a-partner`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 1,
+    },
+    {
+      url: `${process.env.SITE_URL}/track-order`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.7,
