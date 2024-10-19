@@ -1,3 +1,5 @@
+import { Empty } from "@/components/empty";
+import { Heading } from "@/components/heading";
 import { ProductSmall } from "@/components/product-cards/product-small";
 import { ProductActions } from "@/components/product-page/product-actions";
 import { ProductDetails } from "@/components/product-page/product-details";
@@ -42,18 +44,29 @@ async function ProductData({ slug }) {
       <ProductDetails currentProduct={res.response.payload} />
       {/* customer reviews */}
       <div className="lg:grid lg:grid-cols-[2fr_1fr] lg:gap-2">
-        <Section className="flex flex-col gap-2">
+        <Section className="space-y-4">
+          <Heading className="grid gap-2 text-xl font-bold capitalize after:content-[''] after:h-[1px] after:w-full after:rounded-md after:bg-muted">
+            Reviews
+          </Heading>
+          <Empty message="No data available." />
+          <div className="flex flex-col gap-2">
+            {/* <Review />
           <Review />
-          <Review />
-          <Review />
-          {/* <Rating /> */}
+          <Review /> */}
+            {/* <Rating /> */}
+          </div>
         </Section>
 
-        <ProductView className="grid-cols-1 md:grid-cols-2 lg:grid-cols-1">
-          <ProductSmall />
-          <ProductSmall />
-          <ProductSmall />
-        </ProductView>
+        <Section className="space-y-1">
+          <Heading className="grid gap-2 text-xl font-bold capitalize after:content-[''] after:h-[1px] after:w-full after:rounded-md after:bg-muted">
+            Related products
+          </Heading>
+          <ProductView className="grid-cols-1 md:grid-cols-2 lg:grid-cols-1">
+            <ProductSmall />
+            <ProductSmall />
+            <ProductSmall />
+          </ProductView>
+        </Section>
       </div>
     </>
   );

@@ -29,9 +29,9 @@ export function ProductSpecifications({ currentProduct, actionButtons }) {
       {/* Product specification */}
       <div>
         {" "}
-        <h4 className="grid gap-2 text-xl font-bold capitalize after:content-[''] after:h-[1px] after:w-full after:rounded-md after:bg-shade">
+        <Heading className="grid gap-2 text-xl font-bold capitalize after:content-[''] after:h-[1px] after:w-full after:rounded-md after:bg-muted">
           product specifications
-        </h4>
+        </Heading>
         <ul className="grid grid-cols-1 gap-2 mt-2 md:grid-cols-2">
           <li className="capitalize">
             <span className="inline-flex font-bold min-w-[100px]">weight</span>{" "}
@@ -72,13 +72,17 @@ export function ProductSpecifications({ currentProduct, actionButtons }) {
       {/* Tags */}
       <div>
         {/* <Heading title="tags" /> */}
-        <h4 className="grid gap-2 text-xl font-bold capitalize after:content-[''] after:h-[1px] after:w-full after:rounded-md after:bg-shade">
+        <Heading className="grid gap-2 text-xl font-bold capitalize after:content-[''] after:h-[1px] after:w-full after:rounded-md after:bg-muted">
           tags
-        </h4>
+        </Heading>
         <div className="flex gap-2 flex-wrap mt-2">
           {currentProduct?.tags?.map((tag, index) => (
-            <Link href={`/shop?tag=}`} key={index}>
-              {/* <Tag onClick={handleClose} tag={tag} /> */}
+            <Link
+              href={{ pathname: "/shop", query: { category: tag } }}
+              key={index}
+              className="px-2 rounded-md bg-primary text-background"
+            >
+              <span>{tag}</span>
             </Link>
           ))}
         </div>
