@@ -1,10 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
-      "zeris.vercel.app",
-      "algomart-five.vercel.app",
-      "res.cloudinary.com",
+    remotePatterns: [
+      {
+        hostname: "zeris.vercel.app",
+      },
+      {
+        hostname: "res.cloudinary.com",
+      },
     ],
   },
 };

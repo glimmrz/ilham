@@ -64,8 +64,8 @@ export function UpdateProfile({ data }) {
     defaultValues: {
       name: data?.name,
       gender: data?.gender,
-      phone: data?.phone,
-      bkash: data?.bkash,
+      phone: data?.phone || "",
+      bkash: data?.bkash || "",
     },
   });
 
