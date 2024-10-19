@@ -45,7 +45,7 @@ export function OrderCard({ order }) {
             </span>
             <div className="space-x-2">
               <UpdateOrder order={order} />
-              <Link href={`/dashboard/orders/${order?._id}`}>
+              <Link href={`/dashboard/orders/${order?.orderId}`}>
                 <Button size="icon" className="rounded-full" icon="details" />
               </Link>
             </div>

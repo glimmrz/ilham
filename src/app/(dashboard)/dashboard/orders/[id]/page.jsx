@@ -15,7 +15,7 @@ export default async function Page({ params }) {
 
       <div className="mt-8 space-y-8">
         <div className="grid grid-cols-3 gap-4">
-          <DataCell dataName="Order ID" dataValue={order?._id} />
+          <DataCell dataName="Order ID" dataValue={order?.orderId} />
           <DataCell dataName="Customer Name" dataValue={order?.name} />
           <DataCell dataName="Customer Address" dataValue={order?.address} />
           <DataCell dataName="Location" dataValue={order?.location} />
