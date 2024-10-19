@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Card, CardContent, CardTitle } from "../../ui/card";
-import { RatingStars } from "../../rating-stars";
 import { CalculatePrice } from "../../product-cards/calculate-price";
 import { Button } from "../../ui/button";
 import { DeleteItem } from "../modals/delete";
@@ -24,8 +23,8 @@ export function ProductCard({ product, disabled }) {
             {product?.title}
           </CardTitle>
           <div className="flex gap-2">
-            <span>Stock: {product?.stock}</span>{" "}
-            <span>Sold: {product?.sold}</span>
+            {product?.stock && <span>Stock: {product?.stock}</span>}
+            {product?.sold && <span>Sold: {product?.sold}</span>}
           </div>
           <div className="flex items-center justify-between">
             <CalculatePrice

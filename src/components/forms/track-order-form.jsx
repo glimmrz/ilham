@@ -8,6 +8,10 @@ import { useState } from "react";
 import { FormInput } from "../form/form-input";
 import { errorNotification, warningNotification } from "@/utils/toast";
 import { getData } from "@/utils/api-calls";
+import { DataCell } from "../data-cell";
+import { Heading } from "../heading";
+import { CardView } from "../(dashboard)/card-view";
+import { ProductCard } from "../(dashboard)/cards/product-card";
 
 const formSchema = z.object({
   key: z.string().min(11, {
@@ -43,23 +47,52 @@ export function TrackOrderForm() {
   };
 
   return (
-    <div>
-      <FormModal
-        form={form}
-        loading={isLoading}
-        formLabel="search"
-        disabled={isLoading}
-        onSubmit={handleSubmit}
-      >
-        <FormInput
-          form={form}
-          name="key"
-          placeholder="Start typing..."
-          required
-        />
-      </FormModal>
+    <div className="w-full">
+      <div className="w-full flex items-center justify-center">
+        <div className="w-full md:w-[500px]">
+          <FormModal
+            form={form}
+            loading={isLoading}
+            formLabel="search"
+            disabled={isLoading}
+            onSubmit={handleSubmit}
+          >
+            <FormInput
+              form={form}
+              name="key"
+              label="enter order ID"
+              placeholder="ORDER ID"
+              required
+            />
+          </FormModal>
+        </div>
+      </div>
+      {orderData && (
+        <div className="mt-8 space-y-8 w-full">
+          <div>
+            <Heading>Order details</Heading>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+              <DataCell dataName="name" dataValue={orderData?.name} />
+              <DataCell dataName="address" dataValue={orderData?.address} />
+              <DataCell dataName="phone number" dataValue={orderData?.phone} />
+              <DataCell dataName="order status" dataValue={orderData?.status} />
+              <DataCell
+                dataName="order total"
+                dataValue={`৳ ${orderData?.total / 100}`}
+              />
+            </div>
+          </div>
 
-      {orderData && <span>Hi</span>}
+          <div className="space-y-4">
+            <Heading>Ordered Items</Heading>
+            <CardView>
+              {orderData?.products?.map((product, index) => (
+                <ProductCard key={index} product={product} disabled />
+              ))}
+            </CardView>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
