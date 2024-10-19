@@ -21,19 +21,19 @@ export function WithdrawalCard({ withdrawal }) {
           <CardTitle className="capitalize font-bold text-base">
             {withdrawal?.user?.name}
           </CardTitle>
+
           <span>
             Requested Amount:{" "}
             <span className="text-primary font-bold uppercase">
               {withdrawal?.amount / 100}
             </span>
           </span>
+
           <div className="flex items-center justify-between">
             <span>
-              Available Amount:{" "}
+              bKash:
               <span className="text-primary font-bold uppercase">
-                {(withdrawal?.user?.availableComission +
-                  withdrawal?.user?.pendingWithdrawal) /
-                  100}
+                {withdrawal?.user?.bkash}
               </span>
             </span>
             <div>

@@ -30,9 +30,15 @@ async function DashboardData() {
       dataKey: "unpaid partner revenue",
       dataValue: `৳ ${
         (res.response.payload?.partnerEarnings -
-          res.response.payload?.totalPaidWithdrawals) /
+          (res.response.payload?.totalPaidWithdrawals +
+            res.response.payload?.totalCancelledWithdrawals)) /
         100
       }`,
+      icon: "total",
+    },
+    {
+      dataKey: "cancelled partner revenue",
+      dataValue: `৳ ${res.response.payload?.totalCancelledWithdrawals / 100}`,
       icon: "total",
     },
     {
@@ -89,8 +95,16 @@ async function DashboardData() {
       dataKey: "unpaid partner revenue",
       dataValue: `৳ ${
         (res.response.payload?.currentMonthPartnerEarnings -
-          res.response.payload?.totalPaidWithdrawalsThisMonth) /
+          (res.response.payload?.totalPaidWithdrawalsThisMonth +
+            res.response.payload?.totalCancelledWithdrawalsThisMonth)) /
         100
+      }`,
+      icon: "total",
+    },
+    {
+      dataKey: "cancelled partner revenue",
+      dataValue: `৳ ${
+        res.response.payload?.totalCancelledWithdrawalsThisMonth / 100
       }`,
       icon: "total",
     },
