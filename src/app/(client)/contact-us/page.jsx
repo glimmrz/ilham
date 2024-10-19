@@ -25,8 +25,8 @@ export default async function Page() {
             <DataCell
               link
               dataName="email"
-              href="mailto:admin@mail.com"
-              dataValue="admin@mail.com"
+              href="mailto:contact@ilham.com.bd"
+              dataValue="contact@ilham.com.bd"
               icon="email"
             />
             <DataCell
