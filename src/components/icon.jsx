@@ -16,6 +16,7 @@ import {
   Plus,
   Save,
   Search,
+  ShoppingBag,
   ShoppingCart,
   Trash,
   UserPlus,
@@ -44,6 +45,7 @@ const Icons = {
   save: Save,
   copy: Copy,
   close: X,
+  shoppingBag: ShoppingBag,
   phone: (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" {...props}>
       <path

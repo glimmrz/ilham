@@ -15,7 +15,7 @@ export function ProductActions({ currentProduct }) {
       {!isInCart && (
         <Button
           aria-label="add product to shopping cart"
-          icon="bag"
+          icon="shoppingBag"
           onClick={() => handleAddToCart(currentProduct)}
         >
           add to cart
