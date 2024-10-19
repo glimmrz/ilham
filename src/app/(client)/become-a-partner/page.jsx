@@ -1,3 +1,4 @@
+import { Notice } from "@/components/notice";
 import { ShareProduct } from "@/components/product-cards/share-product";
 import { ProductView } from "@/components/product-view";
 import { Container } from "@/components/wrappers/container";
@@ -25,6 +26,7 @@ export default async function Page() {
   return (
     <div>
       <Container>
+        <Notice />
         <ProductView className="grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           <Suspense>
             <Products />
