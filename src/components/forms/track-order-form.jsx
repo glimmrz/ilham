@@ -12,6 +12,7 @@ import { DataCell } from "../data-cell";
 import { Heading } from "../heading";
 import { CardView } from "../(dashboard)/card-view";
 import { ProductCard } from "../(dashboard)/cards/product-card";
+import { Badge } from "../ui/badge";
 
 const formSchema = z.object({
   key: z.string().min(11, {
@@ -34,7 +35,7 @@ export function TrackOrderForm() {
     setIsLoading(true);
 
     try {
-      const res = await getData(`orders/${data.key}`);
+      const res = await getData(`orders/${data.key}`, 0);
       if (res.error) return errorNotification(res.response.msg);
       if (!res.response?.payload) return warningNotification("No data found.");
 
@@ -72,10 +73,19 @@ export function TrackOrderForm() {
           <div>
             <Heading>Order details</Heading>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+              <div className="grid">
+                <DataCell dataName="Order Status" />
+                <Badge
+                  className={`h-fit w-fit ${
+                    orderData?.status === "delivered" ? "bg-green-800" : ""
+                  }`}
+                >
+                  {orderData?.status}
+                </Badge>
+              </div>
               <DataCell dataName="name" dataValue={orderData?.name} />
               <DataCell dataName="address" dataValue={orderData?.address} />
               <DataCell dataName="phone number" dataValue={orderData?.phone} />
-              <DataCell dataName="order status" dataValue={orderData?.status} />
               <DataCell
                 dataName="order total"
                 dataValue={`৳ ${orderData?.total / 100}`}
