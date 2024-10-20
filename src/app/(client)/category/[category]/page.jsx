@@ -25,8 +25,6 @@ export async function generateMetadata({ params }) {
 async function Categories({ category }) {
   const res = await getData(`categories/${category}`);
 
-  if (!res.response.payload) return null;
-
   return <CategoryView categories={res.response.payload?.subCategories} />;
 }
 

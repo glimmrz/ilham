@@ -11,6 +11,8 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 
 export const CategoryView = ({ categories }) => {
+  if (!categories || categories?.length <= 0) return null;
+
   return (
     <Section>
       <Carousel
