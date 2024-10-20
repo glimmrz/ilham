@@ -28,7 +28,8 @@ const formSchema = z.object({
     .email({
       message: "Please enter a valid email address.",
     })
-    .optional(),
+    .optional()
+    .nullable(),
 });
 
 export function AddAddress() {
