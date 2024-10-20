@@ -1,7 +1,6 @@
 import { Empty } from "@/components/empty";
 import { Heading } from "@/components/heading";
 import { AddressSkeleton } from "@/components/skeletons/address-skeleton";
-import { Button } from "@/components/ui/button";
 import { AddressCard } from "@/components/address-card";
 import { getData } from "@/utils/api-calls";
 import { getSession } from "@/utils/auth";
@@ -17,8 +16,7 @@ export async function generateMetadata() {
 }
 
 async function Addresses() {
-  const session = await getSession();
-  const res = await getData(`users/${session.payload?._id}`, 0);
+  const res = await getData(`users/addresses`, 0);
 
   return (
     <>

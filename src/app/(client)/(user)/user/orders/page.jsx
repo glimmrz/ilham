@@ -15,8 +15,7 @@ export async function generateMetadata() {
 }
 
 async function OrderData() {
-  const session = await getSession();
-  const res = await getData(`users/${session.payload?._id}`, 0);
+  const res = await getData(`users/orders`, 0);
 
   return (
     <>
