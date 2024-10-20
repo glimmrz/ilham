@@ -1,10 +1,16 @@
 import Image from "next/image";
-import { Card, CardContent } from "./ui/card";
 import Link from "next/link";
+import { Card, CardContent } from "./ui/card";
 
 export const CategoryBox = ({ category }) => {
   return (
-    <Link href={`?sub=${category.name}`} passHref scroll={false}>
+    <Link
+      href={{
+        query: { sub: category.name },
+      }}
+      passHref
+      scroll={false}
+    >
       <Card
         className="shadow-transparent hover:shadow-none cursor-pointer"
         style={{ backgroundColor: category.color }}
