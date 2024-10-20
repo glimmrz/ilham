@@ -11,8 +11,9 @@ export function metadata() {
   };
 }
 
-async function Products() {
-  const res = await getData(`products`);
+async function Products({ searchParams }) {
+  const queryString = new URLSearchParams(searchParams).toString();
+  const res = await getData(`products${queryString ? `?${queryString}` : ""}`);
 
   return (
     <>
@@ -23,12 +24,12 @@ async function Products() {
   );
 }
 
-export default async function Page() {
+export default async function Page({ searchParams }) {
   return (
     <Container>
       <ProductView title="all products">
         <Suspense fallback={<ProductviewSkeleton />}>
-          <Products />
+          <Products searchParams={searchParams} />
         </Suspense>
       </ProductView>
     </Container>

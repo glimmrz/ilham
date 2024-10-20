@@ -11,8 +11,8 @@ export const metadata = {
 };
 
 // component for product lists
-const ProductList = async ({ type }) => {
-  const res = await getData(`products?type=${type}&limit=10`);
+const ProductList = async ({ query }) => {
+  const res = await getData(`products?${query}&limit=10`);
   return (
     <>
       {res.response.payload?.map((product, index) => (
@@ -33,7 +33,7 @@ export default async function Home() {
         }}
       >
         <Suspense fallback={<ProductviewSkeleton />}>
-          <ProductList type="popular" />
+          <ProductList query="featured=true" />
         </Suspense>
       </ProductView>
 
@@ -43,11 +43,11 @@ export default async function Home() {
         title="best sellers"
         href={{
           pathname: "/shop",
-          query: { category: "mostsold" },
+          query: { sortBySold: "true" },
         }}
       >
         <Suspense fallback={<ProductviewSkeleton />}>
-          <ProductList type="mostsold" />
+          <ProductList query="sortBySold=true" />
         </Suspense>
       </ProductView>
 
@@ -55,11 +55,11 @@ export default async function Home() {
         title="featured items"
         href={{
           pathname: "/shop",
-          query: { category: "featured" },
+          query: { featured: "true" },
         }}
       >
         <Suspense fallback={<ProductviewSkeleton />}>
-          <ProductList type="featured" />
+          <ProductList query="featured=true" />
         </Suspense>
       </ProductView>
     </Container>
