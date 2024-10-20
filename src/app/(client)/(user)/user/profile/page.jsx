@@ -5,7 +5,6 @@ import { UpdateProfile } from "@/components/modals/update-profile";
 import { WithdrawMoney } from "@/components/modals/withdraw-money";
 import { ProfileSkeleton } from "@/components/skeletons/profile-skeleton";
 import { TotalCard } from "@/components/total-card";
-import { Button } from "@/components/ui/button";
 import { getData } from "@/utils/api-calls";
 import { getSession } from "@/utils/auth";
 import { Suspense } from "react";

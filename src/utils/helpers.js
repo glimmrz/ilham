@@ -114,3 +114,14 @@ export const useEcommerce = () => {
 
   return { handleAddToCart, handleAddToWishlist };
 };
+
+// Random code generator
+export function generateRandomString(length) {
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+  let result = "";
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    result += characters[randomIndex];
+  }
+  return result;
+}

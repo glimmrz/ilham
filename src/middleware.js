@@ -28,4 +28,18 @@ export async function middleware(request) {
   ) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
+
+  if (
+    !session.error &&
+    request.nextUrl.pathname.startsWith("/forgot-password")
+  ) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  if (
+    !session.error &&
+    request.nextUrl.pathname.startsWith("/reset-password")
+  ) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
 }
