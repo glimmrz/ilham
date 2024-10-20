@@ -1,8 +1,8 @@
-import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import User from "@/lib/models/User";
 import Address from "@/lib/models/Address";
 import Coupon from "@/lib/models/Coupon";
+import { SignJWT } from "jose";
 import { connectDb } from "@/lib/db/connectDb";
 import { NextResponse } from "next/server";
 
@@ -35,15 +35,14 @@ export async function POST(req) {
     // creating token which is gonna expire in 7days
     const expiry = 60 * 60 * 24;
 
-    const token = jwt.sign(
-      {
-        ...userDetails,
-      },
-      process.env.TOKEN_SECRET,
-      {
-        expiresIn: expiry,
-      }
-    );
+    // Convert TOKEN_SECRET to Uint8Array
+    const secretKey = new TextEncoder().encode(process.env.TOKEN_SECRET);
+
+    const token = await new SignJWT({ ...userDetails })
+      .setProtectedHeader({ alg: "HS256" })
+      .setIssuedAt()
+      .setExpirationTime(`${expiry}s`)
+      .sign(secretKey);
 
     return NextResponse.json(
       {
