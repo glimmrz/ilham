@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { FeatureCard } from "@/components/feature-card";
 
 export const metadata = {
-  title: "About us | AlgoMart",
+  title: "About us",
   description: "Find out who we are.",
 };
 

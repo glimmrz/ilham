@@ -4,7 +4,7 @@ import { Container } from "@/components/wrappers/container";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Frequently asked questions | AlgoMart",
+  title: "Frequently asked questions",
   description: "Questions asked by our customers.",
 };
 

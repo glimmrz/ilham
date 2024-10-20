@@ -4,7 +4,7 @@ import { Heading } from "@/components/heading";
 import { Container } from "@/components/wrappers/container";
 
 export const metadata = {
-  title: "Contact information | AlgoMart",
+  title: "Contact information",
   description: "Our contact information.",
 };
 

@@ -4,7 +4,7 @@ import { Container } from "@/components/wrappers/container";
 import { getCookie } from "@/utils/cookie";
 
 export const metadata = {
-  title: "Checkout | ilham",
+  title: "Checkout",
   description: "Proceed to complete your order.",
 };
 
