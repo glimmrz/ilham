@@ -107,7 +107,6 @@ export async function POST(request) {
         }
       );
     }
-
     await newOrder.save();
     if (isUser.payload?._id) {
       await User.findByIdAndUpdate(
