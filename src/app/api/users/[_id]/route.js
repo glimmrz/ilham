@@ -39,10 +39,6 @@ export async function GET(request, { params }) {
             path: "couponCode",
             select: "-_id code discount",
           },
-          {
-            path: "products.category",
-            select: "-_id label",
-          },
         ],
       })
       .select("-password -role -__v");
